@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Dr G.T. Pack Dentistry | Windhoek, Namibia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--forest:#183d2c;--forest2:#1f5038;--moss:#2e7050;--gold:#b8872a;--gold2:#d4a03d;--gold3:#f0c86a;--cream:#faf7f1;--warm:#f2ede3;--white:#fff;--ink:#191917;--body:#3a3a35;--muted:#7c7c74;--line:rgba(24,61,44,.1);--T:.38s cubic-bezier(.4,0,.2,1);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:16px;}
+body{font-family:'Nunito',sans-serif;background:var(--white);color:var(--body);overflow:hidden;height:100dvh;}
+a{text-decoration:none;color:inherit;}img{display:block;width:100%;object-fit:cover;}
+.page{position:fixed;inset:0;padding-top:104px;overflow-y:auto;overflow-x:hidden;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .42s cubic-bezier(.22,1,.36,1),transform .42s cubic-bezier(.22,1,.36,1);}
+.page.active{opacity:1;transform:none;pointer-events:all;}
+.page::-webkit-scrollbar{width:4px;}.page::-webkit-scrollbar-thumb{background:rgba(24,61,44,.18);border-radius:4px;}
+.container{max-width:1160px;margin:0 auto;padding:0 5%;}
+.eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;margin-bottom:.65rem;}
+.eyebrow::before{content:'';width:20px;height:1.5px;background:var(--gold);}
+.eyebrow.lt{color:var(--gold3);}.eyebrow.lt::before{background:var(--gold3);}
+h2.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:700;color:var(--forest);line-height:1.13;letter-spacing:-.02em;}
+h2.stitle em{font-style:italic;color:var(--gold);}h2.stitle.lt{color:#fff;}h2.stitle.lt em{color:var(--gold3);}
+.sbody{font-size:.9rem;font-weight:300;color:var(--muted);line-height:1.9;max-width:500px;margin-top:.7rem;}
+.rule{width:44px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold3));margin:1.1rem 0;}
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Nunito',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.76rem 1.65rem;border-radius:6px;cursor:pointer;border:none;transition:all var(--T);}
+.btn-primary{background:var(--forest);color:#fff;box-shadow:0 5px 18px rgba(24,61,44,.25);}
+.btn-primary:hover{background:var(--forest2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(24,61,44,.35);}
+.btn-outline{background:transparent;color:var(--forest);border:1.5px solid rgba(24,61,44,.22);}
+.btn-outline:hover{border-color:var(--forest);background:rgba(24,61,44,.05);}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 5px 16px rgba(184,135,42,.28);}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.28);}
+.btn-ghost:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.6);}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:34px;background:var(--forest);display:flex;align-items:center;justify-content:space-between;padding:0 5%;}
+.tb-links{display:flex;gap:1.8rem;}
+.tb-links a,.tb-links span{color:rgba(255,255,255,.45);font-size:.68rem;display:flex;align-items:center;gap:4px;transition:color var(--T);}
+.tb-links a:hover{color:var(--gold3);}
+@media(max-width:600px){.tb-hide{display:none;}}
+#nav{position:fixed;top:34px;left:0;right:0;z-index:999;height:70px;background:rgba(250,247,241,.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);transition:box-shadow var(--T);}
+#nav.shd{box-shadow:0 4px 24px rgba(24,61,44,.09);}
+.nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;max-width:1160px;margin:0 auto;padding:0 5%;}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.nl-mark{width:40px;height:40px;background:var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;box-shadow:0 3px 12px rgba(24,61,44,.22);}
+.nl-text{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:700;color:var(--forest);line-height:1.1;}
+.nl-text small{display:block;font-family:'Nunito',sans-serif;font-size:.54rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.nav-menu{display:flex;align-items:center;gap:.1rem;list-style:none;}
+.nav-menu a{display:block;padding:.42rem .82rem;font-size:.73rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--body);border-radius:5px;cursor:pointer;transition:color var(--T),background var(--T);position:relative;}
+.nav-menu a::after{content:'';position:absolute;bottom:0;left:.82rem;right:.82rem;height:2px;background:var(--gold);border-radius:2px;transform:scaleX(0);transition:transform var(--T);}
+.nav-menu a:hover{color:var(--forest);background:rgba(24,61,44,.05);}
+.nav-menu a.active{color:var(--forest);}.nav-menu a.active::after{transform:scaleX(1);}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:4px;}
+.ham span{display:block;width:22px;height:2px;background:var(--forest);border-radius:2px;transition:all .3s;}
+@media(max-width:768px){.nav-menu,.nav-bk{display:none;}.ham{display:flex;}}
+.mob{display:none;position:fixed;inset:0;z-index:1100;background:var(--cream);flex-direction:column;padding:5.5rem 5% 3rem;}
+.mob.open{display:flex;}
+.mob a{font-size:1.6rem;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--forest);padding:.85rem 0;border-bottom:1px solid var(--line);cursor:pointer;transition:color var(--T);}
+.mob a:hover{color:var(--gold);}
+.mob-x{position:absolute;top:1.1rem;right:5%;font-size:1.3rem;cursor:pointer;background:none;border:none;color:var(--forest);}
+.hero{position:relative;height:calc(100vh - 104px);min-height:500px;overflow:hidden;}
+.slides{position:absolute;inset:0;}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s cubic-bezier(.4,0,.2,1);}
+.slide.on{opacity:1;}
+.sl1{background-image:linear-gradient(105deg,rgba(24,61,44,.9) 0%,rgba(24,61,44,.55) 55%,rgba(0,0,0,.2) 100%),url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=85');}
+.sl2{background-image:linear-gradient(105deg,rgba(24,61,44,.9) 0%,rgba(24,61,44,.55) 55%,rgba(0,0,0,.2) 100%),url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1600&q=85');}
+.sl3{background-image:linear-gradient(105deg,rgba(24,61,44,.9) 0%,rgba(24,61,44,.55) 55%,rgba(0,0,0,.2) 100%),url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1600&q=85');}
+.hero-cnt{position:relative;z-index:2;height:100%;display:flex;align-items:center;padding:0 6%;}
+.hero-txt{max-width:600px;}
+.h-eyebrow{font-size:.64rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold3);display:flex;align-items:center;gap:8px;margin-bottom:1.2rem;}
+.h-eyebrow::before{content:'';width:20px;height:1.5px;background:var(--gold3);}
+.hero-txt h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,5rem);font-weight:700;color:#fff;line-height:1.06;letter-spacing:-.02em;margin-bottom:1.1rem;}
+.hero-txt h1 em{font-style:italic;color:var(--gold3);}
+.hero-txt p{font-size:.97rem;font-weight:300;color:rgba(255,255,255,.7);line-height:1.9;max-width:460px;margin-bottom:2.1rem;}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;}
+.h-dots{position:absolute;bottom:1.8rem;left:6%;z-index:3;display:flex;gap:.5rem;}
+.h-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all var(--T);}
+.h-dot.on{background:var(--gold3);transform:scale(1.3);}
+.scroll-hint{position:absolute;bottom:1.8rem;right:6%;z-index:3;display:flex;flex-direction:column;align-items:center;gap:5px;color:rgba(255,255,255,.3);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;}
+.sc-line{width:1px;height:34px;background:linear-gradient(to bottom,var(--gold3),transparent);animation:scAnim 2s ease infinite;}
+@keyframes scAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.strip{background:var(--forest);display:grid;grid-template-columns:repeat(4,1fr);}
+@media(max-width:600px){.strip{grid-template-columns:repeat(2,1fr);}}
+.s-item{padding:1.5rem 1rem;text-align:center;border-right:1px solid rgba(255,255,255,.08);transition:background var(--T);}
+.s-item:last-child{border-right:none;}.s-item:hover{background:rgba(255,255,255,.04);}
+.s-num{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:var(--gold3);line-height:1;}
+.s-lbl{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:.22rem;}
+.sec{padding:5rem 0;}.sh{margin-bottom:2.8rem;}
+.sh-split{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.8rem;}
+.card-t{border-radius:14px;transition:transform var(--T),box-shadow var(--T),border-color var(--T);}
+.card-t:hover{transform:translateY(-5px);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:center;}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr;gap:2.5rem;}}
+.wi-wrap{position:relative;}
+.wi-main{height:440px;border-radius:18px;box-shadow:0 20px 55px rgba(24,61,44,.14);}
+.wi-acc{position:absolute;bottom:-1.8rem;right:-1.8rem;width:52%;height:200px;border-radius:14px;border:5px solid #fff;box-shadow:0 10px 28px rgba(0,0,0,.1);}
+.wi-badge{position:absolute;top:1.8rem;left:-1.2rem;background:var(--gold);color:#fff;border-radius:10px;padding:.8rem 1.1rem;box-shadow:0 6px 20px rgba(184,135,42,.38);text-align:center;}
+.wib-n{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;line-height:1;}
+.wib-l{font-size:.55rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;}
+.wp-list{list-style:none;margin-top:1.4rem;display:flex;flex-direction:column;gap:.9rem;}
+.wp{display:flex;gap:.85rem;align-items:flex-start;}
+.wp-n{width:28px;height:28px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.58rem;font-weight:700;color:var(--gold);flex-shrink:0;margin-top:2px;transition:background var(--T),color var(--T);}
+.wp:hover .wp-n{background:var(--gold);color:#fff;}
+.wp-b strong{display:block;font-size:.84rem;font-weight:600;color:var(--forest);margin-bottom:2px;}
+.wp-b p{font-size:.77rem;font-weight:300;color:var(--muted);line-height:1.65;}
+.ph{display:flex;align-items:center;padding:0 6%;background-size:cover;background-position:center;}
+.ph.h-srv{height:320px;background-image:linear-gradient(105deg,rgba(24,61,44,.9) 0%,rgba(24,61,44,.6) 60%,rgba(0,0,0,.25) 100%),url('https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=1400&q=85');}
+.ph.h-team{height:300px;background-image:linear-gradient(105deg,rgba(24,61,44,.9) 0%,rgba(24,61,44,.6) 60%,rgba(0,0,0,.25) 100%),url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=1400&q=85');}
+.ph.h-locs{height:280px;background-image:linear-gradient(105deg,rgba(24,61,44,.92) 0%,rgba(24,61,44,.6) 60%,rgba(0,0,0,.25) 100%),url('https://images.unsplash.com/photo-1598256989014-f26428b445dd?w=1400&q=85');}
+.ph.h-revs{height:260px;background-image:linear-gradient(105deg,rgba(24,61,44,.9) 0%,rgba(24,61,44,.55) 60%,rgba(0,0,0,.25) 100%),url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=1400&q=85');}
+.ph.h-con{height:260px;background-image:linear-gradient(105deg,rgba(24,61,44,.92) 0%,rgba(24,61,44,.6) 60%,rgba(0,0,0,.25) 100%),url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1400&q=85');}
+.ph-txt h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:700;color:#fff;line-height:1.1;}
+.ph-txt h1 em{font-style:italic;color:var(--gold3);}
+.ph-txt p{font-size:.86rem;font-weight:300;color:rgba(255,255,255,.58);line-height:1.85;margin-top:.7rem;}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+@media(max-width:900px){.srv-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.srv-grid{grid-template-columns:1fr;}}
+.srv{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform var(--T),box-shadow var(--T),border-color var(--T);}
+.srv:hover{transform:translateY(-5px);box-shadow:0 14px 38px rgba(24,61,44,.1);border-color:rgba(24,61,44,.14);}
+.srv-img{height:165px;overflow:hidden;position:relative;}
+.srv-img img{height:100%;transition:transform .6s ease;}
+.srv:hover .srv-img img{transform:scale(1.06);}
+.srv-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(24,61,44,.45),transparent);}
+.srv-bd{padding:1.3rem;}
+.srv-ic{width:42px;height:42px;background:rgba(24,61,44,.07);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;margin-bottom:.8rem;transition:background var(--T);}
+.srv:hover .srv-ic{background:rgba(24,61,44,.13);}
+.srv h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--forest);margin-bottom:.42rem;}
+.srv p{font-size:.78rem;font-weight:300;color:var(--muted);line-height:1.75;}
+.srv-lnk{display:inline-flex;align-items:center;gap:4px;margin-top:.75rem;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--forest);cursor:pointer;transition:gap var(--T),color var(--T);}
+.srv-lnk:hover{gap:8px;color:var(--gold);}
+.tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+@media(max-width:900px){.tm-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.tm-grid{grid-template-columns:1fr;}}
+.tm{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:center;transition:transform var(--T),box-shadow var(--T);}
+.tm:hover{transform:translateY(-5px);box-shadow:0 14px 38px rgba(24,61,44,.1);}
+.tm-photo{height:240px;overflow:hidden;position:relative;}
+.tm-photo img{height:100%;object-fit:cover;object-position:top center;transition:transform .6s ease;}
+.tm:hover .tm-photo img{transform:scale(1.05);}
+.tm-ph-ph{height:100%;background:linear-gradient(135deg,var(--forest) 0%,var(--moss) 100%);display:flex;align-items:center;justify-content:center;font-size:3.5rem;}
+.tm-info{padding:1.4rem 1.2rem;}
+.tm-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--forest);}
+.tm-qual{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:.25rem 0 .6rem;}
+.tm-bio{font-size:.77rem;font-weight:300;color:var(--muted);line-height:1.75;text-align:left;}
+.tm-badge{display:inline-flex;align-items:center;gap:5px;margin-top:.85rem;background:rgba(24,61,44,.07);color:var(--forest);font-size:.63rem;font-weight:600;padding:.28rem .7rem;border-radius:50px;border:1px solid rgba(24,61,44,.12);transition:background var(--T);}
+.tm:hover .tm-badge{background:rgba(24,61,44,.12);}
+.vals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem;}
+@media(max-width:800px){.vals-grid{grid-template-columns:repeat(2,1fr);}}
+.val{background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:1.4rem;text-align:center;transition:all var(--T);}
+.val:hover{background:var(--white);border-color:rgba(24,61,44,.14);transform:translateY(-4px);box-shadow:0 10px 26px rgba(24,61,44,.08);}
+.val-ico{font-size:1.5rem;margin-bottom:.6rem;}
+.val-t{font-family:'Cormorant Garamond',serif;font-size:.98rem;font-weight:700;color:var(--forest);margin-bottom:.3rem;}
+.val-d{font-size:.73rem;font-weight:300;color:var(--muted);line-height:1.65;}
+.locs-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+@media(max-width:800px){.locs-grid{grid-template-columns:1fr;}}
+.loc{background:var(--forest);border:1px solid rgba(255,255,255,.09);border-radius:16px;overflow:hidden;transition:box-shadow var(--T),transform var(--T);}
+.loc.main{border-color:rgba(212,160,61,.35);}.loc:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.2);}
+.loc-img{height:190px;overflow:hidden;position:relative;}
+.loc-img img{height:100%;transition:transform .6s ease;}.loc:hover .loc-img img{transform:scale(1.05);}
+.loc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(24,61,44,.65),transparent 50%);}
+.loc-tag-ov{position:absolute;bottom:.85rem;left:.95rem;z-index:2;font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold3);background:rgba(24,61,44,.7);backdrop-filter:blur(8px);border:1px solid rgba(212,160,61,.3);padding:.22rem .65rem;border-radius:50px;}
+.loc-bd{padding:1.7rem;}
+.loc-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:1rem;}
+.loc-rows{list-style:none;display:flex;flex-direction:column;gap:.52rem;}
+.loc-row{display:flex;align-items:flex-start;gap:.62rem;font-size:.78rem;font-weight:300;color:rgba(255,255,255,.5);}
+.loc-row a{color:var(--gold3);transition:color var(--T);}.loc-row a:hover{color:var(--gold2);}
+.loc-ic{color:var(--gold3);flex-shrink:0;margin-top:1px;}
+.hrs{margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.07);}
+.hrs-t{font-size:.56rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.58rem;}
+.hr{display:flex;justify-content:space-between;font-size:.75rem;font-weight:300;padding:.27rem 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.hr:last-child{border-bottom:none;}.hr-day{color:rgba(255,255,255,.35);}
+.hr-t{font-weight:600;color:rgba(255,255,255,.65);}.hr-t.on{color:var(--gold3);}
+.loc-btns{display:flex;gap:.7rem;margin-top:1.3rem;flex-wrap:wrap;}
+.rs{background:var(--forest);border-radius:16px;padding:2rem;display:flex;align-items:center;gap:2.5rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.rs-big{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:700;color:var(--gold3);line-height:1;}
+.rs-stars{color:var(--gold3);font-size:1.1rem;letter-spacing:3px;}.rs-lbl{font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.18rem;}
+.rs-bars{flex:1;min-width:180px;}.rs-br{display:flex;align-items:center;gap:.7rem;margin-bottom:.38rem;}
+.rs-bl{font-size:.64rem;color:rgba(255,255,255,.4);width:28px;flex-shrink:0;}
+.rs-btr{flex:1;height:5px;background:rgba(255,255,255,.09);border-radius:5px;overflow:hidden;}
+.rs-bfl{height:100%;border-radius:5px;background:var(--gold2);}
+.revs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+@media(max-width:900px){.revs-grid{grid-template-columns:1fr;}}
+.rev{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:1.6rem;transition:all var(--T);}
+.rev:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(24,61,44,.08);border-color:rgba(24,61,44,.12);}
+.rev-q{font-family:'Cormorant Garamond',serif;font-size:2.7rem;line-height:.52;color:var(--gold);opacity:.28;margin-bottom:.65rem;}
+.rev-st{color:var(--gold);font-size:.78rem;letter-spacing:2px;margin-bottom:.62rem;}
+.rev-txt{font-size:.83rem;font-weight:300;color:#4a4a44;line-height:1.82;font-style:italic;margin-bottom:1.1rem;}
+.rev-au{display:flex;align-items:center;gap:.68rem;}
+.rev-av{width:37px;height:37px;border-radius:50%;background:var(--forest);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.88rem;font-weight:700;color:#fff;flex-shrink:0;}
+.rev-name{font-size:.8rem;font-weight:600;color:var(--forest);}.rev-tag{font-size:.63rem;color:var(--muted);}
+.con-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3.5rem;align-items:start;}
+@media(max-width:900px){.con-grid{grid-template-columns:1fr;}}
+.ci{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:1.9rem;box-shadow:0 6px 24px rgba(24,61,44,.06);}
+.ci-t{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--forest);margin-bottom:1.2rem;}
+.ci-rows{list-style:none;display:flex;flex-direction:column;gap:.78rem;}
+.ci-row{display:flex;align-items:center;gap:.72rem;font-size:.81rem;color:var(--body);}
+.ci-ico{width:33px;height:33px;background:rgba(24,61,44,.07);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.84rem;flex-shrink:0;transition:background var(--T);}
+.ci-row:hover .ci-ico{background:rgba(24,61,44,.13);}
+.ci-row a{color:var(--forest);font-weight:600;transition:color var(--T);}.ci-row a:hover{color:var(--gold);}
+.ci-div{height:1px;background:var(--line);margin:.55rem 0;}
+.bfw{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:1.9rem;box-shadow:0 6px 24px rgba(24,61,44,.06);}
+.bf-t{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;color:var(--forest);margin-bottom:1.2rem;}
+.fg{margin-bottom:.85rem;}.fl{display:block;font-size:.59rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.33rem;}
+.fi,.fs,.fta{width:100%;background:var(--cream);border:1.5px solid var(--line);border-radius:9px;font-family:'Nunito',sans-serif;font-size:.84rem;color:var(--body);padding:.67rem .93rem;transition:border-color var(--T),background var(--T);-webkit-appearance:none;}
+.fi:focus,.fs:focus,.fta:focus{outline:none;border-color:var(--forest);background:var(--white);}
+.fi::placeholder,.fta::placeholder{color:#b0a898;}
+.fta{min-height:72px;resize:none;}.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+.f-sub{width:100%;padding:.86rem;background:var(--forest);color:#fff;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;margin-top:.3rem;box-shadow:0 5px 18px rgba(24,61,44,.25);transition:all var(--T);}
+.f-sub:hover{background:var(--forest2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(24,61,44,.32);}
+.cv{text-align:center;padding:2.5rem 1rem 1rem;}
+.cv-chk{width:58px;height:58px;background:rgba(24,61,44,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin:0 auto .9rem;}
+.cv-t{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:var(--forest);margin-bottom:.4rem;}
+.cv-b{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.8;max-width:310px;margin:0 auto 1.2rem;}
+.cv-det{background:var(--warm);border-radius:10px;padding:.85rem 1rem;text-align:left;margin-bottom:1.2rem;}
+.cd-r{display:flex;justify-content:space-between;font-size:.77rem;padding:.26rem 0;border-bottom:1px solid var(--line);}
+.cd-r:last-child{border-bottom:none;}.cd-l{color:var(--muted);font-weight:300;}.cd-v{color:var(--forest);font-weight:600;}
+footer{background:var(--ink);border-top:3px solid var(--gold);padding:3.8rem 5% 2rem;}
+.fg2{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:3rem;margin-bottom:2.8rem;}
+@media(max-width:800px){.fg2{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.fg2{grid-template-columns:1fr;}}
+.fb{font-size:.78rem;font-weight:300;color:rgba(255,255,255,.3);line-height:1.8;margin-top:.85rem;max-width:230px;}
+.fsocs{display:flex;gap:.45rem;margin-top:1.1rem;}
+.fsoc{width:31px;height:31px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.76rem;color:rgba(255,255,255,.3);transition:all var(--T);}
+.fsoc:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.fc h5{font-size:.57rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.18);margin-bottom:.95rem;}
+.fl2{list-style:none;}.fl2 li{margin-bottom:.48rem;}
+.fl2 a{font-size:.77rem;font-weight:300;color:rgba(255,255,255,.33);cursor:pointer;transition:color var(--T);}
+.fl2 a:hover{color:var(--gold3);}
+.fbt{border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+.fcp{font-size:.65rem;color:rgba(255,255,255,.13);}
+.fab{position:fixed;bottom:1.8rem;right:1.8rem;z-index:700;width:52px;height:52px;background:var(--forest);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 6px 22px rgba(24,61,44,.42);transition:transform .2s;}
+.fab:hover{transform:scale(1.1);}
+.fab::before{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(24,61,44,.22);animation:fabR 2.5s ease infinite;}
+@keyframes fabR{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0;transform:scale(1.5)}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1);}
+.reveal.vis{opacity:1;transform:none;}
+@media(max-width:600px){.page{padding-top:104px;}}
+</style>
+</head>
+<body>
+
+<a href="tel:+264612261255" class="fab">&#128222;</a>
+
+<div class="topbar">
+  <div class="tb-links">
+    <a href="tel:+264612261255">&#128222; +264 61 226 125</a>
+    <a href="mailto:info@gtpackdentistry.com.na" class="tb-hide">&#9993; info@gtpackdentistry.com.na</a>
+    <span class="tb-hide">&#128205; 2 Windhoek Locations</span>
+  </div>
+  <a href="https://facebook.com" target="_blank" style="color:rgba(255,255,255,.35);font-size:.68rem">Facebook</a>
+</div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="go('home')">
+      <div class="nl-mark">&#129461;</div>
+      <div class="nl-text">Dr G.T. Pack<small>Dentistry &middot; Windhoek</small></div>
+    </div>
+    <ul class="nav-menu">
+      <li><a onclick="go('home')" id="n-home" class="active">Home</a></li>
+      <li><a onclick="go('services')" id="n-services">Services</a></li>
+      <li><a onclick="go('team')" id="n-team">Our Team</a></li>
+      <li><a onclick="go('locations')" id="n-locations">Locations</a></li>
+      <li><a onclick="go('reviews')" id="n-reviews">Reviews</a></li>
+      <li><a onclick="go('contact')" id="n-contact">Contact</a></li>
+    </ul>
+    <button class="btn btn-primary nav-bk" onclick="go('contact')">Book Appointment</button>
+    <button class="ham" onclick="openMob()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mob" id="mobNav">
+  <button class="mob-x" onclick="closeMob()">&#10005;</button>
+  <a onclick="go('home');closeMob()">Home</a>
+  <a onclick="go('services');closeMob()">Services</a>
+  <a onclick="go('team');closeMob()">Our Team</a>
+  <a onclick="go('locations');closeMob()">Locations</a>
+  <a onclick="go('reviews');closeMob()">Reviews</a>
+  <a onclick="go('contact');closeMob()">Contact</a>
+  <button class="btn btn-primary" style="margin-top:1.5rem;justify-content:center" onclick="go('contact');closeMob()">Book Appointment</button>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="slides">
+      <div class="slide sl1 on"></div>
+      <div class="slide sl2"></div>
+      <div class="slide sl3"></div>
+    </div>
+    <div class="hero-cnt">
+      <div class="hero-txt">
+        <div class="h-eyebrow">Trusted Dentistry &middot; Windhoek, Namibia</div>
+        <h1>Excellence<br/>in <em>Dental</em> Care.</h1>
+        <p>Dr G.T. Pack has been delivering compassionate, expert dental care to Windhoek families for decades &mdash; from routine check-ups to advanced surgery.</p>
+        <div class="hero-btns">
+          <button class="btn btn-gold" onclick="go('contact')">&#128197; Book Appointment</button>
+          <button class="btn btn-ghost" onclick="go('services')">Our Services &rarr;</button>
+        </div>
+      </div>
+    </div>
+    <div class="h-dots">
+      <div class="h-dot on" onclick="gSlide(0)"></div>
+      <div class="h-dot" onclick="gSlide(1)"></div>
+      <div class="h-dot" onclick="gSlide(2)"></div>
+    </div>
+    <div class="scroll-hint"><div class="sc-line"></div><span>Scroll</span></div>
+  </div>
+  <div class="strip">
+    <div class="s-item"><div class="s-num">2</div><div class="s-lbl">Locations</div></div>
+    <div class="s-item"><div class="s-num">5&#9733;</div><div class="s-lbl">Patient Rated</div></div>
+    <div class="s-item"><div class="s-num">All Ages</div><div class="s-lbl">Family Friendly</div></div>
+    <div class="s-item"><div class="s-num">24h</div><div class="s-lbl">Emergency Line</div></div>
+  </div>
+  <section class="sec" style="background:var(--white)">
+    <div class="container">
+      <div class="why-grid">
+        <div class="wi-wrap reveal">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=900&q=85" alt="Dental care" class="wi-main"/>
+          <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=500&q=80" alt="Clinic" class="wi-acc"/>
+          <div class="wi-badge"><div class="wib-n">20+</div><div class="wib-l">Years</div></div>
+        </div>
+        <div class="reveal">
+          <div class="eyebrow">Why Choose Us</div>
+          <h2 class="stitle">Your Family&#8217;s Dental<br/><em>Home in Windhoek</em></h2>
+          <div class="rule"></div>
+          <p class="sbody">Dr Pack and his team combine years of experience with genuine care &mdash; every patient leaves healthier and more confident.</p>
+          <ul class="wp-list">
+            <li class="wp"><div class="wp-n">01</div><div class="wp-b"><strong>Qualified Dental Surgeon</strong><p>Fully registered with decades of surgical and general dental experience serving Windhoek.</p></div></li>
+            <li class="wp"><div class="wp-n">02</div><div class="wp-b"><strong>Two Convenient Locations</strong><p>Central Windhoek and Windhoek North &mdash; accessible from anywhere in the city.</p></div></li>
+            <li class="wp"><div class="wp-n">03</div><div class="wp-b"><strong>All Ages Welcome</strong><p>Children, adults and seniors &mdash; personalised care for the whole family.</p></div></li>
+            <li class="wp"><div class="wp-n">04</div><div class="wp-b"><strong>Emergency Appointments</strong><p>Dental emergencies always prioritised. Call us and we fit you in the same day.</p></div></li>
+          </ul>
+          <button class="btn btn-primary" style="margin-top:1.8rem" onclick="go('contact')">Book a Consultation</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec" style="background:var(--warm)">
+    <div class="container">
+      <div class="sh-split reveal">
+        <div><div class="eyebrow">What We Offer</div><h2 class="stitle">Core <em>Services</em></h2></div>
+        <button class="btn btn-primary" onclick="go('services')">View All &rarr;</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem" class="reveal">
+        <div class="card-t" style="background:var(--white);border:1px solid var(--line);padding:1.4rem;cursor:pointer" onclick="go('services')"><div style="font-size:1.3rem;margin-bottom:.6rem">&#129461;</div><div style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--forest);margin-bottom:.3rem">General Dentistry</div><p style="font-size:.75rem;font-weight:300;color:var(--muted);line-height:1.7">Check-ups, fillings and preventive care for the whole family.</p></div>
+        <div class="card-t" style="background:var(--white);border:1px solid var(--line);padding:1.4rem;cursor:pointer" onclick="go('services')"><div style="font-size:1.3rem;margin-bottom:.6rem">&#10024;</div><div style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--forest);margin-bottom:.3rem">Cosmetic Dentistry</div><p style="font-size:.75rem;font-weight:300;color:var(--muted);line-height:1.7">Veneers, whitening and smile makeovers.</p></div>
+        <div class="card-t" style="background:var(--white);border:1px solid var(--line);padding:1.4rem;cursor:pointer" onclick="go('services')"><div style="font-size:1.3rem;margin-bottom:.6rem">&#128680;</div><div style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--forest);margin-bottom:.3rem">Emergency Care</div><p style="font-size:.75rem;font-weight:300;color:var(--muted);line-height:1.7">Same-day urgent dental appointments.</p></div>
+      </div>
+    </div>
+  </section>
+  <footer><div class="container"><div class="fg2">
+<div><div class="nav-logo" style="cursor:pointer" onclick="go('home')"><div class="nl-mark" style="width:38px;height:38px;font-size:1rem">&#129461;</div><div class="nl-text" style="color:#fff">Dr G.T. Pack<small style="color:rgba(255,255,255,.25)">Dentistry &middot; Windhoek</small></div></div>
+<p class="fb">Professional dental surgery across two Windhoek locations. General, cosmetic, restorative and emergency dentistry for all ages.</p>
+<div class="fsocs"><a href="https://facebook.com" target="_blank" class="fsoc">fb</a><a href="tel:+264612261255" class="fsoc">&#128222;</a><a href="mailto:info@gtpackdentistry.com.na" class="fsoc">@</a></div></div>
+<div class="fc"><h5>Pages</h5><ul class="fl2"><li><a onclick="go('home')">Home</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('team')">Our Team</a></li><li><a onclick="go('locations')">Locations</a></li><li><a onclick="go('reviews')">Reviews</a></li></ul></div>
+<div class="fc"><h5>Contact</h5><ul class="fl2"><li><a href="tel:+264612261255">+264 61 226 125</a></li><li><a href="mailto:info@gtpackdentistry.com.na">Email Us</a></li><li><a onclick="go('contact')">Book Appointment</a></li></ul></div>
+</div><div class="fbt"><div class="fcp">&copy; 2025 Dr G.T. Pack Dentistry. All Rights Reserved. Windhoek, Namibia.</div><div class="fcp">Crafting healthy smiles &#129461;</div></div></div></footer>
+</div>
+
+<!-- SERVICES -->
+<div class="page" id="page-services">
+  <div class="ph h-srv">
+    <div class="ph-txt"><div class="eyebrow lt">What We Offer</div><h1>Our <em>Services</em></h1><p>Comprehensive dental care for every stage of life &mdash; skill, modern technique and genuine care.</p></div>
+  </div>
+  <section class="sec" style="background:var(--cream)">
+    <div class="container">
+      <div class="srv-grid">
+        <div class="srv reveal"><div class="srv-img"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80" alt="General"/><div class="srv-ov"></div></div><div class="srv-bd"><div class="srv-ic">&#129461;</div><h3>General &amp; Family Dentistry</h3><p>Check-ups, fillings, scale and polish, extractions and preventive care for patients of all ages &mdash; your complete family dental home.</p><div class="srv-lnk" onclick="go('contact')">Book Now &rarr;</div></div></div>
+        <div class="srv reveal"><div class="srv-img"><img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=600&q=80" alt="Cosmetic"/><div class="srv-ov"></div></div><div class="srv-bd"><div class="srv-ic">&#10024;</div><h3>Cosmetic Dentistry</h3><p>Veneers, professional teeth whitening, composite bonding and full smile makeovers &mdash; look and feel more confident every day.</p><div class="srv-lnk" onclick="go('contact')">Book Now &rarr;</div></div></div>
+        <div class="srv reveal"><div class="srv-img"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Restorative"/><div class="srv-ov"></div></div><div class="srv-bd"><div class="srv-ic">&#128295;</div><h3>Restorative Dentistry</h3><p>Crowns, bridges, dentures and dental implants to restore damaged or missing teeth &mdash; bringing back full function and a natural appearance.</p><div class="srv-lnk" onclick="go('contact')">Book Now &rarr;</div></div></div>
+        <div class="srv reveal"><div class="srv-img"><img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80" alt="Root Canal"/><div class="srv-ov"></div></div><div class="srv-bd"><div class="srv-ic">&#128300;</div><h3>Root Canal Treatment</h3><p>Modern, minimally painful endodontic treatment that saves infected teeth and eliminates discomfort &mdash; so you keep your natural tooth for life.</p><div class="srv-lnk" onclick="go('contact')">Book Now &rarr;</div></div></div>
+        <div class="srv reveal"><div class="srv-img"><img src="https://images.unsplash.com/photo-1598256989014-f26428b445dd?w=600&q=80" alt="Emergency"/><div class="srv-ov"></div></div><div class="srv-bd"><div class="srv-ic">&#128680;</div><h3>Emergency Dentistry</h3><p>Urgent same-day care for toothaches, abscesses, broken teeth and trauma. Call us immediately &mdash; emergencies are always our top priority.</p><div class="srv-lnk" onclick="go('contact')">Book Now &rarr;</div></div></div>
+        <div class="reveal" style="background:var(--forest);border-radius:14px;padding:2rem;display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:.7rem">Not sure which treatment you need?</div><p style="font-size:.8rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:1.3rem">Book a consultation &mdash; Dr Pack will assess your needs and recommend the right plan for you.</p><button class="btn btn-gold" onclick="go('contact')">Book a Consultation</button></div>
+      </div>
+    </div>
+  </section>
+  <footer><div class="container"><div class="fg2">
+<div><div class="nav-logo" style="cursor:pointer" onclick="go('home')"><div class="nl-mark" style="width:38px;height:38px;font-size:1rem">&#129461;</div><div class="nl-text" style="color:#fff">Dr G.T. Pack<small style="color:rgba(255,255,255,.25)">Dentistry &middot; Windhoek</small></div></div>
+<p class="fb">Professional dental surgery across two Windhoek locations. General, cosmetic, restorative and emergency dentistry for all ages.</p>
+<div class="fsocs"><a href="https://facebook.com" target="_blank" class="fsoc">fb</a><a href="tel:+264612261255" class="fsoc">&#128222;</a><a href="mailto:info@gtpackdentistry.com.na" class="fsoc">@</a></div></div>
+<div class="fc"><h5>Pages</h5><ul class="fl2"><li><a onclick="go('home')">Home</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('team')">Our Team</a></li><li><a onclick="go('locations')">Locations</a></li><li><a onclick="go('reviews')">Reviews</a></li></ul></div>
+<div class="fc"><h5>Contact</h5><ul class="fl2"><li><a href="tel:+264612261255">+264 61 226 125</a></li><li><a href="mailto:info@gtpackdentistry.com.na">Email Us</a></li><li><a onclick="go('contact')">Book Appointment</a></li></ul></div>
+</div><div class="fbt"><div class="fcp">&copy; 2025 Dr G.T. Pack Dentistry. All Rights Reserved. Windhoek, Namibia.</div><div class="fcp">Crafting healthy smiles &#129461;</div></div></div></footer>
+</div>
+
+<!-- TEAM -->
+<div class="page" id="page-team">
+  <div class="ph h-team">
+    <div class="ph-txt"><div class="eyebrow lt">The People Behind the Practice</div><h1>Our <em>Team</em></h1><p>Experienced, caring professionals dedicated to your oral health and comfort.</p></div>
+  </div>
+  <section class="sec" style="background:var(--cream)">
+    <div class="container">
+      <div class="sh reveal"><div class="eyebrow">Meet the Dentists</div><h2 class="stitle">Expert Care, <em>Personal Touch</em></h2><p class="sbody">Our dental team brings years of clinical excellence and a genuine passion for patient wellbeing.</p></div>
+      <div class="tm-grid">
+        <div class="tm reveal">
+          <div class="tm-photo"><img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80" alt="Dr G.T. Pack"/></div>
+          <div class="tm-info">
+            <div class="tm-name">Dr G.T. Pack</div>
+            <div class="tm-qual">B.Ch.D &middot; Principal Dental Surgeon</div>
+            <p class="tm-bio">Dr G.T. Pack is the founder and principal surgeon of the practice, with over two decades of dedicated service to dental health in Windhoek. A graduate with a Bachelor of Dental Surgery, he established his Central Windhoek practice with a clear mission: to deliver world-class dental care to every Namibian. Renowned for his calm chair-side manner and meticulous clinical technique, Dr Pack puts patients at ease from the very first consultation. Under his leadership the practice expanded to Windhoek North Medical Centre, bringing quality dentistry closer to more families. He remains a committed advocate for community oral health education across Namibia.</p>
+            <div class="tm-badge">&#129461; Principal Surgeon</div>
+          </div>
+        </div>
+        <div class="tm reveal">
+          <div class="tm-photo"><img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&q=80" alt="Dr Hendrick"/></div>
+          <div class="tm-info">
+            <div class="tm-name">Dr Hendrick</div>
+            <div class="tm-qual">B.Ch.D &middot; Associate Dentist</div>
+            <p class="tm-bio">Dr Hendrick joined Pack Dentistry bringing fresh expertise and a specialisation in cosmetic and restorative dentistry. Holding a Bachelor of Dental Surgery with post-graduate training in aesthetic dentistry and digital smile design, he is highly skilled in veneers, composite bonding and orthodontic treatment. Dr Hendrick has a natural rapport with younger patients and families, and is passionate about combining cutting-edge technique with the warm, unhurried approach the practice has always been known for. Patients frequently commend his thoroughness and his ability to explain procedures in plain, reassuring language.</p>
+            <div class="tm-badge">&#10024; Cosmetic &amp; Restorative</div>
+          </div>
+        </div>
+        <div class="tm reveal">
+          <div class="tm-photo"><div class="tm-ph-ph">&#128210;</div></div>
+          <div class="tm-info">
+            <div class="tm-name">Clinical &amp; Admin Team</div>
+            <div class="tm-qual">Nurses &middot; Assistants &middot; Reception</div>
+            <p class="tm-bio">Behind every great dentist is an outstanding support team. Our qualified dental nurses, chair-side assistants and front-desk staff work seamlessly to ensure your visit &mdash; from booking to discharge &mdash; is smooth, comfortable and professional. Our reception team manages appointments at both locations and is always ready to assist with queries, medical aid claims and emergency scheduling.</p>
+            <div class="tm-badge">&#129309; Supporting Your Care</div>
+          </div>
+        </div>
+      </div>
+      <div class="sh reveal" style="margin-top:4rem;margin-bottom:1.8rem"><div class="eyebrow">Our Values</div><h2 class="stitle">What We <em>Stand For</em></h2></div>
+      <div class="vals-grid">
+        <div class="val reveal"><div class="val-ico">&#127919;</div><div class="val-t">Precision</div><p class="val-d">Every procedure performed with meticulous attention to detail and clinical best practice.</p></div>
+        <div class="val reveal"><div class="val-ico">&#129309;</div><div class="val-t">Compassion</div><p class="val-d">We treat every patient as we would want our own family to be treated &mdash; with warmth and respect.</p></div>
+        <div class="val reveal"><div class="val-ico">&#128300;</div><div class="val-t">Excellence</div><p class="val-d">Continuous learning and adoption of modern techniques to deliver the best outcomes.</p></div>
+        <div class="val reveal"><div class="val-ico">&#127757;</div><div class="val-t">Community</div><p class="val-d">Committed to improving oral health across Windhoek and the wider Namibian community.</p></div>
+      </div>
+    </div>
+  </section>
+  <section style="background:var(--forest);padding:3.5rem 5%;text-align:center">
+    <h2 class="stitle lt" style="margin-bottom:.7rem">Ready to Meet the Team?</h2>
+    <p style="font-size:.88rem;font-weight:300;color:rgba(255,255,255,.5);margin-bottom:1.7rem">Book your appointment and experience the Dr Pack difference in person.</p>
+    <button class="btn btn-gold" onclick="go('contact')">&#128197; Book an Appointment</button>
+  </section>
+  <footer><div class="container"><div class="fg2">
+<div><div class="nav-logo" style="cursor:pointer" onclick="go('home')"><div class="nl-mark" style="width:38px;height:38px;font-size:1rem">&#129461;</div><div class="nl-text" style="color:#fff">Dr G.T. Pack<small style="color:rgba(255,255,255,.25)">Dentistry &middot; Windhoek</small></div></div>
+<p class="fb">Professional dental surgery across two Windhoek locations. General, cosmetic, restorative and emergency dentistry for all ages.</p>
+<div class="fsocs"><a href="https://facebook.com" target="_blank" class="fsoc">fb</a><a href="tel:+264612261255" class="fsoc">&#128222;</a><a href="mailto:info@gtpackdentistry.com.na" class="fsoc">@</a></div></div>
+<div class="fc"><h5>Pages</h5><ul class="fl2"><li><a onclick="go('home')">Home</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('team')">Our Team</a></li><li><a onclick="go('locations')">Locations</a></li><li><a onclick="go('reviews')">Reviews</a></li></ul></div>
+<div class="fc"><h5>Contact</h5><ul class="fl2"><li><a href="tel:+264612261255">+264 61 226 125</a></li><li><a href="mailto:info@gtpackdentistry.com.na">Email Us</a></li><li><a onclick="go('contact')">Book Appointment</a></li></ul></div>
+</div><div class="fbt"><div class="fcp">&copy; 2025 Dr G.T. Pack Dentistry. All Rights Reserved. Windhoek, Namibia.</div><div class="fcp">Crafting healthy smiles &#129461;</div></div></div></footer>
+</div>
+
+<!-- LOCATIONS -->
+<div class="page" id="page-locations">
+  <div class="ph h-locs">
+    <div class="ph-txt"><div class="eyebrow lt">Find Us</div><h1>Our <em>Locations</em></h1><p>Two Windhoek practices &mdash; same quality, same commitment to your dental health.</p></div>
+  </div>
+  <section class="sec" style="background:var(--cream)">
+    <div class="container">
+      <div class="sh reveal"><div class="eyebrow">Where We Are</div><h2 class="stitle">Two Practices, <em>One Standard</em></h2><p class="sbody">Visit us at either location &mdash; both fully equipped to deliver the highest standard of dental care.</p></div>
+      <div class="locs-grid">
+        <div class="loc main reveal">
+          <div class="loc-img"><img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=800&q=85" alt="Central"/><div class="loc-ov"></div><div class="loc-tag-ov">&#128205; Main Practice</div></div>
+          <div class="loc-bd">
+            <div class="loc-name">Central Windhoek</div>
+            <ul class="loc-rows">
+              <li class="loc-row"><span class="loc-ic">&#128205;</span>Winco Building, Stubel Street, Central, Windhoek</li>
+              <li class="loc-row"><span class="loc-ic">&#128222;</span><a href="tel:+264612261255">+264 61 226 125</a></li>
+              <li class="loc-row"><span class="loc-ic">&#9993;</span><a href="mailto:info@gtpackdentistry.com.na">info@gtpackdentistry.com.na</a></li>
+              <li class="loc-row"><span class="loc-ic">&#128663;</span>Street parking on Stubel Street</li>
+            </ul>
+            <div class="hrs"><div class="hrs-t">Opening Hours</div>
+              <div class="hr"><span class="hr-day">Mon &ndash; Thu</span><span class="hr-t on">07:30 &ndash; 17:00</span></div>
+              <div class="hr"><span class="hr-day">Friday</span><span class="hr-t on">07:30 &ndash; 16:00</span></div>
+              <div class="hr"><span class="hr-day">Saturday</span><span class="hr-t">By Appointment</span></div>
+              <div class="hr"><span class="hr-day">Sunday</span><span class="hr-t" style="color:rgba(255,255,255,.2)">Closed</span></div>
+            </div>
+            <div class="loc-btns"><a href="tel:+264612261255" class="btn btn-gold" style="font-size:.71rem;padding:.66rem 1.2rem">&#128222; Call</a><button class="btn btn-ghost" style="font-size:.71rem;padding:.66rem 1.2rem" onclick="go('contact')">&#128197; Book</button></div>
+          </div>
+        </div>
+        <div class="loc reveal">
+          <div class="loc-img"><img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&q=85" alt="North"/><div class="loc-ov"></div><div class="loc-tag-ov">&#128205; North Practice</div></div>
+          <div class="loc-bd">
+            <div class="loc-name">Windhoek North</div>
+            <ul class="loc-rows">
+              <li class="loc-row"><span class="loc-ic">&#128205;</span>Windhoek North Medical Centre, Windhoek North</li>
+              <li class="loc-row"><span class="loc-ic">&#128222;</span><a href="tel:+264612261255">+264 61 226 125</a></li>
+              <li class="loc-row"><span class="loc-ic">&#127973;</span>Located within the Windhoek North Medical Centre</li>
+              <li class="loc-row"><span class="loc-ic">&#128663;</span>Ample parking within the medical centre</li>
+            </ul>
+            <div class="hrs"><div class="hrs-t">Opening Hours</div>
+              <div class="hr"><span class="hr-day">Mon &ndash; Thu</span><span class="hr-t on">07:30 &ndash; 17:00</span></div>
+              <div class="hr"><span class="hr-day">Friday</span><span class="hr-t on">07:30 &ndash; 16:00</span></div>
+              <div class="hr"><span class="hr-day">Saturday</span><span class="hr-t">By Appointment</span></div>
+              <div class="hr"><span class="hr-day">Sunday</span><span class="hr-t" style="color:rgba(255,255,255,.2)">Closed</span></div>
+            </div>
+            <div class="loc-btns"><a href="tel:+264612261255" class="btn btn-gold" style="font-size:.71rem;padding:.66rem 1.2rem">&#128222; Call</a><button class="btn btn-ghost" style="font-size:.71rem;padding:.66rem 1.2rem" onclick="go('contact')">&#128197; Book</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer><div class="container"><div class="fg2">
+<div><div class="nav-logo" style="cursor:pointer" onclick="go('home')"><div class="nl-mark" style="width:38px;height:38px;font-size:1rem">&#129461;</div><div class="nl-text" style="color:#fff">Dr G.T. Pack<small style="color:rgba(255,255,255,.25)">Dentistry &middot; Windhoek</small></div></div>
+<p class="fb">Professional dental surgery across two Windhoek locations. General, cosmetic, restorative and emergency dentistry for all ages.</p>
+<div class="fsocs"><a href="https://facebook.com" target="_blank" class="fsoc">fb</a><a href="tel:+264612261255" class="fsoc">&#128222;</a><a href="mailto:info@gtpackdentistry.com.na" class="fsoc">@</a></div></div>
+<div class="fc"><h5>Pages</h5><ul class="fl2"><li><a onclick="go('home')">Home</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('team')">Our Team</a></li><li><a onclick="go('locations')">Locations</a></li><li><a onclick="go('reviews')">Reviews</a></li></ul></div>
+<div class="fc"><h5>Contact</h5><ul class="fl2"><li><a href="tel:+264612261255">+264 61 226 125</a></li><li><a href="mailto:info@gtpackdentistry.com.na">Email Us</a></li><li><a onclick="go('contact')">Book Appointment</a></li></ul></div>
+</div><div class="fbt"><div class="fcp">&copy; 2025 Dr G.T. Pack Dentistry. All Rights Reserved. Windhoek, Namibia.</div><div class="fcp">Crafting healthy smiles &#129461;</div></div></div></footer>
+</div>
+
+<!-- REVIEWS -->
+<div class="page" id="page-reviews">
+  <div class="ph h-revs">
+    <div class="ph-txt"><div class="eyebrow lt">Patient Testimonials</div><h1>What Patients <em>Say</em></h1><p>Real feedback from Windhoek families who trust Dr Pack with their smiles.</p></div>
+  </div>
+  <section class="sec" style="background:var(--warm)">
+    <div class="container">
+      <div class="rs reveal">
+        <div><div class="rs-big">5.0</div><div class="rs-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rs-lbl">Average Patient Rating</div></div>
+        <div class="rs-bars">
+          <div class="rs-br"><span class="rs-bl">5&#9733;</span><div class="rs-btr"><div class="rs-bfl" style="width:90%"></div></div></div>
+          <div class="rs-br"><span class="rs-bl">4&#9733;</span><div class="rs-btr"><div class="rs-bfl" style="width:8%;background:var(--gold3)"></div></div></div>
+          <div class="rs-br"><span class="rs-bl">3&#9733;</span><div class="rs-btr"><div class="rs-bfl" style="width:2%;background:rgba(255,255,255,.2)"></div></div></div>
+        </div>
+        <div style="color:rgba(255,255,255,.4);font-size:.77rem;font-weight:300;line-height:1.7">Trusted by Windhoek<br/>families across both locations.</div>
+      </div>
+      <div class="revs-grid">
+        <div class="rev reveal"><div class="rev-q">"</div><div class="rev-st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-txt">Dr Pack has been our family dentist for over ten years. Professional, thorough and always puts you completely at ease. The practice is always spotless. I would not go anywhere else in Windhoek.</p><div class="rev-au"><div class="rev-av">M</div><div><div class="rev-name">Mireille van Wyk</div><div class="rev-tag">Long-Term Patient &middot; Central Windhoek</div></div></div></div>
+        <div class="rev reveal"><div class="rev-q">"</div><div class="rev-st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-txt">My children actually look forward to dental visits now. Dr Hendrick is wonderful with kids &mdash; gentle, patient and incredibly skilled. The Windhoek North location is so convenient for our family.</p><div class="rev-au"><div class="rev-av">T</div><div><div class="rev-name">Thomas Nghipandulwa</div><div class="rev-tag">Family Patient &middot; Windhoek North</div></div></div></div>
+        <div class="rev reveal"><div class="rev-q">"</div><div class="rev-st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-txt">Had a dental emergency on a Friday afternoon and they fit me in within the hour. Treatment was pain-free and the team was calm throughout. Exceptional practice.</p><div class="rev-au"><div class="rev-av">S</div><div><div class="rev-name">Sophia Haikali</div><div class="rev-tag">Emergency Patient</div></div></div></div>
+        <div class="rev reveal"><div class="rev-q">"</div><div class="rev-st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-txt">Dr Pack explained every step of my root canal beforehand. Zero pain and the follow-up care was excellent. Truly a world-class practice right here in Windhoek.</p><div class="rev-au"><div class="rev-av">P</div><div><div class="rev-name">Petrus Kahimbi</div><div class="rev-tag">Root Canal Patient</div></div></div></div>
+        <div class="rev reveal"><div class="rev-q">"</div><div class="rev-st">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-txt">I got veneers done by Dr Hendrick and the results are beyond what I imagined. He took so much time to understand what I wanted. Best investment I have made in years.</p><div class="rev-au"><div class="rev-av">N</div><div><div class="rev-name">Ndapewa Amutenya</div><div class="rev-tag">Cosmetic Patient</div></div></div></div>
+        <div class="rev reveal" style="background:var(--forest);border-color:rgba(212,160,61,.22);display:flex;flex-direction:column;justify-content:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.6rem">Share your experience</div><p style="font-size:.79rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:1.2rem">Have you visited Dr Pack? We would love to hear from you.</p><a href="tel:+264612261255" class="btn btn-gold" style="justify-content:center">Contact Us</a></div>
+      </div>
+    </div>
+  </section>
+  <footer><div class="container"><div class="fg2">
+<div><div class="nav-logo" style="cursor:pointer" onclick="go('home')"><div class="nl-mark" style="width:38px;height:38px;font-size:1rem">&#129461;</div><div class="nl-text" style="color:#fff">Dr G.T. Pack<small style="color:rgba(255,255,255,.25)">Dentistry &middot; Windhoek</small></div></div>
+<p class="fb">Professional dental surgery across two Windhoek locations. General, cosmetic, restorative and emergency dentistry for all ages.</p>
+<div class="fsocs"><a href="https://facebook.com" target="_blank" class="fsoc">fb</a><a href="tel:+264612261255" class="fsoc">&#128222;</a><a href="mailto:info@gtpackdentistry.com.na" class="fsoc">@</a></div></div>
+<div class="fc"><h5>Pages</h5><ul class="fl2"><li><a onclick="go('home')">Home</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('team')">Our Team</a></li><li><a onclick="go('locations')">Locations</a></li><li><a onclick="go('reviews')">Reviews</a></li></ul></div>
+<div class="fc"><h5>Contact</h5><ul class="fl2"><li><a href="tel:+264612261255">+264 61 226 125</a></li><li><a href="mailto:info@gtpackdentistry.com.na">Email Us</a></li><li><a onclick="go('contact')">Book Appointment</a></li></ul></div>
+</div><div class="fbt"><div class="fcp">&copy; 2025 Dr G.T. Pack Dentistry. All Rights Reserved. Windhoek, Namibia.</div><div class="fcp">Crafting healthy smiles &#129461;</div></div></div></footer>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <div class="ph h-con">
+    <div class="ph-txt"><div class="eyebrow lt">Get in Touch</div><h1>Book an <em>Appointment</em></h1><p>Call us directly or fill in the form &mdash; we confirm within one business day.</p></div>
+  </div>
+  <section class="sec" style="background:var(--cream)">
+    <div class="container">
+      <div class="con-grid">
+        <div>
+          <div class="sh reveal" style="margin-bottom:1.6rem"><div class="eyebrow">Contact Details</div><h2 class="stitle">We&#8217;re Ready<br/>to <em>Help You</em></h2><p class="sbody">Reach us by phone, email or use the booking form. Emergency patients are seen the same day &mdash; do not wait.</p></div>
+          <div class="ci reveal">
+            <div class="ci-t">Get in Touch</div>
+            <ul class="ci-rows">
+              <li class="ci-row"><div class="ci-ico">&#128222;</div><a href="tel:+264612261255">+264 61 226 125</a></li>
+              <li class="ci-row"><div class="ci-ico">&#9993;</div><a href="mailto:info@gtpackdentistry.com.na">info@gtpackdentistry.com.na</a></li>
+              <div class="ci-div"></div>
+              <li class="ci-row"><div class="ci-ico">&#128205;</div><span>Winco Building, Stubel Street, Central Windhoek</span></li>
+              <li class="ci-row"><div class="ci-ico">&#127973;</div><span>Windhoek North Medical Centre</span></li>
+              <div class="ci-div"></div>
+              <li class="ci-row"><div class="ci-ico">&#128336;</div><span>Mon&ndash;Thu: 07:30&ndash;17:00 &middot; Fri: 07:30&ndash;16:00</span></li>
+              <li class="ci-row"><div class="ci-ico">&#128680;</div><span>Emergency appointments &mdash; call immediately</span></li>
+            </ul>
+          </div>
+          <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.1rem" class="reveal">
+            <a href="tel:+264612261255" class="btn btn-primary">&#128222; Call Now</a>
+            <button class="btn btn-outline" onclick="go('locations')">View Locations &rarr;</button>
+          </div>
+        </div>
+        <div class="bfw reveal" id="bfWrap">
+          <div id="bfForm">
+            <div class="bf-t">Request an Appointment</div>
+            <div class="f-row">
+              <div class="fg"><label class="fl">First Name *</label><input class="fi" id="f1" placeholder="First name"/></div>
+              <div class="fg"><label class="fl">Last Name *</label><input class="fi" id="f2" placeholder="Last name"/></div>
+            </div>
+            <div class="fg"><label class="fl">Phone *</label><input class="fi" id="f3" type="tel" placeholder="+264 81 XXX XXXX"/></div>
+            <div class="fg"><label class="fl">Email</label><input class="fi" id="f4" type="email" placeholder="your@email.com (optional)"/></div>
+            <div class="fg"><label class="fl">Service *</label>
+              <select class="fs" id="f5"><option value="">-- Select a service --</option><option>General Check-up &amp; Cleaning</option><option>Cosmetic Dentistry</option><option>Restorative Dentistry</option><option>Root Canal Treatment</option><option>Emergency Dentistry</option><option>Not sure &ndash; need consultation</option></select>
+            </div>
+            <div class="f-row">
+              <div class="fg"><label class="fl">Preferred Date *</label><input class="fi" id="f6" type="date"/></div>
+              <div class="fg"><label class="fl">Preferred Time</label><select class="fs" id="f7"><option value="">Any time</option><option>07:30 &ndash; 09:00</option><option>09:00 &ndash; 11:00</option><option>11:00 &ndash; 13:00</option><option>13:00 &ndash; 15:00</option><option>15:00 &ndash; 17:00</option></select></div>
+            </div>
+            <div class="fg"><label class="fl">Location</label><select class="fs" id="f8"><option value="">No preference</option><option>Winco Building, Stubel Street (Central)</option><option>Windhoek North Medical Centre</option></select></div>
+            <div class="fg"><label class="fl">Notes</label><textarea class="fta" id="f9" placeholder="Any concerns or information we should know..."></textarea></div>
+            <button class="f-sub" onclick="submitF()">Confirm Appointment Request &rarr;</button>
+            <p style="font-size:.63rem;color:var(--muted);text-align:center;margin-top:.65rem">We will call to confirm within 1 business day.</p>
+          </div>
+          <div class="cv" id="bfConf" style="display:none">
+            <div class="cv-chk">&#9989;</div>
+            <div class="cv-t">Request Received!</div>
+            <p class="cv-b">Thank you, <strong id="cn1"></strong>. We will call you on <strong id="cn2"></strong> to confirm your appointment.</p>
+            <div class="cv-det">
+              <div class="cd-r"><span class="cd-l">Service</span><span class="cd-v" id="cn3"></span></div>
+              <div class="cd-r"><span class="cd-l">Date</span><span class="cd-v" id="cn4"></span></div>
+              <div class="cd-r"><span class="cd-l">Time</span><span class="cd-v" id="cn5"></span></div>
+              <div class="cd-r"><span class="cd-l">Location</span><span class="cd-v" id="cn6"></span></div>
+            </div>
+            <button class="f-sub" onclick="resetF()">Book Another Appointment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer><div class="container"><div class="fg2">
+<div><div class="nav-logo" style="cursor:pointer" onclick="go('home')"><div class="nl-mark" style="width:38px;height:38px;font-size:1rem">&#129461;</div><div class="nl-text" style="color:#fff">Dr G.T. Pack<small style="color:rgba(255,255,255,.25)">Dentistry &middot; Windhoek</small></div></div>
+<p class="fb">Professional dental surgery across two Windhoek locations. General, cosmetic, restorative and emergency dentistry for all ages.</p>
+<div class="fsocs"><a href="https://facebook.com" target="_blank" class="fsoc">fb</a><a href="tel:+264612261255" class="fsoc">&#128222;</a><a href="mailto:info@gtpackdentistry.com.na" class="fsoc">@</a></div></div>
+<div class="fc"><h5>Pages</h5><ul class="fl2"><li><a onclick="go('home')">Home</a></li><li><a onclick="go('services')">Services</a></li><li><a onclick="go('team')">Our Team</a></li><li><a onclick="go('locations')">Locations</a></li><li><a onclick="go('reviews')">Reviews</a></li></ul></div>
+<div class="fc"><h5>Contact</h5><ul class="fl2"><li><a href="tel:+264612261255">+264 61 226 125</a></li><li><a href="mailto:info@gtpackdentistry.com.na">Email Us</a></li><li><a onclick="go('contact')">Book Appointment</a></li></ul></div>
+</div><div class="fbt"><div class="fcp">&copy; 2025 Dr G.T. Pack Dentistry. All Rights Reserved. Windhoek, Namibia.</div><div class="fcp">Crafting healthy smiles &#129461;</div></div></div></footer>
+</div>
+
+<script>
+const PAGES=['home','services','team','locations','reviews','contact'];
+let cur='home';
+function go(id){
+  if(id===cur)return;
+  document.getElementById('page-'+cur).classList.remove('active');
+  setTimeout(()=>{
+    const to=document.getElementById('page-'+id);
+    to.scrollTop=0;to.classList.add('active');
+    PAGES.forEach(p=>{const el=document.getElementById('n-'+p);if(el)el.classList.toggle('active',p===id);});
+    cur=id;
+    setTimeout(()=>trigRev(to),80);
+  },55);
+}
+let si=0;
+const SL=document.querySelectorAll('.slide'),SD=document.querySelectorAll('.h-dot');
+function gSlide(i){SL[si].classList.remove('on');SD[si].classList.remove('on');si=i;SL[si].classList.add('on');SD[si].classList.add('on');}
+setInterval(()=>gSlide((si+1)%SL.length),5000);
+function trigRev(page){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('vis'),i*60);obs.unobserve(e.target);}}); 
+  },{threshold:.07});
+  page.querySelectorAll('.reveal:not(.vis)').forEach(el=>obs.observe(el));
+}
+trigRev(document.getElementById('page-home'));
+document.querySelectorAll('.page').forEach(p=>p.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('shd',p.scrollTop>30)));
+function openMob(){document.getElementById('mobNav').classList.add('open');document.body.style.overflow='hidden';}
+function closeMob(){document.getElementById('mobNav').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('f6').min=new Date().toISOString().split('T')[0];
+function submitF(){
+  const v=id=>document.getElementById(id).value.trim();
+  if(!v('f1')){alert('Please enter your first name.');return;}
+  if(!v('f2')){alert('Please enter your last name.');return;}
+  if(!v('f3')){alert('Please enter your phone number.');return;}
+  if(!document.getElementById('f5').value){alert('Please select a service.');return;}
+  if(!v('f6')){alert('Please select a preferred date.');return;}
+  const d=new Date(v('f6')+'T00:00:00');
+  const fd=d.toLocaleDateString('en-NA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('cn1').textContent=v('f1')+' '+v('f2');
+  document.getElementById('cn2').textContent=v('f3');
+  document.getElementById('cn3').textContent=document.getElementById('f5').value;
+  document.getElementById('cn4').textContent=fd;
+  document.getElementById('cn5').textContent=document.getElementById('f7').value||'Any available time';
+  document.getElementById('cn6').textContent=document.getElementById('f8').value||'No preference';
+  document.getElementById('bfForm').style.display='none';
+  document.getElementById('bfConf').style.display='block';
+  document.getElementById('bfWrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function resetF(){
+  document.getElementById('bfForm').style.display='block';
+  document.getElementById('bfConf').style.display='none';
+  ['f1','f2','f3','f4','f9'].forEach(id=>document.getElementById(id).value='');
+  ['f5','f6','f7','f8'].forEach(id=>document.getElementById(id).value='');
+}
+</script>
+</body>
+</html>
