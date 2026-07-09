@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>O&amp;M Accountants &amp; Consultants | Walvis Bay, Namibia</title>
+<meta name="description" content="O&amp;M Accountants &amp; Consultants, professional tax, bookkeeping and payroll services in Walvis Bay and Windhoek, Namibia."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ══ DESIGN TOKENS ══════════════════════════════════════ */
+:root{
+  --G:#C9A84C; --G2:#E8C96A; --G3:#8B6914;
+  --Gp:rgba(201,168,76,.10); --Gb:rgba(201,168,76,.18);
+  --K:#0D0C0A; --K2:#181612; --K3:#252320;
+  --S:#68665E; --L:#E2E0D8;
+  --BG:#F6F5F2; --WH:#FFFFFF; --ICE:#F0EFE9;
+  --fd:'Playfair Display',Georgia,serif;
+  --fb:'Inter',system-ui,sans-serif;
+  --sh:0 2px 20px rgba(0,0,0,.07);
+  --shm:0 8px 36px rgba(0,0,0,.11);
+  --tr:.22s cubic-bezier(.4,0,.2,1);
+  --r:5px; --r2:11px; --r3:18px;
+}
+
+/* ══ RESET ══════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--fb);color:var(--K);background:var(--BG);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block;height:auto}
+ul{list-style:none}
+button{font-family:var(--fb);cursor:pointer;border:none;background:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--G);border-radius:2px}
+
+/* ══ ANIMATIONS ══════════════════════════════════════════ */
+@keyframes fadeUp {from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes fadeIn {from{opacity:0}to{opacity:1}}
+@keyframes pg     {from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@keyframes hzoom  {from{transform:scale(1.06)}to{transform:scale(1.01)}}
+@keyframes bob    {0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes bar    {from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes fadeSlide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+
+/* ══ SCROLL REVEAL ══════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .58s ease,transform .58s ease}
+.rvl{opacity:0;transform:translateX(-20px);transition:opacity .58s ease,transform .58s ease}
+.rvr{opacity:0;transform:translateX(20px);transition:opacity .58s ease,transform .58s ease}
+.rv.vis,.rvl.vis,.rvr.vis{opacity:1;transform:none}
+[class*="rv"][style*="delay"]{/* delays applied inline */}
+
+/* ══ PAGE SYSTEM ══════════════════════════════════════════ */
+.pg{display:none;padding-top:68px;min-height:100vh}
+.pg.on{display:block;animation:pg .26s ease}
+
+/* ══ NAV ═════════════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;height:68px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 4%;
+  background:rgba(255,255,255,.98);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--L);
+  transition:box-shadow var(--tr),border-color var(--tr);
+}
+#nav.sc{border-bottom-color:transparent;box-shadow:0 2px 28px rgba(0,0,0,.1)}
+/* Brand */
+.brand{display:flex;align-items:center;gap:11px;cursor:pointer;min-width:0;flex:1 1 auto;overflow:hidden}
+.logo{height:44px;object-fit:contain}
+.bname{font-family:var(--fd);font-size:.86rem;font-weight:600;color:var(--K);display:block;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btag{font-size:.5rem;font-weight:700;color:var(--G3);letter-spacing:.26em;text-transform:uppercase;display:block;margin-top:1px}
+/* Nav links */
+.links{display:flex;align-items:center}
+.nl{font-size:.71rem;font-weight:500;color:var(--S);padding:7px 9px;border-radius:var(--r2);
+  position:relative;transition:color var(--tr),background var(--tr);white-space:nowrap}
+.nl::after{content:'';position:absolute;bottom:3px;left:9px;right:9px;height:1.5px;
+  background:var(--G);border-radius:1px;transform:scaleX(0);transform-origin:left;transition:transform var(--tr)}
+.nl:hover{color:var(--K);background:var(--ICE)}
+.nl.on,.nl:focus-visible{color:var(--K);font-weight:600}
+.nl.on::after{transform:scaleX(1)}
+.nl-cta{background:var(--K)!important;color:var(--WH)!important;font-weight:600!important;
+  border-radius:var(--r2)!important;padding:8px 15px!important;margin-left:5px;
+  transition:background var(--tr)!important}
+.nl-cta::after{display:none!important}
+.nl-cta:hover{background:var(--K2)!important}
+/* Ham */
+.ham{display:none;flex-direction:column;gap:5px;padding:12px;flex-shrink:0;min-width:44px;min-height:44px;justify-content:center;align-items:center}
+.ham span{display:block;width:20px;height:1.5px;background:var(--K);border-radius:1px;transition:var(--tr)}
+.ham.op span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.ham.op span:nth-child(2){opacity:0}
+.ham.op span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+/* Mobile nav */
+.mnav{display:none;position:fixed;inset:68px 0 0 0;
+  background:rgba(255,255,255,.99);z-index:899;
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;animation:fadeIn .16s ease;padding:20px 0;overflow-y:auto}
+.mnav.op{display:flex}
+.mnav .nl{font-size:.95rem;padding:12px 32px;width:min(280px,84vw);text-align:center;border-radius:var(--r2)}
+.mnav .nl-cta{margin:8px 0 0!important;width:min(220px,70vw);text-align:center}
+
+/* ══ LAYOUT ══════════════════════════════════════════════ */
+.w{max-width:1200px;margin:0 auto;padding:0 4%}
+.sec{padding:88px 4%}
+.dark{background:var(--K2)}
+.mist{background:var(--ICE)}
+.white{background:var(--WH)}
+.gold{background:var(--G)}
+/* Page header dark band */
+.hdr{padding:68px 4% 60px;background:var(--K2)}
+.hdr-in{max-width:680px}
+
+/* ══ TYPOGRAPHY ══════════════════════════════════════════ */
+.ey{font-size:.62rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--G3);display:block;margin-bottom:12px}
+.ey.lt{color:rgba(201,168,76,.78)!important}
+.rule{width:32px;height:2px;background:var(--G);border-radius:1px;margin:14px 0 28px}
+.rule.c{margin-left:auto;margin-right:auto}
+h2.H{font-family:var(--fd);font-size:clamp(1.7rem,3.3vw,2.7rem);font-weight:600;line-height:1.16;color:var(--K)}
+h2.H.lt{color:var(--WH)}
+.lead{font-size:.91rem;color:var(--S);line-height:1.84;max-width:520px}
+.lead.lt{color:rgba(255,255,255,.56)}
+
+/* ══ BUTTONS ══════════════════════════════════════════════ */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;
+  border-radius:var(--r2);font-size:.8rem;font-weight:600;
+  transition:all var(--tr);cursor:pointer;border:none;font-family:var(--fb);white-space:nowrap}
+.bk{background:var(--K);color:var(--WH)}
+.bk:hover{background:var(--K2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.bg{background:var(--G);color:var(--K)}
+.bg:hover{background:var(--G2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,168,76,.38)}
+.bo{background:transparent;color:var(--K);border:1.5px solid var(--K)}
+.bo:hover{background:var(--K);color:var(--WH)}
+.bo-lt{background:transparent;color:var(--WH);border:1.5px solid rgba(255,255,255,.38)}
+.bo-lt:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.65)}
+
+/* ══ HERO ═════════════════════════════════════════════════ */
+.hero{
+  position:relative;height:100vh;min-height:560px;max-height:940px;
+  display:flex;align-items:flex-end;overflow:hidden;background:var(--K2);
+}
+@supports(height:100svh){.hero{height:100svh}}
+/* BG image — CSS only, no JS scroll handler */
+.hbg{
+  position:absolute;inset:-3%;
+  background:url('images/image-001.jpg') center 35%/cover no-repeat;
+  animation:hzoom 10s ease-out forwards;
+  will-change:transform;
+}
+.hfilm{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,12,10,.52) 0%,rgba(13,12,10,.26) 45%,transparent 80%);pointer-events:none}
+.hfade{position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,rgba(13,12,10,.38),transparent);pointer-events:none}
+.hedge{position:absolute;inset:0;box-shadow:inset 0 0 80px rgba(13,12,10,.18);pointer-events:none}
+.hinner{position:relative;z-index:2;width:100%;padding:clamp(36px,6vh,88px) clamp(18px,4vw,56px) clamp(28px,5vh,64px)}
+.h-eyebrow{display:flex;align-items:center;gap:8px;font-size:.68rem;letter-spacing:.36em;text-transform:uppercase;
+  color:rgba(255,255,255,.34);margin-bottom:18px;animation:fadeUp .5s .06s both}
+.h-eyebrow::before{content:'';width:22px;height:1px;background:var(--G);display:block;flex-shrink:0}
+.h-firm{font-family:var(--fd);font-size:clamp(2rem,5.5vw,4.2rem);
+  color:var(--WH);font-weight:700;line-height:1.06;
+  max-width:640px;animation:fadeUp .5s .14s both}
+.h-tag{font-size:.68rem;font-weight:700;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--G);display:block;margin:10px 0 18px;
+  animation:fadeUp .5s .2s both;opacity:.88}
+.h-sub{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.84;
+  max-width:440px;margin-bottom:32px;animation:fadeUp .5s .28s both;font-weight:300}
+.h-cta{display:flex;gap:11px;flex-wrap:wrap;animation:fadeUp .5s .36s both;margin-bottom:44px}
+/* KPI strip */
+.h-kpi{display:flex;width:fit-content;
+  border-top:1px solid rgba(255,255,255,.1);padding-top:24px;
+  animation:fadeUp .5s .44s both}
+.kpi{padding:0 28px 0 0}
+.kpi+.kpi{padding-left:28px;border-left:1px solid rgba(255,255,255,.1)}
+.kpi strong{display:block;font-family:var(--fd);font-size:1.9rem;color:var(--G);
+  font-weight:600;line-height:1;margin-bottom:3px}
+.kpi span{font-size:.58rem;color:rgba(255,255,255,.34);font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase}
+
+/* ══ SERVICES GRID ════════════════════════════════════════ */
+/* Grey tiles with hover animations */
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--L);border:1px solid var(--L);border-radius:var(--r3);
+  overflow:hidden;margin-top:48px}
+.si{background:var(--ICE);padding:32px 26px;position:relative;overflow:hidden;
+  cursor:default;transition:background var(--tr)}
+.si::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(201,168,76,.05) 100%);
+  opacity:0;transition:opacity var(--tr)}
+.si::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2.5px;
+  background:var(--G);transform:scaleX(0);transform-origin:left;
+  transition:transform .32s ease}
+.si:hover{background:#ECEAE5}
+.si:hover::before{opacity:1}
+.si:hover::after{transform:scaleX(1)}
+.si:hover .sin{color:rgba(201,168,76,.5)}
+.sin{font-family:var(--fd);font-size:1.5rem;color:rgba(201,168,76,.25);
+  font-weight:700;display:block;line-height:1;margin-bottom:9px;transition:color var(--tr)}
+.sib{width:22px;height:2px;background:var(--G);border-radius:1px;
+  margin-bottom:13px;transform-origin:left}
+.si h3{font-family:var(--fd);font-size:.96rem;font-weight:600;margin-bottom:7px;color:var(--K)}
+.si p{font-size:.78rem;color:var(--S);line-height:1.64}
+
+/* Accordion */
+.ac{background:var(--ICE);border:1px solid var(--L);border-radius:var(--r2);
+  margin-bottom:2px;overflow:hidden;transition:box-shadow var(--tr)}
+.ac:hover{box-shadow:var(--sh)}
+.ac-hdr{display:flex;align-items:center;justify-content:space-between;
+  padding:17px 20px;cursor:pointer;user-select:none;transition:background var(--tr);min-height:44px}
+.ac-hdr:hover{background:#E8E6E0}
+.ac-hdr h3{font-family:var(--fd);font-size:.96rem;font-weight:600;color:var(--K);
+  display:flex;align-items:center;gap:12px}
+.ac-ico{width:34px;height:34px;background:var(--Gb);border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:.74rem;font-weight:700;color:var(--G3);font-family:var(--fd)}
+.ac-arr{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--L);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.63rem;color:var(--S);flex-shrink:0;
+  transition:transform var(--tr),border-color var(--tr),color var(--tr)}
+.ac.op .ac-arr{transform:rotate(180deg);border-color:var(--G);color:var(--G3)}
+.ac-bd{display:none;padding:0 20px 18px;border-top:1px solid var(--L)}
+.ac.op .ac-bd{display:block}
+.sub{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:12px}
+.subi{padding:10px 13px;background:var(--WH);border-radius:var(--r);
+  border-left:3px solid var(--G);font-size:.78rem;color:var(--K);
+  font-weight:500;line-height:1.38}
+.stag{display:inline-block;background:var(--Gb);color:var(--G3);
+  font-size:.57rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 6px;border-radius:50px;margin-left:4px;vertical-align:middle}
+
+/* ══ ABOUT SPLIT ══════════════════════════════════════════ */
+.asplit{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.aiw{position:relative}
+.aimg{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;
+  border-radius:var(--r3);box-shadow:var(--shm)}
+.abadge{position:absolute;bottom:-14px;right:-14px;background:var(--G);
+  color:var(--K);border-radius:var(--r2);padding:14px 18px;text-align:center;
+  box-shadow:0 6px 22px rgba(201,168,76,.35)}
+.abadge strong{display:block;font-family:var(--fd);font-size:1.75rem;font-weight:700;line-height:1}
+.abadge small{font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
+.wbadge{display:inline-flex;align-items:center;gap:7px;
+  background:rgba(201,168,76,.09);border:1px solid rgba(201,168,76,.26);
+  color:var(--G3);font-size:.67rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:6px 13px;border-radius:50px;margin-bottom:18px}
+.wbadge::before{content:'';width:12px;height:2px;background:var(--G);border-radius:1px;flex-shrink:0}
+.vals{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.val{padding:14px;border:1px solid var(--L);border-radius:var(--r2);
+  border-left:3px solid var(--G);background:var(--WH)}
+.val h4{font-size:.8rem;font-weight:700;color:var(--K);margin-bottom:3px}
+.val p{font-size:.73rem;color:var(--S);line-height:1.52}
+
+/* ══ STATS BAND ══════════════════════════════════════════ */
+.sb{display:grid;grid-template-columns:repeat(4,1fr);background:var(--K)}
+.sbc{padding:36px;border-right:1px solid rgba(255,255,255,.07);text-align:center}
+.sbc:last-child{border-right:none}
+.sbn{font-family:var(--fd);font-size:2.2rem;color:var(--G);
+  font-weight:700;display:block;line-height:1;margin-bottom:6px}
+.sbl{font-size:.61rem;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(255,255,255,.36)}
+
+/* ══ PEOPLE MOSAIC ════════════════════════════════════════ */
+/* Smart image grid — used on home, about and team pages */
+.mosaic-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mosaic-3{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px}
+.pic{border-radius:var(--r3);overflow:hidden;position:relative}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease;will-change:transform}
+.pic:hover img{transform:scale(1.04)}
+.pic-lbl{position:absolute;bottom:0;left:0;right:0;
+  padding:20px 16px 13px;
+  background:linear-gradient(transparent,rgba(13,12,10,.78));
+  color:rgba(255,255,255,.82);font-size:.72rem;font-weight:500}
+/* Aspect ratios */
+.pic-land{aspect-ratio:4/3}
+.pic-port{aspect-ratio:3/4}
+.pic-wide{aspect-ratio:16/7}
+.pic-sq  {aspect-ratio:1}
+
+/* ══ TEAM ═════════════════════════════════════════════════ */
+.founders{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fc{position:relative;overflow:hidden;border-radius:var(--r3);aspect-ratio:3/4}
+.fc img{width:100%;height:100%;object-fit:cover;object-position:center top;
+  display:block;transition:transform .55s ease;will-change:transform}
+.fc:hover img{transform:scale(1.04)}
+
+footer .fg .fc{overflow:visible;aspect-ratio:auto;border-radius:0;position:static;height:auto}
+.fveil{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,12,10,.94) 0%,rgba(13,12,10,.26) 52%,transparent 100%)}
+.finfo{position:absolute;bottom:0;left:0;right:0;padding:24px 22px}
+.finfo h3{font-family:var(--fd);font-size:1.32rem;color:var(--WH);
+  margin-bottom:3px;font-weight:600}
+.frole{font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--G);display:block;margin-bottom:10px}
+.finfo p{font-size:.78rem;color:rgba(255,255,255,.64);line-height:1.62;margin-bottom:12px}
+.fls{display:flex;gap:7px;flex-wrap:wrap}
+.fl{font-size:.66rem;font-weight:600;color:var(--G);
+  border:1px solid rgba(201,168,76,.32);padding:4px 10px;
+  border-radius:50px;transition:all var(--tr)}
+.fl:hover{background:var(--G);color:var(--K)}
+/* Staff divider */
+.sdiv{display:flex;align-items:center;gap:16px;margin:44px 0 28px}
+.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:var(--L)}
+.sdivl{font-size:.61rem;font-weight:700;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--S);white-space:nowrap}
+/* Culture grid */
+.cg{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.cc{border:1px solid var(--L);border-radius:var(--r2);padding:20px 16px;
+  background:var(--WH);border-top:3px solid var(--G)}
+.cc h4{font-size:.8rem;font-weight:700;color:var(--K);margin-bottom:4px}
+.cc p{font-size:.73rem;color:var(--S);line-height:1.56}
+
+/* ══ BUSINESS SCHOOL ══════════════════════════════════════ */
+.bsh{display:grid;grid-template-columns:1fr 1fr;background:var(--K2);min-height:480px}
+.bsl{padding:72px 4%;display:flex;flex-direction:column;justify-content:center;max-width:600px}
+.bsr{position:relative;overflow:hidden}
+.bsr img{width:100%;height:100%;object-fit:cover;object-position:center}
+.bsr::before{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to right,var(--K2) 0%,transparent 52%)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:32px}
+.ccard{background:var(--ICE);border:1px solid var(--L);border-radius:var(--r3);
+  padding:22px;transition:all var(--tr);position:relative;overflow:hidden}
+.ccard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--G);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.ccard:hover{border-color:rgba(201,168,76,.36);
+  box-shadow:0 4px 20px rgba(201,168,76,.13);transform:translateY(-2px)}
+.ccard:hover::after{transform:scaleX(1)}
+.badge{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;padding:3px 9px;border-radius:50px;margin-bottom:11px}
+.ba{background:#fffbeb;color:#92400e}
+.bb{background:#eff6ff;color:#1e40af}
+.bc{background:#f0fdf4;color:#166534}
+.bd2{background:#fff1f2;color:#9f1239}
+.ccard h3{font-family:var(--fd);font-size:.94rem;font-weight:600;color:var(--K);margin-bottom:6px}
+.ccard p{font-size:.76rem;color:var(--S);line-height:1.6;margin-bottom:10px}
+.cmeta{font-size:.68rem;color:var(--S);font-weight:500;display:flex;gap:10px}
+/* Admission box */
+.admbox{background:var(--K);border-radius:var(--r3);padding:32px 36px;
+  margin-top:14px;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:18px}
+.admbox h3{font-family:var(--fd);font-size:1.25rem;color:var(--WH);margin-bottom:6px}
+.admbox p{font-size:.79rem;color:rgba(255,255,255,.52);line-height:1.62;max-width:420px}
+
+/* ══ INTERNSHIP ═══════════════════════════════════════════ */
+/* Split hero for internship */
+.isplit{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.unis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:40px 0}
+.uc{background:var(--WH);border:1px solid var(--L);border-radius:var(--r3);
+  padding:28px 20px;text-align:center;transition:all var(--tr);
+  animation:bob 4s ease-in-out infinite}
+.uc:nth-child(2){animation-delay:1.35s}
+.uc:nth-child(3){animation-delay:2.7s}
+.uc:hover{transform:translateY(-5px)!important;box-shadow:var(--shm);animation-play-state:paused}
+.ulogo{height:78px;object-fit:contain;margin:0 auto 14px}
+.uname{font-size:.72rem;font-weight:600;color:var(--S);line-height:1.5}
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  position:relative;margin-top:48px}
+.steps::before{content:'';position:absolute;top:20px;
+  left:calc(100%/6);right:calc(100%/6);height:1px;background:var(--L)}
+.step{text-align:center;padding:0 18px}
+.stepn{width:40px;height:40px;background:var(--K);color:var(--WH);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);font-size:1rem;font-weight:600;
+  margin:0 auto 14px;position:relative;z-index:1}
+.step h4{font-family:var(--fd);font-size:.92rem;font-weight:600;margin-bottom:6px;color:var(--K)}
+.step p{font-size:.76rem;color:var(--S);line-height:1.58}
+/* Learn grid */
+.lgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:24px}
+.li{background:var(--ICE);border:1px solid var(--L);border-radius:var(--r2);padding:14px 16px}
+.li::before{content:'';display:block;width:18px;height:2px;
+  background:var(--G);border-radius:1px;margin-bottom:8px}
+.li strong{display:block;font-size:.79rem;font-weight:700;color:var(--K);margin-bottom:2px}
+.li span{font-size:.72rem;color:var(--S)}
+
+/* ══ TESTIMONIALS ═════════════════════════════════════════ */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.tc{background:var(--ICE);border:1px solid var(--L);border-radius:var(--r3);
+  padding:26px;position:relative;transition:box-shadow var(--tr),background var(--tr)}
+.tc:hover{box-shadow:var(--sh);background:var(--WH)}
+.tq{font-family:var(--fd);font-size:3rem;color:rgba(201,168,76,.18);
+  position:absolute;top:14px;right:16px;line-height:1}
+.sts{color:var(--G);font-size:.76rem;letter-spacing:2px;margin-bottom:10px}
+.tc p{font-size:.81rem;color:#3A3831;line-height:1.74;margin-bottom:15px;font-style:italic}
+.tr{width:22px;height:1px;background:var(--G);margin-bottom:11px}
+.tn{font-size:.8rem;font-weight:700;color:var(--K)}
+.tco{font-size:.7rem;color:var(--S);margin-top:2px}
+
+/* ══ CAREERS ══════════════════════════════════════════════ */
+.cwrap{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+.jcard{border:1px solid var(--L);border-radius:var(--r2);padding:18px 20px;
+  margin-bottom:10px;background:var(--ICE);transition:all var(--tr);
+  border-left:3px solid transparent;cursor:default}
+.jcard:hover{border-left-color:var(--G);background:var(--WH);
+  box-shadow:var(--sh);transform:translateX(3px)}
+.jcard h4{font-size:.88rem;font-weight:700;color:var(--K);margin-bottom:4px}
+.jcard p{font-size:.76rem;color:var(--S);margin-bottom:8px;line-height:1.52}
+.jtags{display:flex;gap:5px;flex-wrap:wrap}
+.jtag{font-size:.6rem;font-weight:700;padding:3px 8px;border-radius:50px;
+  background:var(--WH);color:var(--S);letter-spacing:.04em;border:1px solid var(--L)}
+/* Careers image panel */
+.cimgwrap{border-radius:var(--r3);overflow:hidden;position:relative}
+.cimgwrap img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top}
+.ccap{position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(13,12,10,.88));
+  color:rgba(255,255,255,.74);padding:24px 18px 14px;font-size:.78rem;font-style:italic}
+
+/* ══ CONTACT ══════════════════════════════════════════════ */
+.ctgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.ctcard{background:var(--ICE);border:1px solid var(--L);border-radius:var(--r3);
+  padding:26px;transition:all var(--tr)}
+.ctcard:hover{box-shadow:var(--sh);background:var(--WH)}
+.ctcard-ico{width:40px;height:40px;background:var(--Gb);border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;font-size:.95rem;margin-bottom:12px}
+.ctcard-lbl{font-size:.61rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--G3);display:block;margin-bottom:5px}
+.ctcard h4{font-family:var(--fd);font-size:.96rem;color:var(--K);
+  margin-bottom:8px;font-weight:600}
+.ctcard p,.ctcard a{font-size:.82rem;color:var(--S);line-height:1.72;display:block}
+.ctcard a:hover{color:var(--G3)}
+/* Office cards */
+.ofgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin-top:11px}
+.ofcard{background:var(--WH);border:1px solid var(--L);border-radius:var(--r2);padding:20px}
+.ofcard h4{font-family:var(--fd);font-size:.95rem;color:var(--K);
+  margin-bottom:6px;font-weight:600;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ofbadge{font-size:.57rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  background:var(--Gb);color:var(--G3);padding:2px 7px;border-radius:50px}
+.ofbadge.soon{background:rgba(34,197,94,.12);color:#15803d}
+.ofcard p{font-size:.78rem;color:var(--S);line-height:1.62}
+
+/* ══ ANIMATED SOCIAL BUTTONS (Contact page) ═══════════════ */
+.socx{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.socbtn{display:flex;align-items:center;gap:9px;padding:13px 22px;
+  border:1.5px solid var(--L);border-radius:50px;background:var(--WH);
+  color:var(--K);font-size:.82rem;font-weight:600;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow var(--tr),
+    border-color var(--tr),background var(--tr),color var(--tr)}
+.socbtn svg{transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.socbtn:hover{transform:translateY(-4px) scale(1.04);box-shadow:var(--shm)}
+.socbtn:hover svg{transform:rotate(-8deg) scale(1.15)}
+.socbtn-fb:hover{background:#1877F2;border-color:#1877F2;color:#fff}
+.socbtn-ig:hover{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4);border-color:transparent;color:#fff}
+.socbtn-li:hover{background:#0A66C2;border-color:#0A66C2;color:#fff}
+
+/* ══ FOOTER ═══════════════════════════════════════════════ */
+footer{background:var(--K);color:rgba(255,255,255,.44);padding:52px 4% 20px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:36px;margin-bottom:36px}
+.fc h5{font-size:.63rem;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.76);margin-bottom:13px}
+.fc p,.fc ul button,.fc ul a{font-size:.76rem;line-height:1.74;
+  color:rgba(255,255,255,.44)}
+.fc ul li{margin-bottom:7px}
+.fc ul button,.fc ul a{transition:color var(--tr);background:none;
+  border:none;cursor:pointer;padding:0;font-family:var(--fb)}
+.fc ul button:hover,.fc ul a:hover{color:var(--G)}
+.socs{display:flex;gap:7px;margin-top:14px}
+.soc{width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;
+  justify-content:center;font-size:.63rem;font-weight:700;
+  color:rgba(255,255,255,.42);transition:all var(--tr)}
+.soc:hover{background:var(--G);border-color:var(--G);color:var(--K)}
+.fbot{border-top:1px solid rgba(255,255,255,.07);padding-top:18px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:9px;font-size:.68rem}
+.fbot a{color:rgba(255,255,255,.26);transition:color var(--tr)}
+.fbot a:hover{color:var(--G)}
+
+/* ══ BTT ══════════════════════════════════════════════════ */
+#btt{position:fixed;bottom:20px;right:20px;width:42px;height:42px;border-radius:50%;
+  background:var(--K);color:var(--WH);border:none;cursor:pointer;
+  box-shadow:0 3px 14px rgba(0,0,0,.24);opacity:0;pointer-events:none;
+  transition:all var(--tr);z-index:500;display:flex;align-items:center;
+  justify-content:center;font-size:.82rem}
+#btt.on{opacity:1;pointer-events:auto}
+#btt:hover{background:var(--G);color:var(--K);transform:translateY(-2px)}
+
+/* ══ RESPONSIVE ═══════════════════════════════════════════ */
+@media(max-width:1080px){
+  .sg{grid-template-columns:repeat(2,1fr)}
+  .cgrid{grid-template-columns:1fr 1fr}
+  .tgrid{grid-template-columns:1fr 1fr}
+  .fg{grid-template-columns:1fr 1fr;gap:22px}
+  .sb{grid-template-columns:1fr 1fr}
+}
+@media(max-width:820px){
+  .links{display:none}.ham{display:flex}
+  .h-firm{font-size:2.1rem}
+  .asplit,.founders,.cwrap,.bsh,.isplit{grid-template-columns:1fr;gap:28px}
+  .unis,.steps{grid-template-columns:1fr;gap:14px}
+  .steps::before{display:none}
+  .lgrid{grid-template-columns:1fr 1fr}
+  .mosaic-2,.ofgrid,.ctgrid,.cg{grid-template-columns:1fr}
+  .mosaic-3{grid-template-columns:1fr}
+  .sg{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:1fr}
+  .sub{grid-template-columns:1fr}
+  .bsl{max-width:100%}
+  .admbox{flex-direction:column}
+  .h-kpi{flex-direction:column;gap:14px}
+  .kpi+.kpi{border-left:none;border-top:1px solid rgba(255,255,255,.1);padding-left:0;padding-top:14px}
+  .h-cta{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:540px){
+  .h-firm{font-size:1.72rem}
+  .sb{grid-template-columns:1fr}
+  .vals,.fg{grid-template-columns:1fr}
+  .cgrid,.lgrid{grid-template-columns:1fr}
+  .kpi{padding-right:0}
+  .w,.sec{padding-left:5%;padding-right:5%}
+  .sec{padding-top:64px;padding-bottom:64px}
+  .hdr{padding:52px 5% 44px}
+  .btn{padding:11px 18px;font-size:.78rem}
+  .h-cta .btn{width:100%;justify-content:center}
+  .uc{padding:22px 14px}
+  .si{padding:26px 20px}
+  .ac-hdr{padding:15px 16px}
+  .ac-hdr h3{font-size:.88rem;gap:9px}
+  .ac-ico{width:30px;height:30px;font-size:.68rem}
+  .finfo{padding:20px 18px}
+  .finfo h3{font-size:1.18rem}
+  .ctcard,.ccard2{padding:20px}
+  .tc{padding:22px}
+  .jcard{padding:16px 17px}
+  .admbox{padding:24px 20px}
+  .ofgrid{grid-template-columns:1fr!important}
+}
+@media(max-width:380px){
+  .bname{font-size:.78rem}
+  .btag{font-size:.46rem}
+  .logo{height:38px}
+  .h-firm{font-size:1.5rem}
+  .nl-cta{padding:8px 13px!important;font-size:.7rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   NAV                             ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<nav id="nav" role="navigation" aria-label="Main">
+  <div class="brand" onclick="go('home')" role="link" tabindex="0" aria-label="O&M Home">
+    <img class="logo" src="images/image-002.png" alt="O&amp;M Logo" width="140" height="44"/>
+    <div>
+      <span class="bname" style="font-family:Arial, Helvetica, sans-serif">O&amp;M Accountants &amp; Consultants</span>
+      <span class="btag">Raising The Bar</span>
+    </div>
+  </div>
+  <div class="links" role="menubar">
+    <button class="nl" id="n-home"         onclick="go('home')"         role="menuitem">Home</button>
+    <button class="nl" id="n-about"        onclick="go('about')"        role="menuitem">About</button>
+    <button class="nl" id="n-services"     onclick="go('services')"     role="menuitem">Services</button>
+    <button class="nl" id="n-team"         onclick="go('team')"         role="menuitem">Our Team</button>
+    <button class="nl" id="n-bschool"      onclick="go('bschool')"      role="menuitem">Business School</button>
+    <button class="nl" id="n-intern"       onclick="go('intern')"       role="menuitem">Internships</button>
+    <button class="nl" id="n-careers"      onclick="go('careers')"      role="menuitem">Careers</button>
+    <button class="nl" id="n-testimonials" onclick="go('testimonials')" role="menuitem">Testimonials</button>
+    <button class="nl nl-cta" id="n-contact" onclick="go('contact')"   role="menuitem">Contact Us</button>
+  </div>
+  <button class="ham" id="hamBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile nav drawer -->
+<div class="mnav" id="mnav" role="dialog" aria-label="Navigation">
+  <button class="nl" onclick="go('home');cm()">Home</button>
+  <button class="nl" onclick="go('about');cm()">About</button>
+  <button class="nl" onclick="go('services');cm()">Services</button>
+  <button class="nl" onclick="go('team');cm()">Our Team</button>
+  <button class="nl" onclick="go('bschool');cm()">Business School</button>
+  <button class="nl" onclick="go('intern');cm()">Internships</button>
+  <button class="nl" onclick="go('careers');cm()">Careers</button>
+  <button class="nl" onclick="go('testimonials');cm()">Testimonials</button>
+  <button class="nl nl-cta" onclick="go('contact');cm()">Contact Us</button>
+</div>
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   HOME                            ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg on" id="pg-home">
+
+  <!-- Hero: full-bleed team photo, CSS animation only -->
+  <section class="hero" aria-labelledby="h-title">
+    <div class="hbg" role="img" aria-label="The O&amp;M team"></div>
+    <div class="hfilm"></div>
+    <div class="hfade"></div>
+    <div class="hedge"></div>
+    <div class="hinner">
+      <div class="h-eyebrow">Walvis Bay &bull; Namibia</div>
+      <h1 class="h-firm" id="h-title" style="font-family:Arial, Helvetica, sans-serif">O&amp;M Accountants<br/>&amp; Consultants</h1>
+      <span class="h-tag">Raising The Bar</span>
+      
+      <div class="h-cta">
+        <button class="btn bg" onclick="go('contact')">Request a Consultation</button>
+        <button class="btn bo-lt" onclick="go('services')">Explore Services</button>
+        <a href="tel:+26464200417" class="btn bo-lt">Call 064 200417</a>
+      </div>
+      <div class="h-kpi">
+        <div class="kpi"><strong>10+</strong><span>Years in Practice</span></div>
+        <div class="kpi"><strong>200+</strong><span>Clients Served</span></div>
+        <div class="kpi"><strong>100%</strong><span>Women-Owned</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services snapshot -->
+  <section class="sec mist">
+    <div class="w">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:end;margin-bottom:0">
+        <div class="rvl">
+          <span class="ey">What We Do</span>
+          <h2 class="H">Comprehensive Services<br/>for Every Business</h2>
+        </div>
+        <div class="rvr">
+          <p class="lead">From company registration to complex financial reporting, we deliver the full spectrum of financial services Namibian businesses need to grow and stay compliant.</p>
+        </div>
+      </div>
+      <div class="sg rv">
+        <div class="si"><span class="sin">01</span><div class="sib"></div><h3>Business Registration</h3><p>BIPA and NamRA registration handled end to end, from name approval to certificate.</p></div>
+        <div class="si"><span class="sin">02</span><div class="sib"></div><h3>Bookkeeping <span style="font-family:Arial, Helvetica, sans-serif">&amp;</span> Accounting Services</h3><p>Accurate records from data capture to trial balance, always current and compliance-ready.</p></div>
+        <div class="si"><span class="sin">03</span><div class="sib"></div><h3>Tax Planning <span style="font-family:Arial, Helvetica, sans-serif">&amp;</span> Returns</h3><p>Strategic tax planning and full NamRA submissions for companies and individuals.</p></div>
+      </div>
+      <div style="margin-top:26px;text-align:center"><button class="btn bk" onclick="go('services')">View All Services</button></div>
+    </div>
+  </section>
+
+  <!-- Stats band -->
+  <div class="sb">
+    <div class="sbc rv"><span class="sbn">200+</span><span class="sbl">Clients Served</span></div>
+    <div class="sbc rv" style="transition-delay:.08s"><span class="sbn">10+</span><span class="sbl">Years in Practice</span></div>
+    <div class="sbc rv" style="transition-delay:.16s"><span class="sbn">100%</span><span class="sbl">Women-Owned</span></div>
+    <div class="sbc rv" style="transition-delay:.24s"><span class="sbn">3</span><span class="sbl">Office Locations</span></div>
+  </div>
+
+  <!-- CTA band -->
+  <section class="sec gold" style="padding:52px 4%;text-align:center">
+    <div class="w">
+      <h2 class="H rv" style="max-width:440px;margin:0 auto 12px">Ready to raise the bar<br/>for your business?</h2>
+      <p class="rv" style="font-size:.86rem;color:rgba(13,12,10,.58);margin-bottom:22px;max-width:330px;margin-left:auto;margin-right:auto;line-height:1.7">Expert guidance is one conversation away.</p>
+      <button class="btn bk rv" onclick="go('contact')">Get In Touch</button>
+    </div>
+  </section>
+
+</div><!-- /home -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   ABOUT                           ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg" id="pg-about">
+
+  <div class="hdr">
+    <div class="w hdr-in">
+      <span class="ey lt">About O&amp;M</span>
+    </div>
+  </div>
+
+  <!-- Mission / Vision -->
+  <section class="sec dark">
+    <div class="w">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+        <div class="rv">
+          <span class="ey lt">Mission</span>
+          <h3 style="font-family:var(--fd);font-size:1.35rem;color:var(--WH);margin-bottom:12px;font-weight:600">Why We Exist</h3>
+          <p style="font-size:.84rem;color:rgba(255,255,255,.54);line-height:1.84">To provide reliable, professional accounting and consulting services that empower Namibian businesses to grow, stay compliant and achieve their financial goals, delivered with integrity at every step.</p>
+        </div>
+        <div class="rv" style="transition-delay:.1s">
+          <span class="ey lt">Vision</span>
+          <h3 style="font-family:var(--fd);font-size:1.35rem;color:var(--WH);margin-bottom:12px;font-weight:600">Where We Are Headed</h3>
+          <p style="font-size:.84rem;color:rgba(255,255,255,.54);line-height:1.84">To become a trusted partner for businesses by providing professional Bookkeeping, Accounting, Tax Planning and Advisory, Business Registrations and Company Secretarial Services, Consulting, and Business Development Services, while creating opportunities for skills development and employment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="sec white">
+    <div class="w">
+      <div class="asplit">
+        <div class="rvl aiw">
+          <img class="aimg" src="images/image-003.jpg" alt="O&amp;M Founders" width="480" height="640" loading="lazy"/>
+        </div>
+        <div class="rvr">
+          <span class="ey">Our Story</span>
+          <h2 class="H">Proudly Namibian.<br/>100% Women-Owned.</h2>
+          <div class="rule"></div>
+          <div class="wbadge">100% Namibian Women-Owned &amp; Led</div>
+          <p style="font-size:.86rem;color:var(--S);line-height:1.84;margin-bottom:13px">Success is not always inherited; sometimes it is built from the ground up through faith, determination, resilience, and purpose.</p>
+          <p style="font-size:.86rem;color:var(--S);line-height:1.84;margin-bottom:13px">O&amp;M Accountants and Consultants is founded by two women with a passion for numbers, a commitment to excellence, and an unwavering belief that every challenge presents an opportunity for growth. Our journey did not begin with a silver spoon. It began with a vision, hard work, sacrifice, and a deep trust in God&rsquo;s grace, plan, and purpose.</p>
+          <p style="font-size:.86rem;color:var(--S);line-height:1.84;margin-bottom:14px">Dressed in pink, we proudly symbolize:</p>
+          <ul style="margin-bottom:22px;display:grid;gap:9px">
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--K3);font-weight:500"><span style="flex-shrink:0;font-size:.9rem;line-height:1.4">&#128149;</span>Women in Business</li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--K3);font-weight:500"><span style="flex-shrink:0;font-size:.9rem;line-height:1.4">&#128149;</span>Women Creating Change</li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--K3);font-weight:500"><span style="flex-shrink:0;font-size:.9rem;line-height:1.4">&#128149;</span>Women in Leadership Roles</li>
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--K3);font-weight:500"><span style="flex-shrink:0;font-size:.9rem;line-height:1.4">&#128149;</span>Women Taking Their Seat at the Negotiating Table</li>
+          </ul>
+          <p style="font-size:.86rem;color:var(--S);line-height:1.84;margin-bottom:13px">Established in Walvis Bay in 2016, the firm has grown steadily across the Erongo Region and beyond, building a strong reputation for technical excellence and an unwavering commitment to client success.</p>
+          <p style="font-size:.86rem;color:var(--S);line-height:1.84;margin-bottom:22px">Today, O&amp;M offers the full spectrum of bookkeeping, accounting, tax, payroll, business registration and business advisory services, with its head office in Walvis Bay and branches in Ongwediva and Windhoek.</p>
+          <div class="vals">
+            <div class="val"><h4>Local Expertise</h4><p>Deep knowledge of BIPA, NamRA, Social Security and Namibian tax legislation.</p></div>
+            <div class="val"><h4>Fully Compliant</h4><p>CIBA Licensed. FIC Registered as an Accountable Institution.</p></div>
+            <div class="val"><h4>Growth-Focused</h4><p>Reliable bookkeeping, accounting, tax, payroll and business advisory that helps businesses grow.</p></div>
+            <div class="val"><h4>3 Office Locations</h4><p>Head office in Walvis Bay, with branches in Ongwediva and Windhoek.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="sb">
+    <div class="sbc rv"><span class="sbn">200+</span><span class="sbl">Clients Served</span></div>
+    <div class="sbc rv" style="transition-delay:.08s"><span class="sbn">10+</span><span class="sbl">Years in Practice</span></div>
+    <div class="sbc rv" style="transition-delay:.16s"><span class="sbn">100%</span><span class="sbl">Women-Owned</span></div>
+    <div class="sbc rv" style="transition-delay:.24s"><span class="sbn">3</span><span class="sbl">Office Locations</span></div>
+  </div>
+
+  <!-- People on About — staff images integrated meaningfully -->
+  <section class="sec mist">
+    <div class="w">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+        <div class="rvl">
+          <span class="ey">Our People</span>
+          <h2 class="H">Professionals You<br/>Can Count On</h2>
+          <div class="rule"></div>
+          <p class="lead" style="margin-bottom:20px">Behind every accurate return and every successful client is our dedicated team of professionals, passionate about accounting, committed to excellence, and proud to represent Namibian business.</p>
+          <button class="btn bk" onclick="go('team')">Meet the Full Team</button>
+        </div>
+        <div class="rvr">
+          <!-- Two staff portrait photos stacked -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+            <div class="pic pic-port" style="aspect-ratio:2/3">
+              <img src="images/image-004.jpg" alt="O&amp;M Staff" loading="lazy"/>
+            </div>
+            <div class="pic pic-port" style="aspect-ratio:2/3;margin-top:24px">
+              <img src="images/image-005.jpg" alt="O&amp;M Staff" loading="lazy"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /about -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   SERVICES                        ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg" id="pg-services">
+  <div class="hdr">
+    <div class="w hdr-in">
+      <span class="ey lt">Our Services</span>
+      <h2 class="H lt rv">The Full Spectrum<br/>of Financial Services</h2>
+      <div class="rule rv"></div>
+      <p class="lead lt rv">O&amp;M provides comprehensive accounting, tax and advisory services, serving individuals, businesses, Non-Governmental Organizations / Section 21 Companies, body corporates, trusts, micro-lenders, gaming operators and more across Namibia.</p>
+    </div>
+  </div>
+
+  <section class="sec mist">
+    <div class="w">
+      <div class="ac rv" id="c1">
+        <div class="ac-hdr" onclick="tc('c1')"><h3><span class="ac-ico">AC</span>Accounting &amp; Bookkeeping</h3><div class="ac-arr">&#8964;</div></div>
+        <div class="ac-bd"><p style="font-size:.82rem;color:var(--S);line-height:1.7;margin-bottom:12px">Complete accounting and bookkeeping services keeping your financial records accurate, current and fully compliant.</p>
+          <div class="sub">
+            <div class="subi">Accounting Officer Services</div><div class="subi">Bookkeeping: Data Capture to Trial Balance</div>
+            <div class="subi">Management Accounts Preparation</div><div class="subi">Financial Statement Preparation</div>
+            <div class="subi">Body Corporate Reporting</div><div class="subi">Trust Accountant Services</div>
+            <div class="subi">Reporting for Credit Providers</div><div class="subi">Non-Governmental Organizations / Section 21 Companies</div>
+            <div class="subi">Fund-Raising Organisations</div>
+          </div>
+        </div>
+      </div>
+      <div class="ac rv" id="c2" style="transition-delay:.05s">
+        <div class="ac-hdr" onclick="tc('c2')"><h3><span class="ac-ico">TX</span>Tax Services</h3><div class="ac-arr">&#8964;</div></div>
+        <div class="ac-bd"><p style="font-size:.82rem;color:var(--S);line-height:1.7;margin-bottom:12px">Comprehensive tax compliance and advisory, every NamRA obligation met accurately and on time.</p>
+          <div class="sub">
+            <div class="subi">Tax Practitioner Services</div><div class="subi">Company Tax Planning</div>
+            <div class="subi">Individual Income Tax Returns</div><div class="subi">Corporate Income Tax Returns</div>
+            <div class="subi">VAT Registration and Returns</div><div class="subi">PAYE and Social Security Compliance</div>
+            <div class="subi">Micro Lenders: NAMFISA Returns</div>
+            <div class="subi">Gaming Activities incl. Sports Betting</div>
+          </div>
+        </div>
+      </div>
+      <div class="ac rv" id="c3" style="transition-delay:.10s">
+        <div class="ac-hdr" onclick="tc('c3')"><h3><span class="ac-ico">IR</span>Independent Reviews</h3><div class="ac-arr">&#8964;</div></div>
+        <div class="ac-bd"><p style="font-size:.82rem;color:var(--S);line-height:1.7;margin-bottom:12px">Independent review services providing credibility to your financial statements and confidence to stakeholders, regulators and funders.</p>
+          <div class="sub">
+            <div class="subi">Compiling and Independent Reviews of Annual Financial Statements</div>
+            <div class="subi">Review Support and Preparation</div>
+            <div class="subi">Non-Governmental Organizations / Section 21 Companies Independent Reviews</div>
+            <div class="subi">Fund-Raising Organisation Compliance Reviews</div>
+            <div class="subi">Internal Control Reviews</div>
+            <div class="subi">Reporting for Credit Providers</div>
+          </div>
+        </div>
+      </div>
+      <div class="ac rv" id="c4" style="transition-delay:.15s">
+        <div class="ac-hdr" onclick="tc('c4')"><h3><span class="ac-ico">PY</span>Payroll Services</h3><div class="ac-arr">&#8964;</div></div>
+        <div class="ac-bd"><p style="font-size:.82rem;color:var(--S);line-height:1.7;margin-bottom:12px">Full payroll outsourcing using Sage VIP, accuracy, compliance and on-time delivery every month.</p>
+          <div class="sub">
+            <div class="subi">Monthly Payroll Processing: Sage VIP and Pastel Payroll &amp; HR</div><div class="subi">Social Security (SSC) Submissions</div>
+            <div class="subi">PAYE Remittances to NamRA</div><div class="subi">Employee Payslip Generation</div>
+            <div class="subi">Leave and Benefits Administration</div><div class="subi">Annual Wage Reconciliations</div>
+          </div>
+        </div>
+      </div>
+      <div class="ac rv" id="c5" style="transition-delay:.20s">
+        <div class="ac-hdr" onclick="tc('c5')"><h3><span class="ac-ico">CS</span>Company Secretarial &amp; Registrations</h3><div class="ac-arr">&#8964;</div></div>
+        <div class="ac-bd"><p style="font-size:.82rem;color:var(--S);line-height:1.7;margin-bottom:12px">We handle all business registration and compliance filings so you can focus on running your business.</p>
+          <div class="sub">
+            <div class="subi">BIPA Business Registrations</div><div class="subi">NamRA Tax Registrations</div>
+            <div class="subi">Company Secretarial Services</div><div class="subi">Annual Returns and Compliance Filings</div>
+            <div class="subi">Non-Governmental Organizations / Section 21 Companies Registration</div><div class="subi">Trust Registration and Administration</div>
+            <div class="subi">Social Security Registration</div><div class="subi">MSME &amp; EEC Certificate Registration</div>
+            <div class="subi">NPPC Registration</div><div class="subi">Municipality Fitness Registration</div>
+            <div class="subi">NAMFISA Registration</div>
+          </div>
+        </div>
+      </div>
+      <div class="ac rv" id="c6" style="transition-delay:.25s">
+        <div class="ac-hdr" onclick="tc('c6')"><h3><span class="ac-ico">BG</span>Business Growth &amp; Advisory</h3><div class="ac-arr">&#8964;</div></div>
+        <div class="ac-bd"><p style="font-size:.82rem;color:var(--S);line-height:1.7;margin-bottom:12px">Strategic advisory and financial solutions to help your business grow and navigate regulatory requirements.</p>
+          <div class="sub">
+            <div class="subi">Business Growth Solutions</div><div class="subi">Business Plan and Financial Model Preparation</div>
+            <div class="subi">Cashflow Forecasting and Budgeting</div><div class="subi">Funding Application Support</div>
+            <div class="subi">Micro Lenders Advisory: Cash Loan Businesses</div><div class="subi">Gaming and Sports Betting Compliance</div>
+            <div class="subi">Company Profile</div>
+          </div>
+        </div>
+      </div>
+      <div class="ac rv" id="c7" style="transition-delay:.30s">
+        <div class="ac-hdr" onclick="tc('c7')"><h3><span class="ac-ico">TR</span>Accounting &amp; Payroll System Training</h3><div class="ac-arr">&#8964;</div></div>
+        <div class="ac-bd"><p style="font-size:.82rem;color:var(--S);line-height:1.7;margin-bottom:12px">Practical, hands-on training programmes equipping professionals and business owners with the accounting and payroll skills they need to succeed in Namibia's economy.</p>
+          <div class="sub">
+            <div class="subi">Sage VIP Payroll System Training</div>
+            <div class="subi">Namibian Tax Compliance Training</div>
+            <div class="subi">Business Registration &amp; Compliance Training</div>
+            <div class="subi">SAGE &amp; Pastel Accounting System Training</div>
+            <div class="subi">SAGE VIP, Pastel Payroll &amp; HR Training</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gold" style="padding:52px 4%;text-align:center">
+    <div class="w">
+      <h2 class="H rv" style="max-width:440px;margin:0 auto 12px">Not sure which service you need?</h2>
+      <p class="rv" style="font-size:.85rem;color:rgba(13,12,10,.58);margin-bottom:22px;max-width:340px;margin-left:auto;margin-right:auto;line-height:1.7">Our team will assess your situation and recommend exactly what your business requires.</p>
+      <button class="btn bk rv" onclick="go('contact')">Speak to Our Team</button>
+    </div>
+  </section>
+</div><!-- /services -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   OUR TEAM                        ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg" id="pg-team">
+  <div class="hdr">
+    <div class="w hdr-in">
+      <span class="ey lt">Our Team</span>
+      <h2 class="H lt rv">The Professionals<br/>Behind O&amp;M</h2>
+      <div class="rule rv"></div>
+      <p class="lead lt rv">Our founders and staff are the foundation of everything we deliver, committed to raising the bar for every client we serve.</p>
+    </div>
+  </div>
+
+  <!-- Founders -->
+  <section class="sec white">
+    <div class="w">
+      <span class="ey">Leadership</span>
+      <h2 class="H rv">Our Founders</h2>
+      <div class="rule rv"></div>
+      <div class="founders rv">
+        <div class="fc">
+          <img src="images/image-006.jpg" alt="Ms. Olivia Mhata" width="520" height="693" loading="lazy"/>
+          <div class="fveil"></div>
+          <div class="finfo">
+            <h3>Ms. Olivia Mhata</h3>
+            <span class="frole">Co-Founder &amp; Business Accountant</span>
+            <p>Bachelor of Commerce in Finance Management (Honours) &bull; Bachelor of Education in Accounting &amp; Business Studies &bull; Master of Commerce in Accounting &amp; Finance. Olivia brings over 13 years of commerce teaching experience, equipping Namibian learners with knowledge in accounting, entrepreneurship, economics and business studies. At O&amp;M she provides strategic support, maintains client relationships and contributes to sustainable growth and long-term partnerships.</p>
+            <div class="fls">
+              <a href="mailto:info@omaccountant.com" class="fl">Email</a>
+              <a href="tel:+264813808944" class="fl">+264 81 380 8944</a>
+            </div>
+          </div>
+        </div>
+        <div class="fc">
+          <img src="images/image-007.jpg" alt="Ms. Miriam" width="520" height="693" loading="lazy"/>
+          <div class="fveil"></div>
+          <div class="finfo">
+            <h3>Ms. Miriam Mhata</h3>
+            <span class="frole">Founder &amp; Chartered Business Accountant in Practice</span>
+            <p>Higher Diploma in Accounting &amp; Auditing &bull; Bachelor of Accounting (Honours) &bull; Master of Science in Entrepreneurship &amp; Innovation. With over 7 years of experience in finance and accounting, including previous roles as Creditors &amp; Debtors Controller, Accountant, and Finance Manager, Miriam oversees client relationships, financial statements, tax planning and day-to-day operations. She provides final authorisation on all accounting and taxation matters.</p>
+            <div class="fls">
+              <a href="mailto:info@omaccountant.com" class="fl">Email</a>
+              <a href="tel:+264817734676" class="fl">+264 81 773 4676</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Staff — 2 photos only -->
+  <section style="padding:0 4% 72px;background:var(--WH)">
+    <div class="w">
+      <div class="sdiv"><span class="sdivl">Our Staff</span></div>
+      <div class="mosaic-2 rv">
+        <div class="pic pic-land">
+          <img src="images/image-008.jpg" alt="O&amp;M Staff Team" loading="lazy"/>
+          <div class="pic-lbl">O&amp;M Staff</div>
+        </div>
+        <div class="pic pic-land">
+          <img src="images/image-009.jpg" alt="O&amp;M Team" loading="lazy"/>
+          <div class="pic-lbl">Professionals ready to serve</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture strip — dark bg, people image on right -->
+  <section class="sec dark">
+    <div class="w">
+      <div style="display:grid;grid-template-columns:1fr .8fr;gap:52px;align-items:center">
+        <div>
+          <span class="ey lt">Our Culture</span>
+          <h2 class="H lt rv" style="margin-bottom:28px">What Drives Us Every Day</h2>
+          <div class="cg rv">
+            <div class="cc"><h4>Client-First</h4><p>Every decision begins with what is best for the client we serve.</p></div>
+            <div class="cc"><h4>Continuous Learning</h4><p>We invest in our team's professional development without compromise.</p></div>
+            <div class="cc"><h4>Precision</h4><p>Every figure, every return, every report, accurate and on time.</p></div>
+            <div class="cc"><h4>Proudly Namibian</h4><p>100% Namibian and women-owned. We understand our market like no one else.</p></div>
+          </div>
+        </div>
+        <div class="rvr">
+          <div class="pic pic-port rv" style="border-radius:var(--r3);overflow:hidden;aspect-ratio:3/4">
+            <img src="images/image-010.jpg" alt="O&amp;M reception team" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s ease" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /team -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   BUSINESS SCHOOL                 ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg" id="pg-bschool">
+
+  <div class="bsh">
+    <div class="bsl">
+      <span class="ey lt rv">O&amp;M Business School</span>
+      <h2 class="H lt rv" style="margin-bottom:12px">Investing in<br/>Namibia's Future</h2>
+      <div class="rule rv"></div>
+      <p class="lead lt rv" style="margin-bottom:24px">O&amp;M Business School offers practical, industry-relevant short courses designed to equip professionals and entrepreneurs with the financial knowledge they need to succeed in Namibia's economy.</p>
+      <button class="btn bg rv" onclick="document.getElementById('bsc').scrollIntoView({behavior:'smooth'})">View Courses</button>
+    </div>
+    <div class="bsr">
+      <img src="images/image-011.jpg" alt="O&amp;M Business School" width="640" height="480" loading="lazy"/>
+    </div>
+  </div>
+
+  <section class="sec white" id="bsc">
+    <div class="w">
+      <div style="text-align:center;max-width:500px;margin:0 auto 10px">
+        <span class="ey">Courses Offered</span>
+        <h2 class="H rv">Practical Training.<br/>Real-World Results.</h2>
+        <div class="rule c rv"></div>
+        <p class="lead rv" style="max-width:100%;text-align:center;margin:0 auto">Designed and delivered by practising accountants, so everything you learn applies immediately in your business or career.</p>
+      </div>
+      <div class="cgrid rv" style="margin-top:32px">
+        <div class="ccard"><span class="badge ba">Accounting</span><h3>Introduction to Financial Accounting</h3><p>Foundational double-entry bookkeeping and financial statement preparation for small business owners and new accounting professionals.</p><div class="cmeta"><span>2 Days</span><span>In-Person / Online</span></div></div>
+        <div class="ccard"><span class="badge bb">Payroll</span><h3>Sage VIP Payroll Essentials</h3><p>Hands-on training in Namibia's leading payroll software covering employee setup, processing, Social Security and payslip generation.</p><div class="cmeta"><span>1 Day</span><span>In-Person</span></div></div>
+        <div class="ccard"><span class="badge ba">Tax</span><h3>Namibian Tax Compliance</h3><p>Practical understanding of income tax, VAT and PAYE in Namibia, NamRA processes, deadlines and compliance errors to avoid.</p><div class="cmeta"><span>2 Days</span><span>In-Person</span></div></div>
+        <div class="ccard"><span class="badge bc">Business</span><h3>Business Registration &amp; Compliance</h3><p>Step-by-step guide to registering a business through BIPA and NamRA, entity types, requirements and ongoing obligations.</p><div class="cmeta"><span>Half Day</span><span>In-Person / Online</span></div></div>
+        <div class="ccard"><span class="badge bd2">Finance</span><h3>Financial Management for SMEs</h3><p>Cashflow management, budgeting, forecasting and reading management accounts, designed for small and medium business owners.</p><div class="cmeta"><span>2 Days</span><span>In-Person</span></div></div>
+        <div class="ccard"><span class="badge bb">Excel</span><h3>Accounting with Microsoft Excel</h3><p>Practical Excel skills: spreadsheet design, formulas, pivot tables and building your own financial trackers and reports.</p><div class="cmeta"><span>1 Day</span><span>In-Person</span></div></div>
+      </div>
+      <!-- Admission form download — Business School ONLY -->
+      <div class="admbox rv">
+        <div>
+          <h3>Application for Admission</h3>
+          <p>To enrol in the O&amp;M Business School Accounting and Sage VIP Payroll Training Programme, download the Application for Admission form and return it to <strong style="color:var(--G2)">info@omaccountant.com</strong></p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64,UEsDBBQABgAIAAAAIQCMGLWHigEAAK0HAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC0lctqwzAQRfeF/oPRtthKuiilxMmij2UbaPoBijSOTa0H0uT19x3HjikliUMTbwz2zL33jGSY0WSjy2gFPhTWpGyYDFgERlpVmEXKvmZv8SOLAgqjRGkNpGwLgU3Gtzej2dZBiEhtQspyRPfEeZA5aBES68BQJbNeC6RXv+BOyG+xAH4/GDxwaQ2CwRgrDzYevUAmliVGrxv6XJN4KAOLnuvGKitlwrmykAKpzldG/UmJm4SElLuekBcu3FED4wcTqsrxgEb3QUfjCwXRVHh8F5q6+Np6xZWVS03K5LTNAU6bZYWEVl+5OW8lhEBnrsukrWhRmD3/UQ6z1HPwpLw+SGvdCRFwW0K4PkHt2x0PiCToA6Bx7kRYw/yzN4pf5p0gmbVoLPZxG611JwQY1RPD3rkTIQehwA+vT1Abn3UPveTXxmfkU56Yl9AHQWPdCYG0DqB+Xn4SO5tTkdQ59dYFWi/+H2Pv90eljmlgBx6L039am0jWF88H1WpSoA5k892yHf8AAAD//wMAUEsDBBQABgAIAAAAIQAekRq37wAAAE4CAAALAAgCX3JlbHMvLnJlbHMgogQCKKAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAArJLBasMwDEDvg/2D0b1R2sEYo04vY9DbGNkHCFtJTBPb2GrX/v082NgCXelhR8vS05PQenOcRnXglF3wGpZVDYq9Cdb5XsNb+7x4AJWFvKUxeNZw4gyb5vZm/cojSSnKg4tZFYrPGgaR+IiYzcAT5SpE9uWnC2kiKc/UYySzo55xVdf3mH4zoJkx1dZqSFt7B6o9Rb6GHbrOGX4KZj+xlzMtkI/C3rJdxFTqk7gyjWop9SwabDAvJZyRYqwKGvC80ep6o7+nxYmFLAmhCYkv+3xmXBJa/ueK5hk/Nu8hWbRf4W8bnF1B8wEAAP//AwBQSwMEFAAGAAgAAAAhAFvYzPCMIgAALbgBABEAAAB3b3JkL2RvY3VtZW50LnhtbOw9XXPiuJbvW7X/QZXa2sqtmhkkWbbs3ts9a0vyTO7tpHM7PTN3Hh1QErYNpoxJOvfp/ofd2vf9a/NLVpKBgLEJGEggOKnCINDxkc7R+ZSP/vzjt14M7mU67Cb99yfoB3gCZL+ddLr92/cnv3wJv3dPwDCL+p0oTvry/cmjHJ78+OFf/+XPD+86SXvUk/0MKBD94buHQfv9yV2WDd61WsP2nexFwx963XaaDJOb7Id20mslNzfdtmw9JGmnhSGC5t0gTdpyOFT3Y1H/PhqejMG1v60GrZNGD6qzBkha7bsozeS3JxhobSB2y2u5i4BwDUBqhBgtgrLWBuW0NFYLgEgtQAqrBUh2PUglg3PqQcKLkGg9SNYiJLcepAV26i0yeDKQffXlTZL2okx9TG9bvSj9Ohp8rwAPoqx73Y272aOCCZ0JmKjb/1oDI9VrCqFnddaGQFu9pCNjqzOBkrw/GaX9d+P+30/7a9Tf5f3Hl2kPGa92W3U7ryW/ZfEwm/RNV5m7vDsfCxYza61Uxmoek/7wrjuYSodeXWjqy7sJkPtlE3Dfiye/exigFZdalWjjORmeAK6C/ph2vTjHfDlEBFegpgYx7bEKCvP3nGDSUxz8dONaUzMzuWhF4TMBgBcAOG25orKYwHDHMFrtp9Wt4XRXXFYTODlVNJzu08SiFWVgEZkZAJ3RWiCwNcFDX3T3GVjDTta5Ww/chEYt3TfKortoOF00OcSbFQXBBCKZgZgzWJy0p/JMw5TrTZo9BfjYm6Hh4HazhfpTmowGT9C6m0E7exLZD9p4WgPWeMHPCqHhZshc3UUDJcl77Xdnt/0kja5jhZFavkCtQGAooF8VI+uLeSu/mXbNP+M3N7F+0xkBLRJPPigj8DrpPOrrQH1B3g2iNDpTa8jBRCDMghPTqlRoplvp+E+1vlMGZ+fz+xMIEYJEwZo0cXkTjeJs5hsD/TLVl+EgaquRqN9eS8VFCn81UbprdJPJNP/U+vDn1riDvupu2XU8vuRg1JvfVCclAT1KHN0/exwoYJ1vke5ufhCouVNWsfmUqMG9u48Uy+t5jKXuMfzH+xODtcZJ9TVotJM4UWhEoyzJAcXyJqvb9zrJsqRXt3favb2rfetuX5FC/rxZ91/rdW8tTP91zGQcn0eGduMZVbRDpneBcpNhl3+fw56Bpj59TJKvE0whzNnpppsOs8/JwxjDOJr9ZL5kSTzq9We+n2voJz8HymWafvp18mmKw5QRf0q7Hf32Vl0VjBx1w5bT305+kqWgbN3MLDtiWSwQJMxbF5adAdLOX8cItJ9ZCO1N1gEnvjI7666E2d511sJs/xqr4am7psLsPAzvOhNQ7VhGaZGJDY/E8TwGWXvCcmYW1ZRjt4yBn/ib5LxY+H46E5UQZpZAGQgzGoOLeZfzQUF6u5bF3cCrYKNSLlyQ3iywGQpmpfd/tafTpsxxmc6KatXfvOTvr/OhsqG5mrmddEW+/s9HOvzHpNUyy0W3sOF8W2sKNPvgX15+PGP+l7NPFyD89Bn4/Pzs6kp9MlOR//ZJa8zPiZprgUPHmp8TyFwsLMvM8o7nZIVZwCWzkLfNzsJVdCvnBqxeZtEXRFlXubDY8q21JTNZaoNUDmV6L08+AL/dTkb9TLupRbx2Mf7L6DFN4hhcPQ4z2QNfUuXNaKPiMk1u06jXm5+cnBvMUskv44WTmxTzPAKZzQNM7I3WzdasngJuyGXMxuLV1nTXkKZbtqZt87dATTOqAjUnI32ippLAynLV0ZZYZhJEirJD2TYBA2DEc/wIun0QfPzE/go+ii9fxOcrMNI6AETgOo7aX4HC5DoeSaD83x9WEAUIUhtzqvXlm5rKq9F1r5tNp7IDtKMGsgRE/Ufw6d+j3uA/zkGgp045FOCqfZcoe0Xjmko9hcoj6cb6593+TfKfSS/Kl3XUN97JCvNKfZszGLCdLx+EZ5eP/lSyfJY4DRA3TkPjNEww3RunQbPl9LerOw0YisBHpMraM0AqnIaKhdA4DWOLYftOw1h0VToNY8tgidNQDmFmCZSBMKNZ7jRQL6Ah5mPm2lwrziq863wUy/2BOVUmmLHyEfjjn/8DLpXK/3ThfwRnF8rsPzcOQH0jz/coRobxd6ulcudurKTcRkc1OurwdRSxkJWPZ74592Aqfry2QnM94TpejSiYuePi3C+KYbJcCj8ng58hcC3562AeOi7czHpe9EpKrGdnVjCROcG0stjGTP/nI1/fT0n70TI3vZq+VaqtbEJx6FM34FVstPaE5qhUxEDqDOaAmZV4Pg/c8AiYNdRCFVwofj0d/ulZo0O/lg5+li9tIqjrVEWZ6nDMjFJappyNRbGW1bvIjM8EvXNyLeHG50LeJQBWEZ7EC4kvtmu8bnOtryO4iIBuiOhmYcjXEFxHz4bExZbgeLO0+eaUW0MY2cwLPRsfma1FhMMpxoVkUH067a/6ukzljUxT2TEqbNeSy6YMepjqHo3JtWWeRSgQAeXu2+fZC7NdNNL7brci4xD0A+wGVVK5Dr8cvaajCAfYsl9b01VTbh2xhUToOpDv72AaNqygnOX5rouD1zaV1xBGdsCQ59XJ1hy28iKOjf2t0WmflVeve92N+uCMg4tR71qmoAUuo+FwkKTZuGXX8sxGnBOO8MHJswPgZAsJ7MHtuXj7y8k8yiRIbkDQTbM7cMp56/y89bv6204YzHGpS4TdhMG2qA4xx5haxN/bhb+WVcZ9HgTB4Umxhg05dOwQahodiFWGEPUQMrNxRFaZ4zsoJOERWGU/yX5n93YX8cPQxnssfg85ZAshYchGb59X1Tx0sygGV1mUjYZbEW8OZMgXiG9RvDUpR+YjbLlbY8itL/Z1JBdlPAgDuLWnC15Mch09GyJhBRa19iQCpi+lmy4RQS5iW7MI91d6/5z0JPA7HTVpZbJ7Oj9lez6bh5nLOjd7Pg9wz2ehmU4Xylo7QR0LMc+rszuhYi1ppK4GUX8yx6TRI9MdfUo8w0PKpFDmCGzZDXPsnjnsAHPX9qv8hz1kDssh3HWW5/zHOluT3df2woSqKJ+1h0njWH6VzdtE7b89fxu7JAzd7W3l2V+LjXWzR9ACX5KHfjXrVdN4zY0Gvsfx1vbw1FxHb5JhYegEHDlbC77t8Z6+ZKjjQyzpPF/qQL+WDn3WyhKWF2BRFcnIgbyarGyUL7Uc12Vbk8RbFxrrSEAHYw+FZMyBTaDpgNhQ+Mgm/taKCtWk3BpyjQQw9B22NOrd2IBLSG45HrQ9/whswPPkuhvLl9qe5bMA+d7hycBDYFnGKHWsI3gw0Y/VnftR1r2XyhTsZ1H7+e2FawhPhwZq6VfGg3IgjVH4ahufMRXco/v7cPNa+yao43v+HqdSGzasUmVh4CDqv/YevbFc05ey7KPFQo6Qs7XFsr9KQZgabk36sUk/zq/uI6ylbHm+EkxwaVSrXNyvUkv5SMW95WHP8fZ8s4kjQsGCcLPNJuNvDPQqcZ9P8tIKX4Wkiuf5wrZXee6cupbNtBuzgNn4m+1ihiyMoOusoshfGDOH2NjD7ir12l4YM4i5y4S/yqa5F8bM8hzHZZWRr1fEDPuEh3ylhzp2jtkSU6ipvlfWuTGFDrNCLArc0Ge0KjVqgFSYQk2F2JWNuDdfIdYKheVTvF1n/3l/eHmFWGwqxLJPv3y+EuBKfMyba9uOFHHXc9FeVIctWGic6P04R/Dg8ZWMZTsD2Z0+FmCUDiV4TEYgSiWIBoP4UWOrMH1XQuMFC02EjIaG23dLzTwTUjplK1gb1GqsjcbamGC6L9aGBZGbj2e+2YK4rJmgZ22T8ck08yEFnwc+Cp5xor6kM/0N4HJ7xeBcNuGlCg3ZSInDYhLFDmnIoTCztoj6gniYQWoiIvPLVuRhueDdlqgtj7zoA4ZmDvWZHLRTrVOryaF5ZXF9HEq4C1Ifco8X7GYLha4beiYjtB5/7IKEH/743/8DV3e6uAzLleUpAQ9Sfh3+yVhGF/9mfWdDWId4ekUfLvEI5NjCuLATAIZcWb/GFdoX4l2myY0+4VOXvJvS0AK9pJ/dTYnoLieivuQgnxW4lq+sae4/Y+HuRuASH8PQLdbdhFTvK/OOXOAWjjU7PmmLubBcmxeMdYdwSB1TOeytM0eJKMfzonyOKR7mj/1T/qGNwlxUbRkvXLzvLm5ynFoKMg9ZgVMwfzERoYXcGibGYTJ9qQosmDGvxPvk9XlfX8Y8VLq7hVJie+IICgM/FbOeHvr5MWmbasErRYNs3+PiOVfz1aNBJHctmmhQEw2KNcftSzQIlkaDKpoJneZI1slUUSVjnNB/ZoPExDnByM5FVqVzAhedE/39YdgGjvJgBUIFD9a2kMO4Oepkg3zLNtX3Ms1Mn1L1L+JKzftNOxrzb1F83x2CIHoEpz/LqAM+3dx023JJXdS3yqLIRpjDYgVBzIRNibthSnCrFuZv3X7nLpFf65BIy7LDJRHkwglZsbQXpr7FSDDvYbwuiS6U43sn074+qUSX0AanywTLjPTfNjKf+rcPstO9j15CljxfTFlfyux+FPg0cDYsJrCTVDVk0GLsKB7Fn3okZ/0s+ipBS5dtTDOgi2ev5JO4zA6It9nzarv3SZr9cGWdG5/kdX0SjG2Tc9602Xgw+Q1Xd1WgYzNl+tTYVGcQWaTJwcTpLV/QhS28tu8GbDyw1zcoyp0DbWUssyl2GEYM5XU6itL5A61ecuxjBVVtbbxVdqUucjkShadBCPQxCew98aL3jl3Po4ZTXz7eE1iey7yCp4aQFziWKfDbcOoip/qj29EwO0xmPejIj8cJtRw+z6yK0qrdsHDDrIvMepHcy4UKHXvFrvoyJntprhExL/DgHm6Px5gFwqNHsD3+KebAlEc1BF+6vdVCDRZzheNsVsCrCTU0oYYm1PDSoQZbhA4Px61HFGog3ApEUEwHY9diYWimY19yF+dJqrejLDMr6FvMhJ5C9x2Ef/zzvxFW1zoJ0APnUChY4PPio7WOxx1b2No43hcONbXY+knSB6fIGtOMHifNLIf5LCgmre1QhJDlu9n3hGbiXppNbqeKUpamGIbqWpNiB+1sKnlvLT77Cv1Q5E8y7AvFfpPyq+x3wOlVlI3STvRYP71LuO0p2bIX6d3GXG/M9YMy12tXyvAFF6JyL3UuM/PXgoRtKmVUdzcC75gqZUBXOJxu+TCl56NKyytlWOZBCsF/Yb757F9w8Nunz38F4u+X4vOZuGCitrKySIhDHm5WwXUncUHHg0QgU2DhjccFf1ZsK4cZ+CjvZQySGyA6o/zhCMCS3iCWmeysEiekAYGMmYcQmjhhY3g0hsc6hgdGtDTyZ2NU1oxoWS0NrJ/mm95wdevFDoMw4LSG9XLoezzC0EaseE4koZYVOqZ8w774hz+lUUcCBMHpX0b9roLLZJp1b7pKTtd6fODQ6eYRikNWZFjkckeYouJ7QLfqJHJOzDmqPczHfG2EsA9z1LbMTQi1infeyW0wOL24umKfFu42O05BMTVVgfOmy3SmcRdYaYz8qxUw2sXNX2Tez35iV+IYY7MBhCGnhSQ19O0AOqZ1XyT5jOAGLcC7gzjpzT8wsjK9Djkyq59fE8jAns1/IGSFHtunDB2Xt6mUQAE0ftLzh+ToS5mra+sNTh7fbKPJTlxdwlBIfP8IHru5iHpSe7gTl/dvoyjOF6P2dpXFDs76w6ybjapLAyzxLJtzMMo6N57lgZ6D4QfKnwyXnoRdEdJuzsGo0HoOdSH2TLWt7cV3t34Ohs0hRp5d8Irfoj74XUbpc0HOaoFfdbxXI/Abgf+KAt+wZR2Bb/mWslBF3rqOwG/OuXualGJ+yyOYu1vLIu1G4COfMEg3FPg7cU2o0Fvi8Cr5QbrRsS9lqmiX2mf5sLHtQEuY0RzTsGEIBSbFkiNvftiWg4TjomNjcoqYpavJzA8b09ChbGaMB29mGgNA9pXqkp3L6FYGqYy+ml7ZBzZKU9nPgFAmaPLY02+vsigbDVdKuFuWTQTfvdhuEu6lvRsr+YCtZORCOx/PTprr7SLklBCOq9S+AVJugRtEFkl1KGayHaKQWcVqRoS6AcK2Ngf2JRuQy2nZAafhKI6/149Q1km2HTi5HOhD7HoFr8bihFHI9ynZ9kSuyyjNjpVcNCAodIuP3FuuhyG0axhaOyPXlYxvvp/Q7PjohJkgjl90f2yCie+YvOG+0OmXvtyISIe80cBGzHY8v2B0I44xZGyfVNVVNuoof6KaQvoyHmlpUAgxRFwjH/YsKGSFEPmcb7Zp/CDyE2c3YLLSvgP9cfK6PfYZx99UHGi4xCFr8tRlnRuH7DDz1IRbSvTSqscODJAmT72ekrMEtQXn+562UDd2lNu4LSz3Vw/8JbkGX7pZrLcMXibDbp3tSU22urRzI/YPM1sNXU690Fjca4r9Jlv9NCmFuI5wXc92tmZY70bs2xbybRvvvh7Z+o4JIUiEYYEnLeLZNKQ6/PJmFBJPzNnqd9G9BFH/EQxS/VCS/DaQaVf22xI8dLM7ED2dBTxMbrKHKJU/glP5w+0PQB9d+R34u0yT78DfRt3210DJpmFZcK4s+MhIsS7vDsjfZL1Kezfa9pC1rZ1r24rmdZWwLUKKfVKlMAyQCiWs77g4ywdTWAj7gtms4HRawsZQWPsUqv1dDqsV7Vuljm0LmzpE5wJmqOOw0GXcfyLF61PnIqltBZEAMc6Ynp9XV4OFNAYn3LXwZpgdSnhWra/vwCCW0VCCjhy20+611KbRnDF0ra438WMTqG1siCMO1CLL9oTFahx80wRqnyalmKTzGYa4oOnqy9p8zHU99lW4gHiYhzapct8aLqjBBdR3ieuYwhd7HLeBFqZu4G6WVNhS3KZx3Bule1hKt2ZhSou4KPDIuHUtcdsUplxZUbz5wpQoxJAoJVPBRqVcuKpHfZ2PYv3ClMQUpjz/9OXsV1OZsrZmckKfW8JEBvYso+AQ4kE/2Nq8768v/dvdI+jkWYWHqJ+BLAGynyrx1+2D7E6ahAG4jB5VUwyuHoeZ7IEvadQ1hc4v0+Q2jXo9+SP4OXkAD2qtqU7dIWgrT1x55teyL2+6mYE+SJMbORx2k34Ux48/ljDNlEsan7wxD964T+5bFApf37XxxhYYomYWHWGOvGIpsg115U59cuQGyPatOtXLGy6o4ALCLZdTd7sW0065AAobB5Zb4+mzhguquMBxuOBesJll+aJcYCMa+DRoNMIWuQDZgQi4KXS6x/E5YotQMM5XwJJuVIZgbS+IME5DPOHU5fOXH8JagtnM8azbwwwF1LOQWImyL4wZCQOHWlXr+BUxs5GrjI2Varq8NGY8tKGD9pCa1Pah55uD4fYMM+LwIED+So+JvfAK8HDgY2elrMjLYuZAlzDmrFRw9YXnjHsQh95KmytfeAUgijAM92LOmuxREx46iuyR7XOXCqrX0rrOQJM9WtmNefPZI+xZwmHFeiHlsnvH2aNlxbgmeSXb5JUu/d/PxcUXcHYRfvp8vlmCyQ4dhPOTSbYyAfubxjmX2V3S0Y+pX0amntkqhcywII6w4e5PgWse6Sjt3ej2Qy5kRqmbj6fQ7JYdKFb5a0rKmj00g8fqdgP2PIE5rEqBGCDldsOhl1qCjGknY37gGNrCD82xnhtouq3J6GmppXCkFOFuCy39PwAAAP//7B3bcqPI9Ve6/JDMVGXHdNPcnMxUoIFZV2Zkl+3dZB4RalnUIFABssdb+5CPSOU9v7Zfkr4gWZJBRhKyZRt5RoiGbp0+99PnNFKOwO1JcTehH48GP4Kj409/uz2J6bBgrbcfj3Sl4nI/LYp0LG8wq27IoutR/QDH7Dz8GmTlp/OMd5mAW4hPJkEWnA5YL2g6xPH1I9Fa0B+FaHVMQzc9l4+Y5dHg4uORokCoYIjnTS4dBtO44FeIoxHoHAmAxJv8pjCN04zdfhPEH48Q4X8S6vy3easyayH5ctvxfJji0x///R/wxpM4vaMZuJykSZ5mdCAmJW8U75NymqJP+V6OEP5T4giailaBxRJJ7EM6WYPsZycWdiBh5LKWiYWxbSBsiok9P7HAj3F8kk+CkM1sktGcZjf06BPoXfq2D45B78oG/jQZrJCPvS1B72IN+hLGJwGvATCzpvOsGsK+ZAKSi2NrvP+ud2y/f3usjiByDMfmaF9gdWSaFsa6fUB66Vs6LUaCpbcjEte8L5VIkKjY8hTed4FIqgaRZhHngIh0VoyY5XCmWR5kd8eX4SiNgywfRZN6mvFDOfd+/HDqimtplobg8tSN8rX51CcSXK6ZouSa3dunQ2bkGI4laYJhQZniwbPplfcvYmxPCuh0COjM9uYz2/sXMMnSm2hA59f+nIMkGFMQJAMQpkkRhAWY0CxPk5MKJM+xyg7lF/XjUigsA1cKRT920mzAhryXDAFyzhAWU94j/41hSHyQCl5gTiDi41EwLdIlsdmq71ymtuo9E7itOkcJ4x76827df92uu5SCRfT3Y0LjuFRT94oIPqJnKq7LsRdGY2df0vT7DFJFEQrmZBhleXGR3pYQxsHimbhI0ng6ThauLzUk6c8OY8752a+zszkMc0b8nEUD/vGaHdkYEnTBlvN7Z7cUXMYeivqCptCwhwi2uDqs0hRikGrrUCcI4QIh1jGk6FxBVRfbCjTmOn6RrC/E8KieqRPfM2twWkmSRw1PI99wExsBbcvVLHPFXX+NNuJ8moWjIKfgjLMSc/Nt5hSlWZQHRZQm4IIOaUaTkIJ30RAEk0kchUE/pu83NQ1YhWqVRHSmoTMNz2gaBFtuYxocoqiGVqfGxCDVpqFOEDrTgFhMZboGDxEP2DQYJgNT1dFOUJZXxOh1pkEiubQM5pJleFzddp54ZedO3b5MTxzppkE0m3/rHjzxjeXgXtduIwmLvbeRhcX+W0hDvaHIR4PZUGFMg2yViQWPxOyq7/umB2eYXLUupU9ba16Q5MU19qV6hAURqBqigYXBBOu2q5XM1ZKFedw/d0xTV5wSxrnnzUTnO9f4Li2CKM4B0/rgPLgb06Sodq5X5uIZGNumt4+5tBZd2GGYTpMC9IIxPQFnfwrGk79+BWVrkBS5WHSyp4OoSLMcENJg4pqnEd+wV2IzzVEV4rscHQebSuEUP1mbsDBMVSNEgtUyKXyu3RkheFgXxIDDAt6tg0U1IGRC/mTY8XvO+wfI2QcmnCxIwhEg6YAuC9oKAogCVVU6aW2DgExkQPD7E8y2xv0FMyEEvem4T7P1bFliYtYk82h7RI+OkakYCkY6aqAQkG9pPrJ4VLWYcOILTcTgEdrBKoT56soJT0ZlTWiwD3Rz7SwU8eU045mA52TL39l/b8wMIk9TpEPA/k2kUQRFegKiZJj+PR0HcwvyIUzHFTzCWx6P5TB0NIw9nm3dbywH0WIwx88kOppGcwrqorkumptBejDRHGfL+b0bRHNIc9B2eZUaQeiiuVLlbRPNLUJQEc1J1bVLNFc5wu7RnI6Q4imktUT+op3ry1lURXPQ5n+rNvTSI1enZz2ggz/+/R/Q8/51Bc588I/THjgG3lfv4rPXI98AOetd2eRqa4MFXcuEmr1/g7Xb4mNnrqo6d+bqMHI9q81K6bC2khjCGNuaqtWlB8QgGyaGVjUyXq+QH1PHjxB4O1Xsmari6HUWvRJpLzNf7k/jWCxn8cjEG9PsmsVvd4DIuql6xV5P9jrjV4VnFWuWrznPXT3xKnnYsBl2kd4abg+Xhy9oLJYBeRkli6qBLcs6kjXsW/ol/L0SEYs+CrQcjNS62pltuOfNp8YNpDvYq8XpxrzZutxvosSgZWPi+rs5sc+hxN48G+rIcF0XrZT2PznlNlFGugI913FbVEYvwJQpBJuqaa+siG9Pp8M1ZaXfBc5HaULLXMa+9Re2HGiofueE7YFzVcOxXVPs2XrlnCuTHPZgwGidy+raG9YiimtbUX2KDqFmkLoCgW0YqDOAqmIjhA9X9Dfyw3QXKZ0f9gLZEKq6p2qkFPhDrZTVkc5khXSL1d1idbdY/VS5VU11VMUSLL2h1e9yq11u9V5328gy9Jb3YuyaWzVEbtX1yBf7whYtds8Fl6efe/bVLxfe1oYK6gbyDKVukaDZZPdvqLotHVWdO0P1Mrd0KLbpItev82GlwpTvq4aq29LRvqF6qVs6NAh1C/u7bcdra0vHKRjRjPbvwICGcZBRUIyCRps5dFsjLnH2nz9vvOq1NNtd1rngB3A1oqJwNxvLTeXlA0gGrJFhKMpn+8rFRXZaZNPZ00iyjIa88pfdR0Gf5gVPu4/vwPckvY3p4Jp+aIBdxTCJpxqthcu12JULqk+JXfQBnAL+UC6m5znGOMOV+OWgDYM4X8b9OLgDLLZnk+LYj8ZjOoiCgoIwSEJma+RNEsc0ydJYVF7fRsUonRas45B9VxOUY+R7luqQV4hylaM8uM4o5XwZ9PmjdJjIcwbNpjGVW5omKWPoiJ0wVM62PTlTps35Yi9/ilEaN0Gj6hi67q0+Nu5VoBFXcW6YTjPGsEPK0cj0Z5ImP0mm4+viIOUPoiiyIEo49KMgZx0YB7PWZkxpmdjTzf1r2SVs6k+BTY1jM0yTXG6UqOM5rhpCdsrBZRIun/IUxEsagu9DDAZjhuOcobqIbqQunqN9Ms0maU7zKowLMy0Psq16YVBDpmU5dZmJZnRoEm912y66iOv1RVxPUseq68gltlW3eC8GeX3pZx1anu/rb6BwYl7zBy6j6yQoptnytr8lfV5P603yjchxTANpz/18l1fJuJqnGDZW3kDdhMujlXeue/z16/E39mqnWAIz5Bm+wFRb6u7NZ6kVxk225+/m5h1KsYSBdORbB1yB27FhnWq0fN9ztdZs+paUK5URP1TFRIgF+sSurdZqBmWjmGhJgfOzBQ0uIX4Am2t4vk1aW2NtCNtygqyxcblfmt3UuAhPnvIlCTo4D66pk9HguxSjT/7ZBTjz/VPigV8uPXDW+/KtgtZz4nb5uy6afBnRpIoq48a6ZnW7bB/WNIhcy5Wtm/hXApCHyG+W7eN7w6sYgIjXY3LTpPc6yWnSf43sPN591SS3VJbyiB2vrjnZxJBXjdDAkhuOrtuG1VpSoaFBuS9KWTQo0HxoUGTbvUGZh9krz1LupR+2cPE6SegkYeaREdVSEG43GtmvJIi4/YKGNLrZ6geghOV5iMuO+98g9yNoGciucybAAXL/ucy70QFw7uqZnx9kB/6l6x0qxWDREt7iOROdGWkuSBWVUJXI20QoqkfYXSo0HftE9/ZiE/bwU22dz/OWmRW7pkdge6UYh8GsnYvyKpnVMG3V1Z0XqVlLl4IfqpadNdPULUX8XOx+l527rQ+Vvbul027p9BFPn/l1lmm5dateYpDOeepC5rUmTHUNRJDb7oMLnm7p9LIIimnexQ+dCOzgxem2xdRo3c5ocIAiUP4czA7s30UkHfuXpa0Y6ox5vRfE/uUPtRwDwoRgXX1qGeTw98p5LGoBD9q+UftotHWy1JmSxrL0otZNPdW2jNpK950Eo1s37Zi1VWZVTFdHBtyLH9+tm3bM2iqzQtvWdZ/UFdUfNLOWLgU/VG5hdCwHWrVPr1icWjmB+qlJ6GlYnGcV/fjFEQ0Y/e/rh+akkGMdgewkYl+fnQ5Kt3SYpkWzDqUjNrm+5AjltIaWIqRxxD7rpjq/gdGaj5NOOMNIJ1WwyP2p5Kn7c86D92dyEgxJivhNNgni/PR6WojTkphMDjgxS4oZMxoP0pAvnPGxo4SeR0XIoFTnNcwSieJjPx3ciQ+sy5QHUZ/+DwAA//8DAFBLAwQUAAYACAAAACEAi3pvIjQBAAC/BQAAHAAIAXdvcmQvX3JlbHMvZG9jdW1lbnQueG1sLnJlbHMgogQBKKAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACslMtOwzAURPdI/EPkPXFSoDxUpxuE1C2ED3Djm4dI7Mi+BfL3WI2SuFBZXXh5x/LM0fix2f50bfQF2jRKMpLGCYlAFko0smLkI3+9eSSRQS4Fb5UERgYwZJtdX23eoOVoN5m66U1kXaRhpEbsnyk1RQ0dN7HqQdqVUumOox11RXtefPIK6CpJ1lS7HiQ78Yx2ghG9EzY/H3q4xFuVZVPAiyoOHUg8E0FLpRC0deS6AmRknNPYGhF6Pv82ZL4BRNusWQgmxYfwEBKhBi7cCsbZW8EqaAU4tOAWcJx98WnIeHno9qBt4wvBLPkg1iEhQAppL57TwqT4EO5Dv4Q/DLPkPYwkJAXavbAQHMdR9F7Iu5AM37B///csHdEH8hT2SCTmfN86hczSBEFPvt3sFwAA//8DAFBLAwQUAAYACAAAACEA51PavbUCAADKCwAAEgAAAHdvcmQvZm9vdG5vdGVzLnhtbKyW23KbMBCG7zvTd2C4t8XBRyZ2pombjm+b9gEUIQwTdBhJGPvtK3FucD1A6gshr9hPP7vahYfHC0mtMxYyYXRnu3PHtjBFLEzoaWf//vUy29iWVJCGMGUU7+wrlvbj/uuXhzyIGFOUKSwtzaAyyDna2bFSPABAohgTKOckQYJJFqk5YgSwKEoQBjkTIfAc1ylmXDCEpdQbPkN6htKucOgyjBYKmGtnA1wAFEOh8KVluKMhS7AFmz7ImwDST+i5fZQ/GrUCRlUPtJgE0qp6pOU00o2HW00jeX3SehrJ75M200i940T6B5xxTPVixASBSv8VJ0CgeM/4TIM5VMlbkibqqpnOqsbAhL5PUKS9GgLxw9GENSAsxKkf1hS2szNBg8p/1vgb6UHpX10aD5wO21ZvtwX4olKpal8xJHal+4GhjGCqiqgBgVMdR0ZlnPCmO5CpNL0Y15DzvQCcSVrfl3N3YKn9q7UdyjS0wCHyq9yRtFR+n+g6A7JpEI3HEAl/71krIfoEtxtPCk0nuO7A5lMDvB5ghfDAl0XN2FQMgNrqNpxkYFnVnDIrhpO0gXUH9sCPYjqAMBuF8Pxah7kY9w5LhiqMx+HqHAHjCxWMoWyKpiRGAxtBTVx0iOUBSxlq+plh4nFBWzbAK+nkkJ8+V6g/BMt4S0s+Rzu2LTs3X08jWFXBd5uQ/JyY1xhy3ckJCo4nygR8S7UiXb6WrkCryIAZ9UE2l2KKL4XdnJ9qEqVmEmaWaYn2vvMVaOWBunJNlJhDARUTtjaZepq5xY1cey4Cs3bUxrXnbP0nx7MLq37HqsJa/Yyr/iQNf+5sx9mu1/63Q2M64AhmqeqsGLowQ7M12D+AwqZHXoy1zJuSEaMqoVnxlnn9KN+5oX6x8V6W35+f/qv6myruPUnnj9z/AQAA//8DAFBLAwQUAAYACAAAACEAlAOMQLYCAADECwAAEQAAAHdvcmQvZW5kbm90ZXMueG1srJbbcpswEIbvO9N3YLh3BPjMxM7EcdvJbdM+gCKE0QQdRhLGfvtKnBvcDJD6Qsgr9tPPrnbh/uFCU+eMpSKc7Vz/znMdzBCPCDvt3N+/vs82rqM0ZBFMOcM794qV+7D/+uU+DzGLGNdYOQbBVJgLtHMTrUUIgEIJplDdUYIkVzzWd4hTwOOYIAxyLiMQeL5XzITkCCtl9nuC7AyVW+HQZRgtkjA3zha4ACiBUuNLy/BHQ5ZgCzZ9UDABZJ4w8Puo+WjUClhVPdBiEsio6pGW00g3Hm41jRT0SetppHmftJlG6h0n2j/gXGBmFmMuKdTmrzwBCuVbJmYGLKAmryQl+mqY3qrGQMLeJigyXg2BzqPRhDWgPMLpPKopfOdmkoWV/6zxt9LD0r+6NB44Hbat2W4L8EWnSte+ckjsSvcjRxnFTBdRAxKnJo6cqYSIpjvQqTSzmNSQ80cBONO0vi8X/sBS+1drO5ZpaIFD5Fe5o2mp/GOi7w3IpkU0HkMk/L1nrYSaE9xuPCk0neD6A5tPDQh6gBXCA18WNWNTMQBqq9tyyMCyqjllViyHtIH1B/bA92I6gCgbhQjmtQ57se4dlop0lIzD1TkC1hdqmEDVFE1JjAc2gpq46BDLA5Zy1PQzy8TjgrZsgFfayaE4fa5Qf0ieiZZGPkd7blt2bj+eRrCqgu82IfU5MS8JFKaTUxQ+nxiX8DU1ikz5OqYCnSIDdjQH2V6KKb4Udnt+qkmc2kmUObYluvv2I9DJQ30VBqiwgBJqLl1jsuU084v7hHFchHbt2RiDp+O35WJ7cAurecVqa11XP+tqPkijnzvX87br9fzx2JiOOIZZqjsrli7t0GwN9vegsJlRFGOl8pZgxJkmLCteMS/vxXs3tC8Ph++Pq8Pjf9V+U8UHz9HO1f4PAAAA//8DAFBLAwQUAAYACAAAACEA1oVYQIIEAAC2EgAAEAAAAHdvcmQvaGVhZGVyMS54bWzUmFtzmzgUx993Zr8Dw8O+JVyMr1u7a7CbZKbddJJt91kGYbMRiJHkS/rpeyQQvuCkmHR3Zv0AunB++utI5yD87v0uJcYGM57QbGw617Zp4CykUZItx+aXvz5cDUyDC5RFiNAMj81nzM33k19/ebcdrSJmgHXGR9s8HJsrIfKRZfFwhVPEr9MkZJTTWFyHNLVoHCchtraURZZrO7Yq5YyGmHMYKkDZBnGzxIW7ZrSIoS0YS6BnhSvEBN7tGc7FkK41tAZ1kNsCBDN0nTqqczGqZ0lVNZDXCgSqaqRuO9KZyfXakdw6qd+O1KmTBu1Ite2U1jc4zXEGnTFlKRJQZUsrRexpnV8BOEciWSQkEc/AtHsag5LsqYUisKoIaSe6mNC3Uhph0ok0hY7NNctGpf1VZS+ljwr78lZZYNJsWBhuaOGdIFxoW9bEd4X5jIbrFGdCec1imIAfacZXSV5lh7QtDTpXGrJ5zQGblOjntrnTMNReSm2zYhn2wCbyy7VLSaH8daJjN1hNiagsmkg4HlMrSWEH7wdu5ZoD5zoNk48GuDVAL8QNXxaaMSgZVriPbslJGoaV5hSrIjnJ3rFOwxx4KuYAEK0vQrgdrUPepPkBi0ciWl2G02tkSVsk0ArxKmgKYtwwEWiid0AsNhihYZXPJBNf5rRuBXxOD9YwX74tUG8YXed7WvI22t0+ZW/luekCVhnwh0mIv03M4wrlkMnTcHS3zChDCwKKIHwNiEBDrYC8wkaWN1XEO9Uu909ZiIksRGtDpkRzAuc/sSDl7TMrC38bW5ldhn0PXnnQ8pzDQNEOmVb5gA+64LApawsqBE3hqQ2CHSVlEiyN+Lexqax5jkIwt2U5pITCa2TmTeFtVtCSjCcRvj0P8F4AoLWgh+Zf25lbp5OBWoAJ+YSUJwiOReEJR1mf+IEly9XL/QX7gAa1j5Q+aaU2/KRRnDAuHui2VEjQYU11BpSs0+yg/6gho7c+nOur2lddqzRUy3rDkkgWl3AHRiG917XVsyfNHRfWvkJoS8GgFz4yogc5AcexPUf62PFGOWLoDsZ1h27fnQ7KVjh6CdnaL3/FhguLa6krLHebEnLOi+WD+dE4tu97XW84fGGcszKLphmO0ZoI2RP43cDxlSg1BCtGWih3LAKu7mrP6FXzB4Oe7Rf+4t90q6tcJVsCftxmVVAxuf8Npfnvnwz/y+Pdn/PHR+MxuL2//6jmWDyprnl9spAL5p3u3D+erDsd2n5n+upkPzPZ2Ok7ztz5gQfyQmcp92jWPfU7nbUzqM+6aNOzlrMpqT8bDT6TaVVHd84wx2yDzcnUmCWbRH4HGzQ2tM+nYUjXGXwAC25AfBhHTofLoQtLb/0LiicBHILB81LGqYL/zEFGEJzZcirQlNX56FT54DQ6YeApSZaZVhDCIR2zV+PWc+2+15WfUj8nbsv99U+oNaisXEr40eYbql+7pXyY34zAlcUZ0ul2h26TQPbnH4KpPfvfzz7JYvoHTVEVVvL88vK2kreiTZ02LPWv0+Q7AAAA//8DAFBLAwQUAAYACAAAACEAREjo/NUDAADiEQAAEAAAAHdvcmQvZm9vdGVyMS54bWzMmFtv2zYUgN8H7D8Qep0TirIkK0LsrraTNg/FhqXDnhmKsrVSokDSlxT98TvUzXadBbLTJfODRR/qfDw8NxK+frfNBVpzpTNZjB1y6TqIF0wmWbEYO39+vr2IHKQNLRIqZMHHziPXzrvJzz9db+LUKATahY43JRs7S2PKGGPNljyn+jLPmJJapuaSyRzLNM0YxxupEuy5xK1GpZKMaw1LzWixptppcGzbj5YougFlC/QxW1Jl+HbHICdDAnyFo2OQdwYIduiRY9TwZFSIrVVHIP8sEFh1RArOIz2xufA8kndMGp1HGh6TovNIR+mUHye4LHkBk6lUOTXwUy1wTtWXVXkB4JKa7CETmXkEphu2GJoVX86wCLQ6Qj5MTiaMcC4TLoZJS5FjZ6WKuNG/6PSt6XGt3zw6DS76LQvLXWG+NUKbVlf18V2tPpdslfPCVF7Digvwoyz0Miu77pCfS4PJZQtZP+eAdS7a9zYl6Vlq/9ba5nUYdsA+5jexy0Vt+fNE4vaIpkV0Gn1MOFyztSSHDN4tfJZr9pxLejafFuAdAULGex4WLSNqGJjtqttysp5l1XLqqFhOtnMs6dkDvzdmD5CsTkJ4w9YO+7DqeyydmGR5Gq6NEba61NAl1V3R1MS0ZyNoif4esU4wIVnXzyyTn+a0oAM+5nsxLBcvK9QPSq7KHS17Ge1u17I39t50Aqsp+P0mpF9mzP2SltDJcxbfLQqp6IMAi6B8EVQgqiJgvyGR7aMa8m0lt/nTDFJhB8kK2ZboTOD+V4LAj0uq6B3Uziic37yfT6dOJYWj01TS5gPSGO6YyR9jx3XJ3A/IbSea85SuhLEzs2kwI9Oa/ruqHtOkehoJy8VrCslndyS4Vddfx45fDUrKeDNmUkg4ceb+ezj4HDy5xjuKfQ+04a0HDrkIKsRz7Tub+G/W8hmcGFzVUlVbUTHb+aj61PP6ayslYSuZ6UMZbjDWjhpXf/1ANPjH5krrh1JxzdWaO5MblaLI9wboI11w9IHD5uUDujeKczNA95wuVkKg+6UsS+uXT1SIAfqLinWmkaWbeo3K3idC+B/sYzKlj+jb92u/msPeatefqIIrFm0iYAOCbofhAP1WLDY8ydb0wC6bSlV1HJRgMI9uSDC3xbZXgr47iq58LzwsQeL6pCqX/3kJvkXRvFEOPG3MZy5EjNzQh4PBJ6MBmlWCVyiQyS9e6KOIjEZDPxyFb1QY+Ll1oyAM3NnrBcONyDByoZz8Z3NkOCOzoD4kf7Q7vqGsSOWvMqeMyVVhaFHdAJ7oDrj6h2byDwAAAP//AwBQSwMEFAAGAAgAAAAhANBVdpIsBwAADSIAABUAAAB3b3JkL3RoZW1lL3RoZW1lMS54bWzsWluPGzUUfkfiP1jznmZmcq+aolwp7W672t0W8ehknBk3nvHIdnY3QkioPPGChASIB5B44wEhkEAC8cKPqdSKy4/A9kwm48RDKd2iCu1G2vjynePP5xwfn0xy442LmIAzxDimSd/xrrkOQMmcBjgJ+87902mt6wAuYBJAQhPUd9aIO2/cfP21G/C6iFCMgJRP+HXYdyIh0uv1Op/LYciv0RQlcm5BWQyF7LKwHjB4LvXGpO67brseQ5w4IIGxVHtvscBzBE6VSufmRvmEyH+J4GpgTtiJUo0MCY0Nlp5642s+IgycQdJ35DoBPT9FF8IBBHIhJ/qOq/+c+s0b9UKIiArZktxU/+VyuUCw9LUcC2eFoDvxu02v0K8BROzjJl31KvRpAJzP5U4zLmWs12q7XT/HlkBZ06K71/EaJr6kv7Gvv9ce+k0Dr0FZs7m/x2lvMm4ZeA3Kmq09/MD1h72GgdegrNnewzcng44/MfAaFBGcLPfR7U63287RBWRByS0rvNduu51xDt+i6qXoyuQTURVrMXxI2VQCtHOhwAkQ6xQt4FziBqmgHIwxTwlcOyCFCeVy2PU9TwZe0/WLl7Y4vI5gSTobmvO9IcUH8DnDqeg7t6VWpwR58vPPjx/9+PjRT48/+ODxo+/AAQ4jYZG7BZOwLPfH1x//+eX74Pcfvvrjk0/teF7GP/32w6e//Pp36oVB67Pvn/74/ZPPP/rtm08s8AGDszL8FMeIg7voHBzTWG7QsgCaseeTOI0gLksMkpDDBCoZC3oiIgN9dw0JtOCGyLTjAybThQ345uqhQfgkYiuBLcA7UWwADyklQ8qse7qj1ipbYZWE9sXZqow7hvDMtvZox8uTVSrjHttUjiJk0Dwi0uUwRAkSQM3RJUIWsXcwNux6iOeMcroQ4B0MhhBbTXKKZ0Y0bYVu4Vj6ZW0jKP1t2ObwARhSYlM/RmcmUp4NSGwqETHM+CZcCRhbGcOYlJEHUEQ2kidrNjcMzoX0dIgIBZMAcW6TucfWBt07UOYtq9sPyTo2kUzgpQ15ACktI8d0OYpgnFo54yQqY9/iSxmiEBxRYSVBzROi+tIPMKl09wOMDHc/+2zfl2nIHiBqZsVsRwJR8zyuyQIim/IBi40UO2DYGh3DVWiE9gFCBJ7DACFw/y0bnqaGzbekb0cyq9xCNtvchmasqn6CuKyVVHFjcSzmRsieoJBW8Dlc7ySeNUxiyKo0312aITOZMXkYbfFK5ksjlWKmDq2dxD0eG/ur1HoUQSOsVJ/b43XNDP/9kzMmZR7+Cxn03DIysf9j25xCYiywDZhTiMGBLd1KEcP9WxF1nLTYyiq3MA/t1g31naInxskzKqD/rvKR9cWTL760YC+n2rEDX6TOqUolu9VNFW63phlRFuBXv6QZw1VyhOQtYoFeVTRXFc3/vqKpOs9XdcxVHXNVx9hFXkIdsy1d9AOgzWMerSWufOazwISciDVBB1wXPVye/WAqB3VHCxWPmNJINvPlDFzIoG4DRsXbWEQnEUzlMp5eIeS56pCDlHJZOOlhq241QVbxIQ3yJ3iqwtJPNaUAFNtxt1WMyyJNZKPtzvYRaKFe90L9mHVDQMk+D4nSYiaJhoVEZzP4DBJ6Z5fComdh0VXqK1not9wr8nICUD0QbzUzRjLcZEgHyk+Z/Ma7l+7pKmOa2/Yt2+sprpfjaYNEKdxMEqUwjOTlsTt8yb7ubV1q0FOm2KfR6b4MX6skspMbSGL2wLni1FF65jDtOwv5iUk241Qq5CpVQRImfWcuckv/m9SSMi7GkEcZTE9lBoixQAwQHMtgL/uBJCVyPXloXlVyvnLCq0ZOv5W9jBYLNBcVI9uunMuUWGdfEKw6dCVJn0TBOZiRFTuG0lCtjqe8G2AuClcHmJWie2vFnXyVn0Xjy5/tGYUkjWB+pZSzeQbX7YJOaR+a6e6uzH6+mVmonPTC1+6zhdREKWtW3CDq2rQnkJd3y5dYbRO/wSrL3bvJrrdJdlXXxIvfCCVq28UMaoqxhdp21KR2iRVBabkiNKsuicu+DnajVt0Qm8JS9/a+16azhzLyx7JcXZFshCSypymnR0xzn9FgnTcJz05JtqdNGiDJMVoAHFzIlGkzTv7FcZHEjrMF1OVVCFqtagrmeIXLDmwhnAX43woXEnplWXsXwrostykQF8XKGT5zWJE1ckupXLNnRfnZj8HR5mvdLJ3q0U2KvhBgxXDfeddtDZojvzWqud3WpNZsNN1atzVo1AatVsObtDx3PPTfk/REFHutzIFTGGOyzn/7oMf3fv8Qbz6wXJvTuE71p4m6Fta/f/D86t8/SKtIWv7Ea/oDf1Qbjb12remP27VupzGojfz22B/ITN6eDt5zwJkGe8PxeDpt+bX2SOKa7qBVGwwbo1q7Oxn6U2/SHLsSnDviIs/BuS02UXnzLwAAAP//AwBQSwMEFAAGAAgAAAAhAI7wmoKgBAAALQ4AABEAAAB3b3JkL3NldHRpbmdzLnhtbLRX34/iNhB+r9T/AfFcNnHID4iOPZGw9Pa03FVlqz6bxAGLxI5sZ1nu1P+94yQmsBudlmv3hdjzzXwej2fG5sPH5yIfPBEhKWezIbqxhwPCEp5Stp0N/3pcjibDgVSYpTjnjMyGRyKHH29//eXDIZREKVCTA6BgMiyS2XCnVBlalkx2pMDyhpeEAZhxUWAFU7G1Ciz2VTlKeFFiRTc0p+poObbtD1saPhtWgoUtxaigieCSZ0qbhDzLaELaj7EQb1m3MVnwpCoIU/WKliA5+MCZ3NFSGrbiZ9kA3BmSpx9t4qnIjd4B2W/Y7oGL9GTxFve0QSl4QqSEAypy4yBl3cLuK6LT2jewdrvFmgrMkV2Pzj33riNwXhH4CXm+jmPSclhgec5D0+t4/BMP7QKL/J9z5owgra6icMbGD/3R5mdcMlXp7jo6c0aWtsUK77A8ZWTDmOXXMbpnjE2C5TzZn3OS64LmnQiPRXeG8rVbPVndQA90I7Boekab0kUS3m8ZF3iTgzuQ2gPIzkHtnf6FQ9afekiea7mObTvIcj2A0N9CS/vGeTE4hCURCdQ19EPbHloaSKksc3yMcLLfCl6xdL3DJWkgkuEqV494s1a8BOsnDNsJnNYy2WGBE0XEusQJVGPMmRI8N3op/8JVDN1QQLE2FhnninFF/hDnMzDQaT5Cl0qtuF7MemlLWPpq8oLnUmpoLgybXt2N1k3fBxOGCwj4RS9f8RQa8yGsBH17ZmiDOhrIa4PWuxCHe0rQlDzqg16rY06WEMw1/UbmLP1cSUWBse7o/8GDHzlAmF75K6Tm47EkS4JVBcf2TovVmbHMabmiQnBxz1JIyXdbjGYZEbAAxYqsIJ2p4Ic6zp8ITuF58E7rVpL8DcrQGcaPUCb7iCvFi0/Hcgex/h9O0jpPX3jkpNIM/oRKMaq2jZDtIrfxVKNvQhauh5Z9yDhA6K7d9wskRrHXy+bOA3cy7kM8hJx5200ukWAy9uK4D5l4vmf3ItMgGM8XfUg08RbT3v3EcDzjXq/jyItR1IfcudDtg37EQV6/TeAE07oFWKfTKkL9sNKdqBnpkh8UjUWMi42geLDSTy9La2zEPqLM4BsC9wc5R9bVxoCjUQPIAuf5EpLPAHWoi7rlL0hWj/MVFtuOt9UQvVK4Dz6fuPQ1QsTvcGWUDXoQuGxK2agg120tKVMPtDByWW3WxorBjXcGwf3z9UnUcerCcwgVlEbdEh9wXWK1LmGjL/O2BHOx1uVDVrgsmyrcbNFsmNPtTiFdOApmKbzQ68lm67SYU2NOg9UTnOidgXY76GSOkZ3pjY1s3MlcI3M7mWdkXifzjczXsh30XZFTtoeGYIZanvE85weSfurwV6ImCFJf3Ivmzob04o2gvcTl4Ckkz3Dxk5Qq+ONT0rTAz/od4PjavNWGlwCv1IWuxrRyecmgn2GmFV0Y1yn+whf9lkgopOP6WGy6J8JN43hOJbTPEl4TiguD/VZjyA1TntzrZ457qqXIjpbTBvZOsNfA352pj/xgfjdaREE8cufzeBRNg+XIv/OjSRR4aByhf9pCNP/zbv8FAAD//wMAUEsDBBQABgAIAAAAIQAZFgv80wMAAEoSAAASAAAAd29yZC9udW1iZXJpbmcueG1sxJbbjqM2GMfvK/UdEPczBnMIQZtZpSSpptoepE4fwAEnoLENMiaHZ+jF3u3e9tn6JLUBQ2ZpV8CsOjcx2P5+/PP5O/jd+wslxgnzMsvZyrTvLdPALM6TjB1X5h9Pu7vANEqBWIJIzvDKvOLSfP/w/XfvziGr6B5zudGQDFaG5yJemakQRQhAGaeYovKeZjHPy/wg7uOcgvxwyGIMzjlPALRsq34qeB7jspScCLETKs0WF1/G0RKOztJYAV0Qp4gLfOkZ9mSIB5YgGILgDJD8h9AeopzJKB8oVQOQOwskVQ1I3jzSv/w5fx4JDkmLeSRnSArmkQbhRIcBnheYycVDzikS8pUfAUX8uSruJLhAIttnJBNXybR8jUEZe56hSFp1BOokkwkLQPMEEyfRlHxlVpyFrf1dZ6+kh419O3QWmIz7rPzcEuCLIKXQtnyM7xrzTR5XFDNRew1wTKQfc1amWdFVBzqXJhdTDTl9zQEnSvS+c2GPTLX/Km2b5hh64Bj57dlR0ij/OtG2RpymQnQWYyS8/KZWQmUE9x+e5Zob59oji48GwAHAj/HIZqEZQcsAcZ/dipONTCvNaU5FcbLesfbIGvilmBtAUk1CQEfrUIMyv2GViUjSaTh9RkDZIoFSVHZJ0xAPIwuBJro3xCbASB539Uwx8TSneR3wSm/OsDi+LlF/5HlV9LTsdbTHvmSf1e1pAqtN+NsiVL5OzO8pKmQlp3H4eGQ5R3siFcn0NWQGGvUJqF8ZyGqoH/Glnlfx0z4ciHpIKkOVRPNB3gLRvhQcxeKXihov3h5lKsnbpISHHMsrJFeTzYVxfRCY/8AxelZbFIWV6rPhCcmwcte+a7uBYwK1Qisisg/4hMnTtcB6T3rd8yz5Wa0RtdbsFbQgeocNYbCNXKtZISe1kMmhERWKgshmbq0jK3IWfq2h1tiZN3byjruj3eS+IgSLjvgkG5xe+vvzx27+p1jPEnxotxe/cTVkTP1NNb0yF7BWkiJ2rG/bjl+LBe1mULO+FG/34m1rs/W2m8aBrxT/51TxtuvOUA979VHkre1gCb+B+k9/TVUPbX+GeufG93Dhuuvgm/h+cuDAIJih3u3VL3ceXC/WbxM5UuwM9V6v3rX8wN14Tfn5vyPHdeZkrX9bctZbO9oGbxI5njUnaxe9eg/6cBdFb1MwvcWcrA169TvLgxBa0Zuo991xWQtedNFWlVH/qpaqGkDdpcOkqnu4moTeMpD3SNkz1f4XTVhr6xvhryfMZfNUvVQ3xM4fN2u9Xxpleql+Z0pZMzYt/eEfAAAA//8DAFBLAwQUAAYACAAAACEA5Z85/KwNAABUhQAADwAAAHdvcmQvc3R5bGVzLnhtbOSdW3PbuBWA3zvT/8DxU/uQyLJ8STLr7DiO3Xg2F+/KaZ4hErLQkIRKUr701xc3UqAOQfGASGY7fbEsiucDcG7A4fWXX5+yNHqgRcl4fn4wfXl4ENE85gnL788Pvt5dv3h1EJUVyROS8pyeHzzT8uDXt3/9yy+Pb8rqOaVlJAB5+SaLzw9WVbV+M5mU8YpmpHzJ1zQXPy55kZFKfC3uJxkpvm/WL2KerUnFFixl1fPk6PDw9MBgiiEUvlyymL7n8SajeaXkJwVNBZHn5Yqty5r2OIT2yItkXfCYlqUYdJZqXkZY3mCmxwCUsbjgJV9WL8VgTI8USohPD9V/WboFnOAARwBwGtMnHOOVYUyEpM1hCY5z2nBYYnH8OmMBkg0KcTSr+yE/pLjFKpMqWeFwtY0mUpZUZEXKVZu4THHEY4uoHSzl8XebSXFKO2mAz5m0YRa/ubnPeUEWqSAJr4yEY0UKLP8K+8gP9S99UtulWsw/y1T+I7T2VoRuwuP3dEk2aVXKr8VtYb6ab+rjmudVGT2+IWXM2PnBRcGIsN/jG0rK6qJkxNq0ushLe5e4rL9MJKr8j9j2QIQ+j47qLZcS3dqWkvy+3kbzF58v2o01mxYsEW2R4sX8QgpOTI/1pzWOdfNN77UzaJEvRPaY6yQmfqXLj8JcNJlX4ofzg0PZlNj49ea2YLwQier84PVrs3FOM/aBJQnNrR3zFUvotxXNv5Y02W7//Vr5gtkQ800u/p+dnSpDpGVy9RTTtUxd4tecZKLpz1JA6XHDto0r8X/XsKnRWZf8ihKZv6PpLkJ1H4U4khKlNdpu5mZn7GovVEOzn9XQ8c9q6ORnNXT6sxo6+1kNvfpZDSnMj2yI5YlIxWp/2Ayg7uM4ohHNcQQbmuOIJTTHESpojiMS0ByHo6M5Dj9GcxxuiuBUPHZ5oeXsM4e393P3zxF+3P1Tgh93/wzgx92f8P24+/O7H3d/Ovfj7s/eftz9yRrP1Uut6EaEWV6NjrIl51XOKxpV9Gk8jeSCpYraMDw56dEiyCADYHRmMxPxaFpM1Pf9HqKC1H8+r2TtFfFltGT3m4KWoztO8wea8jWNSJIIXkBgQatN4dCIj08XdEkLmsc0pGOHg6Ysp1G+yRYBfHNN7oOxaJ4EVl9NDJIUGocmm2olg4QFcOqMxAUf3zVOguWHj6wcrysJid5t0pQGYn0O42KKNb42UJjxpYHCjK8MFGZ8YWDZLJSKDC2QpgwtkMIMLZDetH+G0puhBdKboQXSm6GN19sdq1KV4u1Vx3T4sbvLlMvTEKP7MWf3ORELgPHTjTlmGt2SgtwXZL2K5IHhbqw9Zmw773jyHN2FmNMaUqh1vXKRSzFqlm/GK7RFCxVcDS9QeDW8QAHW8MaH2CexTJYLtA9h6pn5ZlF1Bq0iDQraOUk3ekE7PtpINd7DtgFwzYoyWBh0YwN48Ge5nJXmDJH5tr0c37Eta3xY7WaloN0zyAC9lOcsw6ThD89rWoiy7Pto0jVPU/5Ik3DEeVVw7Wt2yB8pkwwK+atsvSIlU7VSCzF8qq8vYIg+kfXoAd2mhOVh7Hb1IiMsjcKtID7cffoY3fG1LDOlYsIA3/Gq4lkwpjkS+LdvdPH3MB28EEVw/hxotBeBDg8p2CULMMloEk8CkcQyk+UsyByqeL/R5wUnRRKGdltQfUlHRQMR5yRb60VHgNgSefFR5J8AqyHF+ycpmDwuFCqo7oLArMOG5WbxLxqPT3WfeRTkyNCXTaWOP6qlrpIOhxu/TGjhxi8RlDXF9CD9N8BgW7jxg23hQg32MiVlyZynUL15oYZb80KPd3zxZ3g85cVyk4ZTYA0MpsEaGEyFPN1keRlyxIoXcMCKF3q8AV1G8QIcklO8fxQsCWYMBQtlCQULZQYFC2UDBQtqgPFX6Fiw8ZfpWLDx1+poWKAlgAUL5WdBp/9AZ3ksWCg/U7BQfqZgofxMwUL52ex9RJdLsQgON8VYyFA+ZyHDTTR5RbM1L0jxHAh5ldJ7EuAAqabdFnwpbybhub6IOwBSHqNOAy62NS6Ukb/RRbCuSVbIfgU4IkrSlPNAx9a2E46SbF+7tk/sbkWz8WX0bUpiuuJpQgvHmNyyol6er0lsDtOD032DDnt+ZPerKpqvmqP9Nub0cK9kXbC3xPY32KXz0/rOky6xTzRhm6zuKLyZ4nQ2XFh5dEv4eL/wdiXRkjwZKAnbPN0vuV0ltyTPBkrCNl8NlFRx2pLsi4f3pPje6Qhnff7T1HgO5zvr86JGuLPZPkdqJLtc8KzPi1qhEl3EsTxbAK0zLGbc8sOCxy2PiSI3BRNObsrguHIj+gLsD/rA5MyOSZqqvebqCZD31SJ6UOb8fcP1cfvWCafhN3XdiIVTXtKokzMbfuKqlWXcehycbtyIwXnHjRicgNyIQZnIKY5KSW7K4NzkRgxOUm4EOlvBGQGXraA8LltBeZ9sBSk+2WrEKsCNGLwccCPQgQoR6EAdsVJwI1CBCsS9AhVS0IEKEehAhQh0oMIFGC5QoTwuUKG8T6BCik+gQgo6UCECHagQgQ5UiEAHKkSgA9Vzbe8U9wpUSEEHKkSgAxUi0IGq1osjAhXK4wIVyvsEKqT4BCqkoAMVItCBChHoQIUIdKBCBDpQIQIVqEDcK1AhBR2oEIEOVIhAB6q+1dA/UKE8LlChvE+gQopPoEIKOlAhAh2oEIEOVIhABypEoAMVIlCBCsS9AhVS0IEKEehAhQh0oKqThSMCFcrjAhXK+wQqpPgEKqSgAxUi0IEKEehAhQh0oEIEOlAhAhWoQNwrUCEFHagQgQ5UiOjzT3OK0nWZ/RR/1NN5xf7wU1emU3/Yt3LbqNlwVN0rN2v4vQjvOP8edd54OFP1xjAIW6SMq0PUjtPqNlddEoE68fnlsv8OH5s+8qFL5l4Idc4UwI+HSoJjKsd9Lm9LgiLvuM/TbUmw6jzuy762JJgGj/uSrorL+qIUMR0B4b40YwlPHeJ92doShyruy9GWINRwX2a2BKGC+/KxJXgSyeS8K30yUE+nzfWlgNDnjhbhzE3oc0toqzodw8AYajQ3Yaj13IShZnQTUPZ0YvCGdaPQFnaj/EwNwwxrav9AdROwpoYEL1MDjL+pIcrb1BDlZ2qYGLGmhgSsqf2Ts5vgZWqA8Tc1RHmbGqL8TA2nMqypIQFrakjAmnrkhOzE+JsaorxNDVF+poaLO6ypIQFrakjAmhoSvEwNMP6mhihvU0OUn6lBlYw2NSRgTQ0JWFNDgpepAcbf1BDlbWqI6jO1OorSMjXKwpY4bhFmCeImZEsQl5wtQY9qyZL2rJYsgme1BG1V2xxXLdlGcxOGWs9NGGpGNwFlTycGb1g3Cm1hN8rP1LhqqcvU/oHqJmBNjauWnKbGVUu9psZVS72mxlVLblPjqqUuU+OqpS5T+ydnN8HL1LhqqdfUuGqp19S4asltaly11GVqXLXUZWpctdRl6pETshPjb2pctdRraly15DY1rlrqMjWuWuoyNa5a6jI1rlpymhpXLfWaGlct9ZoaVy25TY2rlrpMjauWukyNq5a6TI2rlpymxlVLvabGVUu9psZVS5+ECAvwCKh5RooqCve8uA+kXFVk/MMJv+YFLXn6QJMo7FA/okY5eWy9/kqy1dv8xP6V0Jl8Arp1u1KinwBrgGrHm6R5TZUUlj2JzKu7zGbVYXO6VreoBPc01cDNueIpwG9fbqVa2HpWvYOJnW3T6k1g8oPr5yB9fEjrfVWATJodzJvPYunC9S5HV2fH78y51O17zGYd7zHT26zXkfkM+Mg5YNOic8Bby+v9WnYfrpLaP9AqOTKpt/VqN7VtpEpmTpWY0+o/WiW1XXtUMr0+fn9m8r6lEnP2vqUStW2kSo6dKjEt/miVKM0DlTAlxC5L9enwmZFDP3EO3Xjkjx56bb9BATJysPolgV2DNcH2owdbD2KQ6+8fbLwSo43Ncwod04p53nhzw6x62viuGhwPJXfoxMwV+3Ti7nclFzc9fVaLn975UK+PnEYbbLVqkWobiH9u8kQAHs2rIXVPkyeiUeL3S5qmn4jem6/du6Z0Welfp4fq8TQ7vy/0k1ad8oVakjsBk3Zn9Nd+P9HvXjHXijmXH3Ld2aFudeHiWE1jA1ZffrfbGb3V5ZVmeW4Hogmw7RRy0jGr6m3I1BJvSmHEudxhV5P6YchwqVVvd/Vyob1DpXvfRCdttb03frcHqrLY/rzTkYF5ZptUm3Jgt53tL3vcpiMiu3Li4cnp7LJeodYb5XsdtDcgE2UzgGvzLqbtRaO7A+l4W9PolGMG+ECL6iJl97Ly0OPZCKWVccHWKtp8PaAelHoWjXM86mVHOlsJM9U/27KXQmXBBmut4UyUttZwdd2AsWJPAIJh7Kqh3kE/7H07Upcu/sx6aEZ9pd9j5XZm+OqsP7svmyF1unLrtV3Aepbk/7Aj745iVwfm9z43tlX451KCe6VO4UjNyxZVYwsi+vOl8TX7AIk9ck0aYv2ukZZMLgb17HM4O5tOr8z8Y5buYgmrjvOIz3o/eXxOm3TNS1HYnExNQW3to9Z2zS6vD5uKXvPq0mC861ij39Wl/snylx2FdlYMDvXuU61Ljz6zWodbmJdnYtxCk/5f3cIa/a4u9U9j3cIYarRb1P+Vb/8LAAD//wMAUEsDBBQABgAIAAAAIQA7Cv2WTwEAAPoDAAAUAAAAd29yZC93ZWJTZXR0aW5ncy54bWyc0lFvwiAQAOD3JfsPDe9KdWpMY/VlWbLnbT8A4doSgWsAV/33g1pdF19kL+Voe1+OOza7k1bZN1gn0ZRkNs1JBoajkKYuydfn22RNMueZEUyhgZKcwZHd9vlp0xUd7D/A+/Cny4JiXKF5SRrv24JSxxvQzE2xBRM+Vmg182Fra6qZPRzbCUfdMi/3Ukl/pvM8X5GBsY8oWFWSwyvyowbj+3xqQQURjWtk665a94jWoRWtRQ7OhfNodfE0k+bGzBZ3kJbcosPKT8Nhhop6KqTP8j7S6hdYpgHzO2DF4ZRmrAeDhsyxI0Was7o5Uoyc/xUzAsQxiZi/XOuIS0wfWU540aRx1xnRmMs8a5hr/oqVShMXI/FywRTyw9iEtKYtb+BZxxlqXrzXBi3bqyCFW5mFi5X1cHyG+cSlD+HUv49tGYJKxSB0jW5/AAAA//8DAFBLAwQUAAYACAAAACEAJwJUGhsCAADdBwAAEgAAAHdvcmQvZm9udFRhYmxlLnhtbNyTy27bMBBF9wX6DwL3sSj5EceIHCRNAnTTRZF+AE1RFhE+BA5t2X/fISU7KowWUYAuWhuwRpecQ95L+vbuoFWyFw6kNQXJJpQkwnBbSrMtyI+X56slScAzUzJljSjIUQC5W3/+dNuuKms8JNhvYKV5QWrvm1WaAq+FZjCxjTA4WFmnmcdXt001c6+75opb3TAvN1JJf0xzShekx7j3UGxVSS4eLd9pYXzsT51QSLQGatnAida+h9ZaVzbOcgGAnrXqeJpJc8ZkswuQltxZsJWfoJl+RxGF7RmNlVZvgPk4QH4BWHBxGMdY9owUO4ccWY7jLM4cWQ44H9vMAFDuRiHy6Wkf4RHaBywofVmPw53OKA29zLOaQf0rsVLjiLMBsbtgyvLXIVOMC21+Bh51OEPNV1+3xjq2UUjCW5ngxUoiOPzi+YRHLMUh6iGWvqhUKDC1df/PTdqVYRpB904yFeWGGQsiw5E9Q/MY0gNd0BkNcXXfGUnDRF4zByIguom0kyumpTqeVGglQDfQSM/rk75nuCBa6IZAbnFgBxtakCdKaf70/Ew6JSvIF1Sul/OHXsnDWvFz0yvTs0KDwiMnvmYdh0fOeQ6umXb+L3J4kVpA8k20yXermflNIjkmMqVzTGWO9XRUIi5y/51E7htvIXmU0Ch2jHn8pYPPw07y5fWbzX530wub0dSfbd58xOZ/ZK8vYP0TAAD//wMAUEsDBBQABgAIAAAAIQB/2CeITQEAAIECAAARAAgBZG9jUHJvcHMvY29yZS54bWwgogQBKKAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACMklFrwyAUhd8H+w/B90STjDJCYmEbfVpgsJaNvYneprJoRF3T/vuZtE1b1oeBL9dz7se5V8v5TrXRFqyTna5QmhAUgeadkLqp0Gq5iB9R5DzTgrWdhgrtwaE5vb8ruSl4Z+HNdgasl+CiQNKu4KZCG+9NgbHjG1DMJcGhg7jurGI+lLbBhvFv1gDOCJlhBZ4J5hkegLGZiOiIFHxCmh/bjgDBMbSgQHuH0yTFZ68Hq9zNhlG5cCrp9wZuWk/i5N45ORn7vk/6fLSG/Cn+rF/fx1FjqYddcUC0FLzgFpjvLF3pWDMFosQXl8MCW+Z8HXa9liCe9rSWVjIV1ZuwixL/1YcWC1s5vBWdjY6pLI+DH/ggohC4OIx3Uj7y55flAtGMZLOYhJMv06x4yAtCvoZoV/1noDoG+B8xC8TsmngC0DHx9aehvwAAAP//AwBQSwMEFAAGAAgAAAAhAEZSdUjcAQAA2gMAABAACAFkb2NQcm9wcy9hcHAueG1sIKIEASigAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnFPLbtswELwX6D8IvMeUXddwDJpB4aDIoW0MWEnOW2plE6VIgmSMuF/flRSrdJNTdZodroazD4qbl9YURwxRO7tm00nJCrTK1dru1+yh+nq1ZEVMYGswzuKanTCyG/nxg9gG5zEkjbEgCRvX7JCSX3Ee1QFbiBM6tnTSuNBCojDsuWsarfDWqecWbeKzslxwfEloa6yv/CjIBsXVMf2vaO1U5y8+VidPelJU2HoDCeWP7k8j+EiIyiUwlW5RzokeA7GFPUb5WfABiCcXaorLpeADFJsDBFCJmidny+trwTNCfPHeaAWJ+iq/axVcdE0q7nuzRScgeJ4iqIAdqueg00mWgueh+KYtOZiRvwGRtwD7AP4Q5aIzOEZip8DghmqXDZiIgv8lxB1CN9ct6M7gMa2OqJILRdS/abIzVvyEiF3H1uwIQYNNbEgbgh4bH1OQlU6GtMe4h3lajvVcTvsEApeJfdB7IHzprr8h3jdUW3rH7DQ323sYrGZ2cmfnO/5R3bjWg6UG8xFRg3/FB1+52245Xnt4SWZzf9LpsPOgaCaf5uU034DsSOyIxZpGOg5lJMQdlRBMdwH9a/dYn3PeHnQ79Tg8VTldTEr6+iU6c7QJ4xuSfwAAAP//AwBQSwECLQAUAAYACAAAACEAjBi1h4oBAACtBwAAEwAAAAAAAAAAAAAAAAAAAAAAW0NvbnRlbnRfVHlwZXNdLnhtbFBLAQItABQABgAIAAAAIQAekRq37wAAAE4CAAALAAAAAAAAAAAAAAAAAMMDAABfcmVscy8ucmVsc1BLAQItABQABgAIAAAAIQBb2MzwjCIAAC24AQARAAAAAAAAAAAAAAAAAOMGAAB3b3JkL2RvY3VtZW50LnhtbFBLAQItABQABgAIAAAAIQCLem8iNAEAAL8FAAAcAAAAAAAAAAAAAAAAAJ4pAAB3b3JkL19yZWxzL2RvY3VtZW50LnhtbC5yZWxzUEsBAi0AFAAGAAgAAAAhAOdT2r21AgAAygsAABIAAAAAAAAAAAAAAAAAFCwAAHdvcmQvZm9vdG5vdGVzLnhtbFBLAQItABQABgAIAAAAIQCUA4xAtgIAAMQLAAARAAAAAAAAAAAAAAAAAPkuAAB3b3JkL2VuZG5vdGVzLnhtbFBLAQItABQABgAIAAAAIQDWhVhAggQAALYSAAAQAAAAAAAAAAAAAAAAAN4xAAB3b3JkL2hlYWRlcjEueG1sUEsBAi0AFAAGAAgAAAAhAERI6PzVAwAA4hEAABAAAAAAAAAAAAAAAAAAjjYAAHdvcmQvZm9vdGVyMS54bWxQSwECLQAUAAYACAAAACEA0FV2kiwHAAANIgAAFQAAAAAAAAAAAAAAAACROgAAd29yZC90aGVtZS90aGVtZTEueG1sUEsBAi0AFAAGAAgAAAAhAI7wmoKgBAAALQ4AABEAAAAAAAAAAAAAAAAA8EEAAHdvcmQvc2V0dGluZ3MueG1sUEsBAi0AFAAGAAgAAAAhABkWC/zTAwAAShIAABIAAAAAAAAAAAAAAAAAv0YAAHdvcmQvbnVtYmVyaW5nLnhtbFBLAQItABQABgAIAAAAIQDlnzn8rA0AAFSFAAAPAAAAAAAAAAAAAAAAAMJKAAB3b3JkL3N0eWxlcy54bWxQSwECLQAUAAYACAAAACEAOwr9lk8BAAD6AwAAFAAAAAAAAAAAAAAAAACbWAAAd29yZC93ZWJTZXR0aW5ncy54bWxQSwECLQAUAAYACAAAACEAJwJUGhsCAADdBwAAEgAAAAAAAAAAAAAAAAAcWgAAd29yZC9mb250VGFibGUueG1sUEsBAi0AFAAGAAgAAAAhAH/YJ4hNAQAAgQIAABEAAAAAAAAAAAAAAAAAZ1wAAGRvY1Byb3BzL2NvcmUueG1sUEsBAi0AFAAGAAgAAAAhAEZSdUjcAQAA2gMAABAAAAAAAAAAAAAAAAAA614AAGRvY1Byb3BzL2FwcC54bWxQSwUGAAAAABAAEAD8AwAA/WEAAAAA" download="OM_Business_School_Admission_Form.docx" class="btn bg">Download Admission Form</a>
+          <a href="mailto:info@omaccountant.com?subject=Business School Enquiry" class="btn bo-lt">Enquire by Email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /bschool -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   INTERNSHIPS                     ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg" id="pg-intern">
+
+  <div class="hdr">
+    <div class="w hdr-in">
+      <span class="ey lt">Internship Programme</span>
+      <h2 class="H lt rv">Building Tomorrow's<br/>Accountants.</h2>
+      <div class="rule rv"></div>
+      <p class="lead lt rv">O&amp;M offers internships to students from Namibia's leading universities to provide structured, hands-on practical training for the next generation of accounting professionals.</p>
+    </div>
+  </div>
+
+  <section class="sec white">
+    <div class="w">
+      <!-- University logos -->
+      <div style="text-align:center;margin-bottom:12px">
+        <span class="ey">University Partners</span>
+        <h2 class="H rv">Our Accredited Partners</h2>
+      </div>
+      <div class="unis">
+        <div class="uc rv"><img class="ulogo" src="images/image-012.jpg" alt="UNAM" width="140" height="78" loading="lazy"/><div class="uname">University of Namibia</div></div>
+        <div class="uc rv" style="transition-delay:.12s"><img class="ulogo" src="images/image-013.png" alt="NUST" width="140" height="78" loading="lazy"/><div class="uname">Namibia University of Science and Technology</div></div>
+        <div class="uc rv" style="transition-delay:.24s"><img class="ulogo" src="images/image-014.png" alt="IUM" width="140" height="78" loading="lazy"/><div class="uname">The International University of Management</div></div>
+      </div>
+
+      <!-- Split: Steps left, internship image right -->
+      <div style="display:grid;grid-template-columns:1fr .85fr;gap:52px;align-items:start;margin-top:64px">
+        <div class="rvl">
+          <span class="ey">How It Works</span>
+          <h2 class="H" style="margin-bottom:32px">Your Path to Experience</h2>
+          <div class="steps">
+            <div class="step"><div class="stepn">1</div><h4>Apply</h4><p>Email your CV and academic transcript to <strong>info@omaccountant.com</strong> with the subject "Internship Application".</p></div>
+            <div class="step"><div class="stepn">2</div><h4>Interview</h4><p>Shortlisted candidates are invited to an interview.</p></div>
+            <div class="step"><div class="stepn">3</div><h4>Start</h4><p>Join the O&amp;M team for a structured internship.</p></div>
+          </div>
+        </div>
+        <div class="rvr">
+          <div class="pic rv" style="border-radius:var(--r3);overflow:hidden;aspect-ratio:3/4">
+            <img src="images/image-015.jpg" alt="O&amp;M accounting internship" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /intern -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   TESTIMONIALS                    ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg" id="pg-testimonials">
+  <div class="hdr">
+    <div class="w hdr-in">
+      <span class="ey lt">Testimonials</span>
+      <h2 class="H lt rv">What Our Clients Say</h2>
+      <div class="rule rv"></div>
+      <p class="lead lt rv">Trusted by businesses across Namibia for accurate, reliable and professional accounting, tax and payroll services.</p>
+    </div>
+  </div>
+  <section class="sec white">
+    <div class="w">
+      <div class="tgrid">
+        <div class="tc rv" style="transition-delay:.08s"><span class="tq">&ldquo;</span><div class="sts">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Getting our BIPA and NamRA registrations done was effortless. They handled everything and kept us informed at every step of the process.</p><div class="tr"></div><div class="tn">James M.</div><div class="tco">Logistics Company, Swakopmund</div></div>
+        <div class="tc rv" style="transition-delay:.16s"><span class="tq">&ldquo;</span><div class="sts">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>The team at O&amp;M are genuinely passionate. Our accounts are always in perfect order and their tax advice has saved us significantly every year.</p><div class="tr"></div><div class="tn">Patricia N.</div><div class="tco">Construction Company, Windhoek</div></div>
+        <div class="tc rv" style="transition-delay:.24s"><span class="tq">&ldquo;</span><div class="sts">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>We have used O&amp;M for payroll for three years. Never a single error, always on time. The Sage VIP management gives us complete confidence every month.</p><div class="tr"></div><div class="tn">Robert D.</div><div class="tco">Manufacturing Firm, Walvis Bay</div></div>
+        <div class="tc rv" style="transition-delay:.32s"><span class="tq">&ldquo;</span><div class="sts">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>The founders are knowledgeable and approachable. They explain everything clearly. It feels like having a trusted financial advisor in your corner at all times.</p><div class="tr"></div><div class="tn">Anna P.</div><div class="tco">Tourism Business, Erongo</div></div>
+        <div class="tc rv" style="transition-delay:.40s"><span class="tq">&ldquo;</span><div class="sts">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>Outstanding service. O&amp;M helped us navigate a complex financial review with expertise and professionalism. We came out with complete confidence in our numbers.</p><div class="tr"></div><div class="tn">Michael T.</div><div class="tco">NGO Director, Namibia</div></div>
+      </div>
+    </div>
+  </section>
+</div><!-- /testimonials -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   CAREERS                         ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg" id="pg-careers">
+  <div class="hdr">
+    <div class="w hdr-in">
+      <span class="ey lt">Careers</span>
+      <h2 class="H lt rv">Join the O&amp;M Team</h2>
+      <div class="rule rv"></div>
+      <p class="lead lt rv">We are always looking for talented professionals who share our commitment to excellence. Grow your skills, build real client relationships and be part of a firm that raises the bar.</p>
+    </div>
+  </div>
+  <section class="sec white">
+    <div class="w">
+      <div class="cwrap">
+        <div class="rvl">
+          <span class="ey">Open Positions</span>
+          <h2 class="H" style="margin-bottom:24px">Current Openings</h2>
+          <div class="jcard">
+            <h4>No Positions Open</h4>
+            <p>We are not currently hiring. We are always glad to hear from talented professionals, so feel free to send a CV for future consideration.</p>
+            <div class="jtags"><span class="jtag">Closed</span></div>
+          </div>
+          <div style="background:var(--K2);border-radius:var(--r3);padding:24px;margin-top:8px">
+            <h3 style="font-family:var(--fd);font-size:1.12rem;color:var(--WH);margin-bottom:7px">How to Apply</h3>
+            <p style="font-size:.78rem;color:rgba(255,255,255,.52);margin-bottom:14px;line-height:1.65">Although we have no current openings, you're welcome to send your CV and a short cover letter to our HR team for future opportunities.</p>
+            <a href="mailto:info@omaccountant.com?subject=Job Application" class="btn bg" style="font-size:.78rem;padding:9px 18px">Email info@omaccountant.com</a>
+          </div>
+        </div>
+        <div class="rvr">
+          <div class="cimgwrap">
+            <img src="images/image-016.jpg" alt="O&amp;M careers team" loading="lazy"/>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /careers -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   CONTACT                         ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<div class="pg" id="pg-contact">
+  <div class="hdr">
+    <div class="w hdr-in">
+      <span class="ey lt">Contact Us</span>
+      <h2 class="H lt rv">Let&rsquo;s Start a Conversation</h2>
+      <div class="rule rv"></div>
+      <p class="lead lt rv">Reach out by phone, email or social media, or visit one of our offices. We would love to hear from you.</p>
+    </div>
+  </div>
+
+  <section class="sec white">
+    <div class="w">
+      <div class="ctgrid rv">
+        <div class="ctcard">
+          <div class="ctcard-ico">&#9742;</div>
+          <span class="ctcard-lbl">Call Us</span>
+          <h4>Phone</h4>
+          <a href="tel:+26464200417">064 200417</a>
+          <a href="tel:+264817734676">+264 81 773 4676</a>
+          <a href="tel:+264813808944">+264 81 380 8944</a>
+        </div>
+        <div class="ctcard">
+          <div class="ctcard-ico">&#9993;</div>
+          <span class="ctcard-lbl">Email Us</span>
+          <h4>Email</h4>
+          <a href="mailto:info@omaccountant.com">info@omaccountant.com</a>
+        </div>
+      </div>
+
+      <div class="sdiv"><span class="sdivl">Our Offices</span></div>
+      <div class="ofgrid">
+        <div class="ofcard">
+          <h4>Main Branch</h4>
+          <p>94 Seaguell Shopping Mall, Hage Geingob Street, Walvis Bay, Namibia</p>
+          <p style="margin-top:7px;font-size:.77rem">info@omaccountant.com</p>
+        </div>
+        <div class="ofcard">
+          <h4>Northern Branch</h4>
+          <p>Maroela Mall, Shop F36, Ongwediva, Namibia</p>
+          <p style="margin-top:7px;font-size:.77rem">info@omaccountant.com</p>
+        </div>
+        <div class="ofcard">
+          <h4>Windhoek Office <span class="ofbadge soon">Coming Soon</span></h4>
+          <p>Details to follow.</p>
+        </div>
+      </div>
+
+      <div class="sdiv"><span class="sdivl">Follow Us</span></div>
+      <div class="socx">
+        <a href="https://www.facebook.com/omaccountantsandconsultants/" target="_blank" rel="noopener" class="socbtn socbtn-fb" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.16 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.78 8.44-4.94 8.44-9.94Z"/></svg>
+          <span>Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/om_accountants_and_consultants?igsh=MWJyMnRqMzVoengwbA==" target="_blank" rel="noopener" class="socbtn socbtn-ig" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.22.6 1.77 1.16.55.55.9 1.11 1.16 1.77.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.16 1.77 4.9 4.9 0 0 1-1.77 1.16c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.77-1.16 4.9 4.9 0 0 1-1.16-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.22 1.16-1.77a4.9 4.9 0 0 1 1.77-1.16c.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2Zm0 1.8c-2.67 0-2.99.01-4.04.06-.87.04-1.34.18-1.65.3-.42.16-.71.35-1.03.67-.32.32-.51.61-.67 1.03-.12.31-.26.78-.3 1.65C4.26 8.76 4.25 9.08 4.25 12s.01 3.24.06 4.29c.04.87.18 1.34.3 1.65.16.42.35.71.67 1.03.32.32.61.51 1.03.67.31.12.78.26 1.65.3 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c.87-.04 1.34-.18 1.65-.3.42-.16.71-.35 1.03-.67.32-.32.51-.61.67-1.03.12-.31.26-.78.3-1.65.05-1.05.06-1.37.06-4.29s-.01-3.24-.06-4.29c-.04-.87-.18-1.34-.3-1.65a2.7 2.7 0 0 0-.67-1.03 2.7 2.7 0 0 0-1.03-.67c-.31-.12-.78-.26-1.65-.3C14.99 3.81 14.67 3.8 12 3.8Zm0 3.05a5.15 5.15 0 1 1 0 10.3 5.15 5.15 0 0 1 0-10.3Zm0 1.8a3.35 3.35 0 1 0 0 6.7 3.35 3.35 0 0 0 0-6.7Zm5.35-1.99a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://na.linkedin.com/company/o-m-accountants-and-auditors-cc" target="_blank" rel="noopener" class="socbtn socbtn-li" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.02 2 2 0 0 1 4 .02ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.95-8.68-2.91V8.48Z"/></svg>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+
+      <!-- People image strip -->
+      <div style="margin-top:40px" class="rv">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+          <div style="border-radius:var(--r3);overflow:hidden;aspect-ratio:16/7">
+            <img src="images/image-017.jpg" alt="O&amp;M Team" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 30%"/>
+          </div>
+          <div style="border-radius:var(--r3);overflow:hidden;aspect-ratio:16/7">
+            <img src="images/image-018.jpg" alt="O&amp;M Staff" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 40%"/>
+          </div>
+        </div>
+        <p style="text-align:center;font-size:.76rem;color:var(--S);margin-top:14px;font-style:italic">Our team looks forward to hearing from you.</p>
+      </div>
+    </div>
+  </section>
+</div><!-- /contact -->
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   FOOTER                          ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<footer>
+  <div class="w">
+    <div class="fg">
+      <div class="fc">
+        <img src="images/image-019.png" alt="O&amp;M Logo" height="46" style="object-fit:contain;margin-bottom:14px;display:block"/>
+        <p>Raising The Bar, professional accounting, tax and payroll services for Namibian businesses.</p>
+        <div class="socs">
+          <a href="https://www.facebook.com/omaccountantsandconsultants/" target="_blank" rel="noopener" class="soc" aria-label="Facebook">FB</a>
+          <a href="https://www.instagram.com/om_accountants_and_consultants?igsh=MWJyMnRqMzVoengwbA==" target="_blank" rel="noopener" class="soc" aria-label="Instagram">IG</a>
+          <a href="https://na.linkedin.com/company/o-m-accountants-and-auditors-cc" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn">LI</a>
+        </div>
+      </div>
+      <div class="fc"><h5>Services</h5><ul>
+        <li><button onclick="go('services')">Accounting &amp; Bookkeeping</button></li>
+        <li><button onclick="go('services')">Tax Services</button></li>
+        <li><button onclick="go('services')">Payroll: Sage VIP</button></li>
+        <li><button onclick="go('services')">Independent Reviews</button></li>
+        <li><button onclick="go('services')">Business Registrations</button></li>
+        <li><button onclick="go('services')">Business Advisory</button></li>
+      </ul></div>
+      <div class="fc"><h5>Company</h5><ul>
+        <li><button onclick="go('about')">About Us</button></li>
+        <li><button onclick="go('team')">Our Team</button></li>
+        <li><button onclick="go('bschool')">Business School</button></li>
+        <li><button onclick="go('intern')">Internships</button></li>
+        <li><button onclick="go('testimonials')">Testimonials</button></li>
+        <li><button onclick="go('careers')">Careers</button></li>
+      </ul></div>
+      <div class="fc"><h5>Contact</h5><ul>
+        <li><a href="tel:+26464200417">064 200417</a></li>
+        <li><a href="mailto:info@omaccountant.com">info@omaccountant.com</a></li>
+        <li><a href="tel:+264817734676">+264 81 773 4676</a></li>
+        <li><a href="tel:+264813808944">+264 81 380 8944</a></li>
+        <li><a>Main Branch, Walvis Bay</a></li>
+        <li><a>Northern Branch, Ongwediva</a></li>
+        <li><a>Windhoek Office (Coming Soon)</a></li>
+      </ul></div>
+    </div>
+    <div class="fbot">
+      <span>&copy; 2016 O&amp;M Accountants &amp; Consultants. Developed by Cantex Marketing Solutions.</span>
+      <div style="display:flex;gap:12px"><a href="#">Privacy Policy</a><a href="#">POPIA Compliance</a></div>
+    </div>
+  </div>
+</footer>
+
+<button id="btt" aria-label="Back to top" title="Back to top">&#8593;</button>
+
+
+<!-- ╔═══════════════════════════════════╗ -->
+<!-- ║   SCRIPTS                         ║ -->
+<!-- ╚═══════════════════════════════════╝ -->
+<script>
+/* ── Page map ── */
+var PM={
+  home:'n-home',about:'n-about',services:'n-services',team:'n-team',
+  bschool:'n-bschool',intern:'n-intern',careers:'n-careers',
+  testimonials:'n-testimonials',contact:'n-contact'
+};
+var cur='home';
+
+function go(id){
+  if(cur===id)return;
+  var old=document.getElementById('pg-'+cur);
+  if(old)old.classList.remove('on');
+  cur=id;
+  var pg=document.getElementById('pg-'+id);
+  if(pg)pg.classList.add('on');
+  document.querySelectorAll('.nl[id^="n-"]').forEach(function(b){b.classList.remove('on')});
+  var nb=document.getElementById(PM[id]);
+  if(nb)nb.classList.add('on');
+  window.scrollTo({top:0,behavior:'instant'});
+  setTimeout(reveal,50);
+}
+
+/* ── Accordion ── */
+function tc(id){
+  var el=document.getElementById(id);
+  if(el)el.classList.toggle('op');
+}
+
+/* ── Throttled scroll handler ── */
+var _st=null;
+window.addEventListener('scroll',function(){
+  if(_st)return;
+  _st=setTimeout(function(){
+    _st=null;
+    var y=window.scrollY;
+    document.getElementById('nav').classList.toggle('sc',y>30);
+    document.getElementById('btt').classList.toggle('on',y>340);
+    reveal();
+  },180);
+},{passive:true});
+
+document.getElementById('btt').addEventListener('click',function(){
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ── Hamburger ── */
+var _ham=document.getElementById('hamBtn');
+var _mob=document.getElementById('mnav');
+_ham.addEventListener('click',function(){
+  var op=_mob.classList.toggle('op');
+  _ham.classList.toggle('op',op);
+  _ham.setAttribute('aria-expanded',String(op));
+  document.body.style.overflow=op?'hidden':'';
+});
+function cm(){
+  _mob.classList.remove('op');
+  _ham.classList.remove('op');
+  _ham.setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+}
+
+/* ── IntersectionObserver scroll reveal (passive, unobserves after trigger) ── */
+var _obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('vis');
+      _obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.07,rootMargin:'0px 0px -10px 0px'});
+
+function reveal(){
+  var pg=document.querySelector('.pg.on');
+  if(!pg)return;
+  pg.querySelectorAll('.rv:not(.vis),.rvl:not(.vis),.rvr:not(.vis)').forEach(function(el){
+    _obs.observe(el);
+  });
+}
+
+/* ── Keyboard nav for brand ── */
+document.querySelector('.brand').addEventListener('keydown',function(e){
+  if(e.key==='Enter'||e.key===' ')go('home');
+});
+
+/* ── Init ── */
+document.getElementById('n-home').classList.add('on');
+reveal();
+</script>
+</body>
+</html>
